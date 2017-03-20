@@ -236,6 +236,10 @@
             }]];
             [self presentViewController:alert animated:YES completion:nil];
         }
+    }else if (indexPath.section == 1){
+        if (indexPath.row == 0) {
+            NSLog(@"聊天");
+        }
     }
 }
 

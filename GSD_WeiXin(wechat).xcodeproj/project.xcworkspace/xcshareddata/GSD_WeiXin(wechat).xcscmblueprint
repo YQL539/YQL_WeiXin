@@ -1,23 +1,28 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "EFFF1473B3AD480F016DB092052E39C131A9EB50",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "172821D98F3E6905C302FB325CB2AFEF77E9934F",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "EFFF1473B3AD480F016DB092052E39C131A9EB50" : 9223372036854775807,
+    "40520CB4A9F8C381D7E5F0983C9C8C1C9AAB816E" : 0,
     "6D40BB4D8454AA4C75457FF98E6E3731E6E5762E" : 0,
-    "40520CB4A9F8C381D7E5F0983C9C8C1C9AAB816E" : 0
+    "172821D98F3E6905C302FB325CB2AFEF77E9934F" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "004366DB-278D-44CD-BD72-4FA48D7D96F4",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "EFFF1473B3AD480F016DB092052E39C131A9EB50" : "GSD_WeiXin-master\/",
+    "40520CB4A9F8C381D7E5F0983C9C8C1C9AAB816E" : "SDAutoLayout\/",
     "6D40BB4D8454AA4C75457FF98E6E3731E6E5762E" : "GSD_WeiXin(wechat)\/",
-    "40520CB4A9F8C381D7E5F0983C9C8C1C9AAB816E" : "SDAutoLayout\/"
+    "172821D98F3E6905C302FB325CB2AFEF77E9934F" : "GSD_WeiXin-master\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "GSD_WeiXin(wechat)",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GSD_WeiXin(wechat).xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/YQL539\/WeiXin.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "172821D98F3E6905C302FB325CB2AFEF77E9934F"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/gsdios\/SDAutoLayout.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
@@ -27,11 +32,6 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/gsdios\/GSD_WeiXin.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6D40BB4D8454AA4C75457FF98E6E3731E6E5762E"
-    },
-    {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/YQL539\/WeiXin.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EFFF1473B3AD480F016DB092052E39C131A9EB50"
     }
   ]
 }

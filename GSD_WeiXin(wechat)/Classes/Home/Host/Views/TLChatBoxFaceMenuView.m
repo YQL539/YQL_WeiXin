@@ -49,6 +49,7 @@
         [button.imageView setContentMode:UIViewContentModeCenter];
         [button setImage:[UIImage imageNamed:group.groupImageName] forState:UIControlStateNormal];
         [button setTag:i ++];
+        button.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [button addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
         [self.faceMenuViewArray addObject:button];
         [self.scrollView addSubview:button];

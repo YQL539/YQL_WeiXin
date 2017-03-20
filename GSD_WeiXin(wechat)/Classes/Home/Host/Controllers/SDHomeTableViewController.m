@@ -163,11 +163,6 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    SDHomeDetailController *home = [[SDHomeDetailController alloc] init];
-//    home.model = self.dataList[indexPath.row];
-//    home.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:home animated:YES];
-    
     TLChatViewController *chat = [[TLChatViewController alloc] init];
     chat.model = self.dataList[indexPath.row];
     chat.hidesBottomBarWhenPushed = YES;
