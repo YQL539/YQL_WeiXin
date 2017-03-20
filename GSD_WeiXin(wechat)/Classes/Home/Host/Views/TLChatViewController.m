@@ -65,14 +65,14 @@
     message.from = [TLUserHelper sharedUserHelper].user;
     [self.chatMessageVC addNewMessage:message];
 //    //自动回复的内容
-    TLMessage *recMessage = [[TLMessage alloc] init];
-    recMessage.messageType = message.messageType;
-    recMessage.ownerTyper = TLMessageOwnerTypeOther;
-    recMessage.date = [NSDate date];
-    recMessage.text = message.text;
-    recMessage.picture = message.picture;
-    recMessage.from = message.from;
-    [self.chatMessageVC addNewMessage:recMessage];
+//    TLMessage *recMessage = [[TLMessage alloc] init];
+//    recMessage.messageType = message.messageType;
+//    recMessage.ownerTyper = TLMessageOwnerTypeOther;
+//    recMessage.date = [NSDate date];
+//    recMessage.text = message.text;
+//    recMessage.picture = message.picture;
+//    recMessage.from = message.from;
+//    [self.chatMessageVC addNewMessage:recMessage];
     
     [self.chatMessageVC scrollToBottom];
 }
