@@ -30,7 +30,7 @@
 #import "SDBaseTableViewController.h"
 
 @interface SDHomeTableViewController : SDBaseTableViewController
-
+//微信第一页
 - (void)startTableViewAnimationWithHidden:(BOOL)hidden;
 
 @end

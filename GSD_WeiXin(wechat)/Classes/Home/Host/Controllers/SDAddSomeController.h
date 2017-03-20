@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//加号界面
 @interface SDAddSomeController : UIViewController
 
 @end

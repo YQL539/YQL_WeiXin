@@ -217,6 +217,15 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前设备不支持拍照。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
         }
+    }else if (itemType == TLChatBoxItemRedPacket) {
+        NSLog(@"发红包");
+    }else if (itemType == TLChatBoxItemTransform) {
+        NSLog(@"转账");
+    }
+    else if (itemType == TLChatBoxItemSwitchRole) {
+        if (_delegate && [_delegate respondsToSelector:@selector(SwitchRole)]) {
+            [_delegate SwitchRole];
+        }
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"Did Selected Index Of ChatBoxMoreView: %d", (int)itemType] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -230,7 +239,7 @@
     UIImage *compressImage = [self compressImageToData:newImage];
         TLMessage *message = [[TLMessage alloc] init];
         message.messageType = TLMessageTypeImage;
-        message.ownerTyper = TLMessageOwnerTypeSelf;
+        
         message.date = [NSDate date];
         message.picture = UIImagePNGRepresentation(compressImage);
         NSLog(@"%@",message.imagePath);
@@ -315,7 +324,7 @@
                                                                                 imageName:@"sharemore_pic"];
         TLChatBoxMoreItem *takePictureItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"拍摄"
                                                                                      imageName:@"sharemore_video"];
-        TLChatBoxMoreItem *videoItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"小视频"
+        TLChatBoxMoreItem *videoItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"切换角色"
                                                                                imageName:@"sharemore_sight"];
         TLChatBoxMoreItem *videoCallItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"视频聊天"
                                                                                    imageName:@"sharemore_videovoip"];
@@ -327,15 +336,15 @@
                                                                                   imageName:@"sharemore_location"];
         TLChatBoxMoreItem *favoriteItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"收藏"
                                                                                   imageName:@"sharemore_myfav"];
-        TLChatBoxMoreItem *businessCardItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"名片"
+        TLChatBoxMoreItem *businessCardItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"个人名片"
                                                                                       imageName:@"sharemore_friendcard" ];
-        TLChatBoxMoreItem *interphoneItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"实时对讲机"
-                                                                                    imageName:@"sharemore_wxtalk" ];
+//        TLChatBoxMoreItem *interphoneItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"实时对讲机"
+//                                                                                    imageName:@"sharemore_wxtalk" ];
         TLChatBoxMoreItem *voiceItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"语音输入"
-                                                                               imageName:@"sharemore_voiceinput"];
+                                                                    imageName:@"sharemore_voiceinput"];
         TLChatBoxMoreItem *cardsItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"卡券"
                                                                                imageName:@"sharemore_wallet"];
-        [_chatBoxMoreView setItems:[[NSMutableArray alloc] initWithObjects:photosItem, takePictureItem, videoItem, videoCallItem, giftItem, transferItem, positionItem, favoriteItem, businessCardItem, interphoneItem, voiceItem, cardsItem, nil]];
+        [_chatBoxMoreView setItems:[[NSMutableArray alloc] initWithObjects:photosItem, takePictureItem, videoCallItem, positionItem, giftItem, transferItem, businessCardItem, voiceItem, favoriteItem, cardsItem,videoItem, nil]];
     }
     return _chatBoxMoreView;
 }

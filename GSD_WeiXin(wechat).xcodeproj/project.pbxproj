@@ -1277,12 +1277,12 @@
 			isa = PBXGroup;
 			children = (
 				99D6937C1C6CA33A00DA97E1 /* ShortVideoController */,
+				18C50B6D1E7E4EA1006D1F06 /* TLChatViewController.h */,
+				18C50B6E1E7E4EA1006D1F06 /* TLChatViewController.m */,
 				18C50B761E7E4FE3006D1F06 /* TLChatBoxViewController.h */,
 				18C50B771E7E4FE3006D1F06 /* TLChatBoxViewController.m */,
 				18C50B701E7E4F69006D1F06 /* TLChatMessageViewContrller.h */,
 				18C50B711E7E4F69006D1F06 /* TLChatMessageViewContrller.m */,
-				18C50B6D1E7E4EA1006D1F06 /* TLChatViewController.h */,
-				18C50B6E1E7E4EA1006D1F06 /* TLChatViewController.m */,
 				99D693611C6B49EA00DA97E1 /* SDHomeTableViewController.h */,
 				99D693621C6B49EA00DA97E1 /* SDHomeTableViewController.m */,
 				18FE068E1E75353500632D17 /* SDAddSomeController.h */,
