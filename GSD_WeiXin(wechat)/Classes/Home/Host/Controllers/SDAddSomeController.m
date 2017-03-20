@@ -304,7 +304,7 @@
 //完成
 - (void)overBtnClick
 {
-    if (self.homeDic[@"picture"]&&self.oneText.text.length&&self.fouroneLabel.text.length) {
+    if (self.homeDic[@"picture"]&&self.oneText.text.length&&self.fouroneLabel.text.length&&self.threeoneLabel.text.length) {
         self.homeDic[@"nickName"] = self.oneText.text;
         NSMutableArray *contentList = [NSMutableArray array];
         [contentList addObject:self.threeoneLabel.text];
@@ -327,7 +327,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self.navigationController popViewControllerAnimated:YES];
     }else{
-         [WKProgressHUD popMessage:@"至少选择朋友头像,朋友昵称,消息发送时间" inView:self.view duration:1.5 animated:YES];
+         [WKProgressHUD popMessage:@"至少选择朋友头像,朋友昵称,消息发送时间,聊天内容" inView:self.view duration:1.5 animated:YES];
     }
 }
 
