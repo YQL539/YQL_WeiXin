@@ -39,19 +39,11 @@
 {
     NSLog(@"%@",message);
     [super setMessage:message];
-//    if(message.imagePath != nil) {
-//        if (message.imagePath.length > 0) {
-//            //[self.messageImageView setImage:message.image];
-//            NSLog(@"%@",@"1333");
-//            NSLog(@"%@",message.picture);
-            self.messageImageView.image = [UIImage imageWithData:message.picture];
-//        }
-//        else {
-//            // network Image
-//        }
-        [self.messageImageView setSize:CGSizeMake(200, 100)];
-//        [self.messageImageView setSize:CGSizeMake(message.messageSize.width + 10, message.messageSize.height + 10)];
-   // }
+    self.messageImageView.image = [UIImage imageWithData:message.picture];
+    
+    
+    [self.messageImageView setSize:CGSizeMake(200, 100)];
+    
     switch (self.message.ownerTyper) {
         case TLMessageOwnerTypeSelf:
             self.messageBackgroundImageView.image = [[UIImage imageNamed:@"message_sender_background_reversed"] resizableImageWithCapInsets:UIEdgeInsetsMake(28, 20, 15, 20) resizingMode:UIImageResizingModeStretch];

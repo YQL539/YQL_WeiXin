@@ -249,16 +249,16 @@
 		18C50B6E1E7E4EA1006D1F06 /* TLChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLChatViewController.m; path = ../Views/TLChatViewController.m; sourceTree = "<group>"; };
 		18C50B701E7E4F69006D1F06 /* TLChatMessageViewContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLChatMessageViewContrller.h; path = ../Views/TLChatMessageViewContrller.h; sourceTree = "<group>"; };
 		18C50B711E7E4F69006D1F06 /* TLChatMessageViewContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLChatMessageViewContrller.m; path = ../Views/TLChatMessageViewContrller.m; sourceTree = "<group>"; };
-		18C50B731E7E4F87006D1F06 /* TLMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMessage.h; sourceTree = "<group>"; };
-		18C50B741E7E4F87006D1F06 /* TLMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMessage.m; sourceTree = "<group>"; };
+		18C50B731E7E4F87006D1F06 /* TLMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLMessage.h; path = ../Views/TLMessage.h; sourceTree = "<group>"; };
+		18C50B741E7E4F87006D1F06 /* TLMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLMessage.m; path = ../Views/TLMessage.m; sourceTree = "<group>"; };
 		18C50B761E7E4FE3006D1F06 /* TLChatBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLChatBoxViewController.h; path = ../Views/TLChatBoxViewController.h; sourceTree = "<group>"; };
 		18C50B771E7E4FE3006D1F06 /* TLChatBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLChatBoxViewController.m; path = ../Views/TLChatBoxViewController.m; sourceTree = "<group>"; };
 		18C50B791E7E500A006D1F06 /* TLChatHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatHelper.h; sourceTree = "<group>"; };
 		18C50B7A1E7E500A006D1F06 /* TLChatHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatHelper.m; sourceTree = "<group>"; };
 		18C50B7C1E7E502F006D1F06 /* TLTextMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTextMessageCell.h; sourceTree = "<group>"; };
 		18C50B7D1E7E502F006D1F06 /* TLTextMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTextMessageCell.m; sourceTree = "<group>"; };
-		18C50B7F1E7E504E006D1F06 /* TLUserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLUserHelper.h; sourceTree = "<group>"; };
-		18C50B801E7E504E006D1F06 /* TLUserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLUserHelper.m; sourceTree = "<group>"; };
+		18C50B7F1E7E504E006D1F06 /* TLUserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLUserHelper.h; path = ../Views/TLUserHelper.h; sourceTree = "<group>"; };
+		18C50B801E7E504E006D1F06 /* TLUserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLUserHelper.m; path = ../Views/TLUserHelper.m; sourceTree = "<group>"; };
 		18C50B821E7E5096006D1F06 /* TLFaceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFaceHelper.h; sourceTree = "<group>"; };
 		18C50B831E7E5096006D1F06 /* TLFaceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFaceHelper.m; sourceTree = "<group>"; };
 		18C50B851E7E50B6006D1F06 /* TLFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFace.h; sourceTree = "<group>"; };
@@ -1294,6 +1294,10 @@
 		99D693631C6B49EA00DA97E1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				18C50B7F1E7E504E006D1F06 /* TLUserHelper.h */,
+				18C50B801E7E504E006D1F06 /* TLUserHelper.m */,
+				18C50B731E7E4F87006D1F06 /* TLMessage.h */,
+				18C50B741E7E4F87006D1F06 /* TLMessage.m */,
 				99D693701C6B4DDC00DA97E1 /* SDHomeTableViewCellModel.h */,
 				99D693711C6B4DDC00DA97E1 /* SDHomeTableViewCellModel.m */,
 			);
@@ -1331,12 +1335,8 @@
 				18C50B8C1E7E5121006D1F06 /* TLImageMessageCell.m */,
 				18C50B881E7E50FD006D1F06 /* TLMessageCell.h */,
 				18C50B891E7E50FD006D1F06 /* TLMessageCell.m */,
-				18C50B7F1E7E504E006D1F06 /* TLUserHelper.h */,
-				18C50B801E7E504E006D1F06 /* TLUserHelper.m */,
 				18C50B7C1E7E502F006D1F06 /* TLTextMessageCell.h */,
 				18C50B7D1E7E502F006D1F06 /* TLTextMessageCell.m */,
-				18C50B731E7E4F87006D1F06 /* TLMessage.h */,
-				18C50B741E7E4F87006D1F06 /* TLMessage.m */,
 				99D693661C6B4A4A00DA97E1 /* SDHomeTableViewCell.h */,
 				99D693671C6B4A4A00DA97E1 /* SDHomeTableViewCell.m */,
 			);

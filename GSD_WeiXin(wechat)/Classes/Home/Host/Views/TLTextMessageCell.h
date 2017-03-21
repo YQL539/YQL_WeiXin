@@ -7,9 +7,9 @@
 //
 
 #import "TLMessageCell.h"
-
+#import "MLEmojiLabel.h"
 @interface TLTextMessageCell : TLMessageCell
 
-@property (nonatomic, strong) UILabel *messageTextLabel;
-
+@property (nonatomic, strong) MLEmojiLabel *messageTextLabel;
+@property (nonatomic, copy) void (^didSelectLinkTextOperationBlock)(NSString *link, MLEmojiLabelLinkType type);
 @end

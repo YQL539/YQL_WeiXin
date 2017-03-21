@@ -58,6 +58,7 @@ static UILabel *label = nil;
 
 - (CGSize) messageSize
 {
+    //message尺寸
     switch (self.messageType) {
         case TLMessageTypeText:
             [label setAttributedText:self.attrText];
@@ -88,19 +89,19 @@ static UILabel *label = nil;
     return _messageSize;
 }
 
-- (CGFloat) cellHeight
-{
-    switch (self.messageType) {     // cell 上下间隔为10
-        case TLMessageTypeText:
-            return self.messageSize.height + 40 > 60 ? self.messageSize.height + 40 : 60;
-            break;
-        case TLMessageTypeImage:
-            return self.messageSize.height + 20;
-            break;
-        default:
-            break;
-    }
-    return 0;
-}
+//- (CGFloat) cellHeight
+//{
+//    switch (self.messageType) {     // cell 上下间隔为10
+//        case TLMessageTypeText:
+//            return self.messageSize.height + 40 > 60 ? self.messageSize.height + 40 : 60;
+//            break;
+//        case TLMessageTypeImage:
+//            return self.messageSize.height + 20;
+//            break;
+//        default:
+//            break;
+//    }
+//    return 0;
+//}
 
 @end
