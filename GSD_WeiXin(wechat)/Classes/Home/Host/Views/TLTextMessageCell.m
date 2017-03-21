@@ -23,7 +23,7 @@
 #define kMaxChatImageViewWidth 200.f
 #define kMaxChatImageViewHeight 300.f
 
-@interface TLTextMessageCell ()<MLEmojiLabelDelegate>
+@interface TLTextMessageCell ()
 
 @property (nonatomic,strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UIView *container;
@@ -52,16 +52,14 @@
     _iconImageView = [UIImageView new];
     [self.contentView addSubview:_iconImageView];
     
-    _messageTextLabel  = [MLEmojiLabel new];
+    _messageTextLabel  = [UILabel new];
     _messageTextLabel.font = [UIFont systemFontOfSize:16.0f];
     _messageTextLabel.numberOfLines = 0;
     [_container addSubview:_messageTextLabel];
     
     _messageImageView = [UIImageView new];
     [_container addSubview:_messageImageView];
-    
-    
-    
+
     _containerBackgroundImageView = [UIImageView new];
     [_container insertSubview:_containerBackgroundImageView atIndex:0];
     _maskImageView = [UIImageView new];
@@ -76,10 +74,8 @@
 {
     // 根据model设置cell左浮动或者右浮动样式
     [self setMessageOriginWithModel:TLMessage];
-    NSString *pstr = (NSString *)TLMessage.attrText;
-    _messageTextLabel.text = pstr;
+    
     if (TLMessage.imagePath) { // 有图片的先看下设置图片自动布局
-        
         // cell重用时候清除只有文字的情况下设置的container宽度自适应约束
         [self.container clearAutoWidthSettings];
         self.messageImageView.hidden = NO;
@@ -90,7 +86,7 @@
         UIImage *image = [UIImage imageWithContentsOfFile:TLMessage.imagePath];
         CGFloat h = image.size.height;
         CGFloat w = image.size.width;
-        
+        self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
         if (w > kMaxChatImageViewWidth || w > kMaxChatImageViewHeight) {
             
             widthHeightRatio = w / h;
@@ -123,8 +119,7 @@
         // 清除展示图片时候用到的mask
         [_container.layer.mask removeFromSuperlayer];
         self.messageImageView.hidden = YES;
-        
-//        [_messageTextLabel setAttributedText:TLMessage.attrText];
+        [_messageTextLabel setAttributedText:TLMessage.attrText];
         self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
 
         // 清除展示图片时候_containerBackgroundImageView用到的didFinishAutoLayoutBlock
@@ -176,14 +171,8 @@
     _maskImageView.image = _containerBackgroundImageView.image;
 }
 
-#pragma mark - MLEmojiLabelDelegate
 
-- (void)mlEmojiLabel:(MLEmojiLabel *)emojiLabel didSelectLink:(NSString *)link withType:(MLEmojiLabelLinkType)type
-{
-    if (self.didSelectLinkTextOperationBlock) {
-        self.didSelectLinkTextOperationBlock(link, type);
-    }
-}
+
 
 
 

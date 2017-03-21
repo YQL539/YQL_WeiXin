@@ -20,6 +20,9 @@
 @property (nonatomic, strong) TLChatMessageViewContrller *chatMessageVC;
 @property (nonatomic, strong) TLChatBoxViewController *chatBoxVC;
 @property (nonatomic,assign) TLMessageOwnerType OwnerType;
+@property (nonatomic,strong) SDHomeTableViewCellModel  *MeRole;
+@property (nonatomic,strong) SDHomeTableViewCellModel  *FriendRole;
+@property (nonatomic,strong) SDHomeTableViewCellModel  *SenderRole;
 @end
 
 @implementation TLChatViewController
@@ -31,6 +34,19 @@
     [self.view setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
     [self setHidesBottomBarWhenPushed:YES];
     _OwnerType = TLMessageOwnerTypeSelf;
+    _SenderRole = [[SDHomeTableViewCellModel  alloc] init];
+    _MeRole =[[SDHomeTableViewCellModel  alloc] init];
+    if ([CommonUtil IsExistFile:WECHAT_USER]) {
+        NSDictionary *pMeDic = [[NSDictionary alloc] initWithContentsOfFile:WECHAT_USER];
+        _MeRole.picture = pMeDic[@"picture"];
+    }
+    
+    NSString *FName = _model.nickName;
+    _FriendRole = [[SDHomeTableViewCellModel  alloc] init];
+    _FriendRole.nickName = FName;
+    NSDictionary *pDic = [[NSUserDefaults standardUserDefaults] objectForKey:FName];
+    _FriendRole.picture = pDic[@"picture"];
+    _FriendRole.picture = UIImagePNGRepresentation([UIImage imageNamed:@"1.jpg"]);
     viewHeight = HEIGHT_SCREEN - HEIGHT_NAVBAR - HEIGHT_STATUSBAR;
     
     [self.view addSubview:self.chatMessageVC.view];
@@ -62,7 +78,7 @@
 #pragma mark - TLChatBoxViewControllerDelegate
 - (void) chatBoxViewController:(TLChatBoxViewController *)chatboxViewController sendMessage:(TLMessage *)message
 {
-    message.from = [TLUserHelper sharedUserHelper].user;
+    message.from = _SenderRole;
     message.ownerTyper = _OwnerType;
     NSLog(@"_owertype=%ld",_OwnerType);
     [self.chatMessageVC addNewMessage:message];
@@ -82,10 +98,12 @@
 -(void)SwitchRole{
     if (_OwnerType == TLMessageOwnerTypeSelf) {
         _OwnerType = TLMessageOwnerTypeOther;
+        _SenderRole = _FriendRole;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"已切换到好友" message:@"再次点击切换至自己" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
     }else if (_OwnerType == TLMessageOwnerTypeOther){
         _OwnerType = TLMessageOwnerTypeSelf;
+        _SenderRole = _MeRole;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"已切换到自己" message:@"再次点击切换至好友" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
     }

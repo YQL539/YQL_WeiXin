@@ -135,6 +135,11 @@
 		48F337D01C7320380049144A /* MLEmojiLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F337CC1C7320380049144A /* MLEmojiLabel.m */; };
 		48F337D41C73205C0049144A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F337D31C73205C0049144A /* TTTAttributedLabel.m */; };
 		48F337D81C7324250049144A /* SDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F337D71C7324250049144A /* SDWebViewController.m */; };
+		917412181E810FD60040CC7D /* MYAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 917412111E810FD60040CC7D /* MYAttributeModel.m */; };
+		917412191E810FD60040CC7D /* MYCoreTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 917412131E810FD60040CC7D /* MYCoreTextLabel.m */; };
+		9174121A1E810FD60040CC7D /* MYCoretextResultTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 917412151E810FD60040CC7D /* MYCoretextResultTool.m */; };
+		9174121B1E810FD60040CC7D /* MYSubCoretextResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 917412171E810FD60040CC7D /* MYSubCoretextResult.m */; };
+		9174122B1E81288A0040CC7D /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9174122A1E81288A0040CC7D /* CommonUtil.m */; };
 		9953C5301CAF94FD00A260D0 /* SDTimeLineCellOperationMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9953C52F1CAF94FD00A260D0 /* SDTimeLineCellOperationMenu.m */; };
 		99D692C41C6B36C300DA97E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D692C31C6B36C300DA97E1 /* main.m */; };
 		99D692CF1C6B36C300DA97E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99D692CE1C6B36C300DA97E1 /* Assets.xcassets */; };
@@ -439,6 +444,16 @@
 		48F337D31C73205C0049144A /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		48F337D61C7324250049144A /* SDWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebViewController.h; sourceTree = "<group>"; };
 		48F337D71C7324250049144A /* SDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebViewController.m; sourceTree = "<group>"; };
+		917412101E810FD60040CC7D /* MYAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYAttributeModel.h; sourceTree = "<group>"; };
+		917412111E810FD60040CC7D /* MYAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYAttributeModel.m; sourceTree = "<group>"; };
+		917412121E810FD60040CC7D /* MYCoreTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYCoreTextLabel.h; sourceTree = "<group>"; };
+		917412131E810FD60040CC7D /* MYCoreTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYCoreTextLabel.m; sourceTree = "<group>"; };
+		917412141E810FD60040CC7D /* MYCoretextResultTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYCoretextResultTool.h; sourceTree = "<group>"; };
+		917412151E810FD60040CC7D /* MYCoretextResultTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYCoretextResultTool.m; sourceTree = "<group>"; };
+		917412161E810FD60040CC7D /* MYSubCoretextResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYSubCoretextResult.h; sourceTree = "<group>"; };
+		917412171E810FD60040CC7D /* MYSubCoretextResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYSubCoretextResult.m; sourceTree = "<group>"; };
+		917412291E81288A0040CC7D /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtil.h; sourceTree = "<group>"; };
+		9174122A1E81288A0040CC7D /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
 		9953C52E1CAF94FD00A260D0 /* SDTimeLineCellOperationMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTimeLineCellOperationMenu.h; sourceTree = "<group>"; };
 		9953C52F1CAF94FD00A260D0 /* SDTimeLineCellOperationMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTimeLineCellOperationMenu.m; sourceTree = "<group>"; };
 		99D692BF1C6B36C300DA97E1 /* GSD_WeiXin(wechat).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GSD_WeiXin(wechat).app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -977,6 +992,21 @@
 			path = WebViewController;
 			sourceTree = "<group>";
 		};
+		9174120F1E810FD60040CC7D /* MYCoreTextLabel */ = {
+			isa = PBXGroup;
+			children = (
+				917412101E810FD60040CC7D /* MYAttributeModel.h */,
+				917412111E810FD60040CC7D /* MYAttributeModel.m */,
+				917412121E810FD60040CC7D /* MYCoreTextLabel.h */,
+				917412131E810FD60040CC7D /* MYCoreTextLabel.m */,
+				917412141E810FD60040CC7D /* MYCoretextResultTool.h */,
+				917412151E810FD60040CC7D /* MYCoretextResultTool.m */,
+				917412161E810FD60040CC7D /* MYSubCoretextResult.h */,
+				917412171E810FD60040CC7D /* MYSubCoretextResult.m */,
+			);
+			path = MYCoreTextLabel;
+			sourceTree = "<group>";
+		};
 		9953C52D1CAF94CA00A260D0 /* OperationMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1128,6 +1158,7 @@
 		99D692FD1C6B37C600DA97E1 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				9174120F1E810FD60040CC7D /* MYCoreTextLabel */,
 				4840EF671D34B68D00BE7A12 /* LEETheme */,
 				48EFF4481C7EAFDF009252A5 /* SDWebImage */,
 				48EFF42D1C7EAFBF009252A5 /* SDPhotoBrowser */,
@@ -1358,6 +1389,8 @@
 			isa = PBXGroup;
 			children = (
 				99D693741C6B4F7700DA97E1 /* AnalogDataGenerator */,
+				917412291E81288A0040CC7D /* CommonUtil.h */,
+				9174122A1E81288A0040CC7D /* CommonUtil.m */,
 				18FE068A1E74E90000632D17 /* Common.pch */,
 			);
 			path = utils;
@@ -1688,15 +1721,18 @@
 				18C50BA81E7E5420006D1F06 /* TLChatBoxMoreItem.m in Sources */,
 				18C50BB41E7E5597006D1F06 /* TLChatBoxFaceMenuView.m in Sources */,
 				18C50B9F1E7E51D3006D1F06 /* TLSystemMessageCell.m in Sources */,
+				917412191E810FD60040CC7D /* MYCoreTextLabel.m in Sources */,
 				18C50B981E7E519A006D1F06 /* UIImage+TL.m in Sources */,
 				48EFF4821C7EB0AF009252A5 /* SDWeiXinPhotoContainerView.m in Sources */,
 				48217F941C8D7AF400A10D64 /* AppDelegate.m in Sources */,
 				187EAAA81E792ED000BDA7A6 /* WKMessageProgressHUD.m in Sources */,
+				9174121B1E810FD60040CC7D /* MYSubCoretextResult.m in Sources */,
 				48EFF4711C7EAFDF009252A5 /* SDWebImageManager.m in Sources */,
 				18C50B8A1E7E50FD006D1F06 /* TLMessageCell.m in Sources */,
 				48EFF4211C7EAD24009252A5 /* SDTimeLineTableViewController.m in Sources */,
 				18C50B8D1E7E5121006D1F06 /* TLImageMessageCell.m in Sources */,
 				48EFF4471C7EAFBF009252A5 /* UIView+SDExtension.m in Sources */,
+				9174122B1E81288A0040CC7D /* CommonUtil.m in Sources */,
 				48EFF4C71C7F2A7F009252A5 /* NSAttributedString+MLLabel.m in Sources */,
 				48EFF4C91C7F2A7F009252A5 /* NSString+MLLabel.m in Sources */,
 				187EAAAA1E792ED000BDA7A6 /* WKWaitingProgressHUD.m in Sources */,
@@ -1759,10 +1795,12 @@
 				18C50B971E7E519A006D1F06 /* UIDevice+TL.m in Sources */,
 				48EFF4AA1C7ED424009252A5 /* SDTimeLineCellCommentView.m in Sources */,
 				99D693651C6B49EA00DA97E1 /* SDHomeTableViewController.m in Sources */,
+				9174121A1E810FD60040CC7D /* MYCoretextResultTool.m in Sources */,
 				99D693771C6B4F8E00DA97E1 /* SDAnalogDataGenerator.m in Sources */,
 				48F289E41C89A9E6005B7602 /* SDDiscoverTableViewCell.m in Sources */,
 				18C50BAB1E7E5492006D1F06 /* TLChatBoxFaceView.m in Sources */,
 				48EFF4451C7EAFBF009252A5 /* SDRefreshHeaderView.m in Sources */,
+				917412181E810FD60040CC7D /* MYAttributeModel.m in Sources */,
 				18C50BB71E7E55C7006D1F06 /* TLChatBoxFacePageView.m in Sources */,
 				99D692C41C6B36C300DA97E1 /* main.m in Sources */,
 				182B87CF1E7A1CE3001EDB26 /* NSObject+MJCoding.m in Sources */,

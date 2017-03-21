@@ -305,12 +305,14 @@
 - (void)overBtnClick
 {
     if (self.homeDic[@"picture"]&&self.oneText.text.length&&self.fouroneLabel.text.length&&self.threeoneLabel.text.length) {
-        self.homeDic[@"nickName"] = self.oneText.text;
+        NSString *FName = self.oneText.text;
+        self.homeDic[@"nickName"] = FName;
         NSMutableArray *contentList = [NSMutableArray array];
         [contentList addObject:self.threeoneLabel.text];
         self.homeDic[@"content"] = contentList;
         self.homeDic[@"time"] = self.fouroneLabel.text;
         self.homeDic[@"message"] = self.twoText.text;
+        [[NSUserDefaults standardUserDefaults] setObject:self.homeDic forKey:FName];
         NSArray *userList = [[NSUserDefaults standardUserDefaults] objectForKey:@"LoginDict"];
         NSMutableArray *userinfo = [NSMutableArray array];
         if (userList.count >0) {

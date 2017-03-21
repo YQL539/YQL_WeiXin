@@ -26,7 +26,6 @@ static TLUserHelper *userHelper = nil;
     if (_user == nil) {
         _user = [[SDHomeTableViewCellModel  alloc] init];
         _user.nickName = @"自定义名字";
-        //_user.userID = @"li-bokun";
         _user.picture = UIImagePNGRepresentation([UIImage imageNamed:@"1.jpg"]);
     }
     return _user;

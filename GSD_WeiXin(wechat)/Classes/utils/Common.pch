@@ -9,6 +9,8 @@
 #ifndef Common_pch
 #define Common_pch
 #import "TLMessage.h"
+#import "TLFace.h"
+#import "CommonUtil.h"
 //导航栏按钮
 #import "UIBarButtonItem+Item.h"
 //16进制颜色
@@ -51,6 +53,9 @@
 #define mark - Key
 #define UMENG_KEY   @"56d2b08c67e58e2f54000b07"
 
-
+#define DIR_DOC  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
+#define DIR_WECHAT [CommonUtil GetProjDir]
+#define DIR_INFO [NSString stringWithFormat:@"%@%@",  DIR_WECHAT, @"info"]
+#define WECHAT_USER [NSString stringWithFormat:@"%@/User", DIR_INFO]
 
 #endif

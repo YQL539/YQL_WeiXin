@@ -12,8 +12,7 @@
 #import "TLImageMessageCell.h"
 #import "TLVoiceMessageCell.h"
 #import "TLSystemMessageCell.h"
-
-
+#import "SDWebViewController.h"
 #import "UIView+SDAutoLayout.h"
 
 @interface TLChatMessageViewContrller ()
@@ -32,11 +31,11 @@
     [self.view addGestureRecognizer:self.tapGR];
     [self.tableView setTableFooterView:[UIView new]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
-    [self.tableView registerClass:[TLTextMessageCell class] forCellReuseIdentifier:@"TextMessageCell"];
-    [self.tableView registerClass:[TLImageMessageCell class] forCellReuseIdentifier:@"ImageMessageCell"];
-    [self.tableView registerClass:[TLVoiceMessageCell class] forCellReuseIdentifier:@"VoiceMessageCell"];
-    [self.tableView registerClass:[TLSystemMessageCell class] forCellReuseIdentifier:@"SystemMessageCell"];;
+//    
+//    [self.tableView registerClass:[TLTextMessageCell class] forCellReuseIdentifier:@"TextMessageCell"];
+//    [self.tableView registerClass:[TLImageMessageCell class] forCellReuseIdentifier:@"ImageMessageCell"];
+//    [self.tableView registerClass:[TLVoiceMessageCell class] forCellReuseIdentifier:@"VoiceMessageCell"];
+//    [self.tableView registerClass:[TLSystemMessageCell class] forCellReuseIdentifier:@"SystemMessageCell"];;
 }
 
 #pragma mark - Public Methods

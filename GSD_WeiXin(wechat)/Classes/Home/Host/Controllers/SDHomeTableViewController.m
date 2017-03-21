@@ -167,12 +167,6 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
     chat.model = self.dataList[indexPath.row];
     chat.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chat animated:YES];
-    
-    
-//    UIViewController *vc = [SDChatTableViewController new];
-//    vc.hidesBottomBarWhenPushed = YES;
-//    vc.view.backgroundColor = [UIColor whiteColor];
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)startTableViewAnimationWithHidden:(BOOL)hidden
