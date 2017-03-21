@@ -36,6 +36,7 @@
     _OwnerType = TLMessageOwnerTypeSelf;
     _SenderRole = [[SDHomeTableViewCellModel  alloc] init];
     _MeRole =[[SDHomeTableViewCellModel  alloc] init];
+    
     if ([CommonUtil IsExistFile:WECHAT_USER]) {
         NSDictionary *pMeDic = [[NSDictionary alloc] initWithContentsOfFile:WECHAT_USER];
         _MeRole.picture = pMeDic[@"picture"];
@@ -47,6 +48,8 @@
     NSDictionary *pDic = [[NSUserDefaults standardUserDefaults] objectForKey:FName];
     _FriendRole.picture = pDic[@"picture"];
     _FriendRole.picture = UIImagePNGRepresentation([UIImage imageNamed:@"1.jpg"]);
+    
+    _SenderRole = _MeRole;
     viewHeight = HEIGHT_SCREEN - HEIGHT_NAVBAR - HEIGHT_STATUSBAR;
     
     [self.view addSubview:self.chatMessageVC.view];
