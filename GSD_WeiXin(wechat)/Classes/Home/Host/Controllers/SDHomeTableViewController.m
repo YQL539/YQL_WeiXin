@@ -7,26 +7,6 @@
 //
 
 
-/*
- 
- *********************************************************************************
- *
- * GSD_WeiXin
- *
- * QQ交流群: 362419100(2群) 459274049（1群已满）
- * Email : gsdios@126.com
- * GitHub: https://github.com/gsdios/GSD_WeiXin
- * 新浪微博:GSD_iOS
- *
- * 此“高仿微信”用到了很高效方便的自动布局库SDAutoLayout（一行代码搞定自动布局）
- * SDAutoLayout地址：https://github.com/gsdios/SDAutoLayout
- * SDAutoLayout视频教程：http://www.letv.com/ptv/vplay/24038772.html
- * SDAutoLayout用法示例：https://github.com/gsdios/SDAutoLayout/blob/master/README.md
- *
- *********************************************************************************
- 
- */
-
 #import "SDHomeTableViewController.h"
 #import "SDContactsSearchResultController.h"
 
@@ -34,7 +14,7 @@
 #import "GlobalDefines.h"
 #import "UIView+SDAutoLayout.h"
 
-#import "SDHomeTableViewCell.h"
+
 #import "SDEyeAnimationView.h"
 #import "SDShortVideoController.h"
 #import "SDChatTableViewController.h"
@@ -64,7 +44,7 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 
 @property (nonatomic, strong) UISearchController *searchController;
 
-@property (nonatomic, strong) NSArray *dataList;
+@property (nonatomic, strong) NSMutableArray *dataList;
 
 @end
 
@@ -154,6 +134,8 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SDHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHomeTableViewControllerCellId];
+    cell.indexPath = indexPath;
+    cell.delegate = self;
     cell.model = self.dataList[indexPath.row];
     if (indexPath.row == (self.dataList.count -1)) {
         cell.separatorInset=UIEdgeInsetsZero;
@@ -199,6 +181,10 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
     return NO;
+}
+-(void)deleteTheCell:(NSIndexPath *)indexPath{
+    [self.dataList removeObjectAtIndex:indexPath.row];
+    [self.tableView reloadData];
 }
 
 @end

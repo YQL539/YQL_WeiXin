@@ -28,8 +28,8 @@
  */
 
 #import "SDBaseTableViewController.h"
-
-@interface SDHomeTableViewController : SDBaseTableViewController
+#import "SDHomeTableViewCell.h"
+@interface SDHomeTableViewController : SDBaseTableViewController<SDHomeTableViewCellDelegate>
 //微信第一页
 - (void)startTableViewAnimationWithHidden:(BOOL)hidden;
 

@@ -88,7 +88,8 @@
     _deleteButton.backgroundColor = [UIColor redColor];
     [_deleteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
-    
+    [_deleteButton addTarget:self action:@selector(DeleteTheCell:) forControlEvents:UIControlEventTouchUpInside];
+//
     _tagButton = [UIButton new];
     _tagButton.backgroundColor =[UIColor lightGrayColor];
     [_tagButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -139,6 +140,12 @@
     .bottomSpaceToView(superView, margin * 1.3)
     .heightIs(18)
     .rightSpaceToView(superView, margin);
+}
+
+-(void)DeleteTheCell:(UIButton *)pButton{
+    if (_delegate && [_delegate respondsToSelector:@selector(deleteTheCell:)]) {
+        [_delegate deleteTheCell:_indexPath];
+    }
 }
 
 - (void)setupGestureRecognizer
