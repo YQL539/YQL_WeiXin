@@ -33,6 +33,8 @@ typedef NS_ENUM(NSInteger, TLMessageType){
     TLMessageTypeFile,          // 文件
     TLMessageTypeLocation,      // 位置
     TLMessageTypeShake,         // 抖动
+    TLMessageTypeRedPacket,     // 红包
+    TLMessageTypeTransfer       // 转账
 };
 
 /**

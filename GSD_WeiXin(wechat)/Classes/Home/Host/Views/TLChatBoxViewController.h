@@ -15,6 +15,8 @@
         didChangeChatBoxHeight:(CGFloat)height;
 - (void) chatBoxViewController:(TLChatBoxViewController *)chatboxViewController
                    sendMessage:(TLMessage *)message;
+//加代理转换角色
+-(void)SwitchRole;
 @end
 
 

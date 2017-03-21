@@ -12,6 +12,15 @@
 typedef NS_ENUM(NSInteger, TLChatBoxItem) {
     TLChatBoxItemAlbum = 0,
     TLChatBoxItemCamera,
+    TLChatBoxItemVideo,
+    TLChatBoxItemLocation,
+    TLChatBoxItemRedPacket,
+    TLChatBoxItemTransform,
+    TLChatBoxItemPersonCard,
+    TLChatBoxItemVoice,
+    TLChatBoxItemFavorite,
+    TLChatBoxItemCards,
+    TLChatBoxItemSwitchRole,
 };
 
 

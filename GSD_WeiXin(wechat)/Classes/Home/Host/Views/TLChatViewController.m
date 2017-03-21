@@ -19,7 +19,7 @@
 
 @property (nonatomic, strong) TLChatMessageViewContrller *chatMessageVC;
 @property (nonatomic, strong) TLChatBoxViewController *chatBoxVC;
-
+@property (nonatomic,assign) TLMessageOwnerType OwnerType;
 @end
 
 @implementation TLChatViewController
@@ -30,7 +30,7 @@
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     [self.view setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
     [self setHidesBottomBarWhenPushed:YES];
-    
+    _OwnerType = TLMessageOwnerTypeSelf;
     viewHeight = HEIGHT_SCREEN - HEIGHT_NAVBAR - HEIGHT_STATUSBAR;
     
     [self.view addSubview:self.chatMessageVC.view];
@@ -63,18 +63,32 @@
 - (void) chatBoxViewController:(TLChatBoxViewController *)chatboxViewController sendMessage:(TLMessage *)message
 {
     message.from = [TLUserHelper sharedUserHelper].user;
+    message.ownerTyper = _OwnerType;
+    NSLog(@"_owertype=%ld",_OwnerType);
     [self.chatMessageVC addNewMessage:message];
-    
-    TLMessage *recMessage = [[TLMessage alloc] init];
-    recMessage.messageType = message.messageType;
-    recMessage.ownerTyper = TLMessageOwnerTypeOther;
-    recMessage.date = [NSDate date];
-    recMessage.text = message.text;
-    recMessage.picture = message.picture;
-    recMessage.from = message.from;
-    [self.chatMessageVC addNewMessage:recMessage];
+//    //自动回复的内容
+//    TLMessage *recMessage = [[TLMessage alloc] init];
+//    recMessage.messageType = message.messageType;
+//    recMessage.ownerTyper = TLMessageOwnerTypeOther;
+//    recMessage.date = [NSDate date];
+//    recMessage.text = message.text;
+//    recMessage.picture = message.picture;
+//    recMessage.from = message.from;
+//    [self.chatMessageVC addNewMessage:recMessage];
     
     [self.chatMessageVC scrollToBottom];
+}
+
+-(void)SwitchRole{
+    if (_OwnerType == TLMessageOwnerTypeSelf) {
+        _OwnerType = TLMessageOwnerTypeOther;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"已切换到好友" message:@"再次点击切换至自己" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }else if (_OwnerType == TLMessageOwnerTypeOther){
+        _OwnerType = TLMessageOwnerTypeSelf;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"已切换到自己" message:@"再次点击切换至好友" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
 }
 
 - (void) chatBoxViewController:(TLChatBoxViewController *)chatboxViewController didChangeChatBoxHeight:(CGFloat)height

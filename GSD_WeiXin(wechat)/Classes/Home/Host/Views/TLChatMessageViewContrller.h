@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TLMessage.h"
-
+//聊天的tableview
 @class TLChatMessageViewContrller;
 @protocol TLChatMessageViewControllerDelegate <NSObject>
 - (void) didTapChatMessageView:(TLChatMessageViewContrller *)chatMessageViewController;

@@ -86,6 +86,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TLMessage *message = [_data objectAtIndex:indexPath.row];
+    
     return message.cellHeight;
 }
 

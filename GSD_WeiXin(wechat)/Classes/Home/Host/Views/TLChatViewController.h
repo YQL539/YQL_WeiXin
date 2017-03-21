@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AppDelegate.h"
 @class SDHomeTableViewCellModel;
 
 @interface TLChatViewController : UIViewController
