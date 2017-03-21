@@ -57,5 +57,6 @@
 #define DIR_WECHAT [CommonUtil GetProjDir]
 #define DIR_INFO [NSString stringWithFormat:@"%@%@",  DIR_WECHAT, @"info"]
 #define WECHAT_USER [NSString stringWithFormat:@"%@/User", DIR_INFO]
+#define WECHAT_FRIEND(FNAME) [NSString stringWithFormat:@"%@/%@", DIR_INFO,FNAME]
 
 #endif

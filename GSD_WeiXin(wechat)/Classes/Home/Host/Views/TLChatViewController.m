@@ -45,10 +45,10 @@
     NSString *FName = _model.nickName;
     _FriendRole = [[SDHomeTableViewCellModel  alloc] init];
     _FriendRole.nickName = FName;
-    NSDictionary *pDic = [[NSUserDefaults standardUserDefaults] objectForKey:FName];
-    _FriendRole.picture = pDic[@"picture"];
-    _FriendRole.picture = UIImagePNGRepresentation([UIImage imageNamed:@"1.jpg"]);
-    
+    if ([CommonUtil IsExistFile:WECHAT_FRIEND(FName)]) {
+        NSDictionary *pDic = [[NSDictionary alloc] initWithContentsOfFile:WECHAT_FRIEND(FName)];
+        _FriendRole.picture = pDic[@"picture"];
+    }
     _SenderRole = _MeRole;
     viewHeight = HEIGHT_SCREEN - HEIGHT_NAVBAR - HEIGHT_STATUSBAR;
     

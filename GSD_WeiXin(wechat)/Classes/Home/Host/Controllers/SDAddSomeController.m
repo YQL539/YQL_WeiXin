@@ -312,7 +312,7 @@
         self.homeDic[@"content"] = contentList;
         self.homeDic[@"time"] = self.fouroneLabel.text;
         self.homeDic[@"message"] = self.twoText.text;
-        [[NSUserDefaults standardUserDefaults] setObject:self.homeDic forKey:FName];
+        [self.homeDic writeToFile:WECHAT_FRIEND(FName) atomically:YES];
         NSArray *userList = [[NSUserDefaults standardUserDefaults] objectForKey:@"LoginDict"];
         NSMutableArray *userinfo = [NSMutableArray array];
         if (userList.count >0) {
