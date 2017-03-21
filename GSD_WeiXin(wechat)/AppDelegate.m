@@ -46,7 +46,10 @@
     self.window.rootViewController = [SDAppFrameTabBarController new];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
+    [CommonUtil CreatePath:DIR_WECHAT];
+    [CommonUtil CreatePath:DIR_INFO];
+    NSString *pstrDocPath = DIR_WECHAT;
+    NSLog(@"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%@",pstrDocPath);
     [self setupNavBar];
     return YES;
 }

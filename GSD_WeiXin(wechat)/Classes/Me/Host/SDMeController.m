@@ -117,9 +117,9 @@
     [overBtn.layer setCornerRadius:5];
     [self.view addSubview:overBtn];
     
-    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
-    if (userDic.count) {
-        SDNameModel *model = [SDNameModel mj_objectWithKeyValues:userDic];
+    if ([CommonUtil IsExistFile:WECHAT_USER]) {
+        NSDictionary *pMeDic = [[NSDictionary alloc] initWithContentsOfFile:WECHAT_USER];
+        SDNameModel *model = [SDNameModel mj_objectWithKeyValues:pMeDic];
         self.meDic[@"picture"] = model.picture;
         self.oneImage.image = [UIImage imageWithData:model.picture];
         self.oneText.text = model.nickName;
@@ -132,8 +132,10 @@
     if (self.meDic[@"picture"]&&self.oneText.text.length>0&&self.twoText.text.length>0) {
         self.meDic[@"nickName"] = self.oneText.text;
         self.meDic[@"weixin"] = self.twoText.text;
-        [[NSUserDefaults standardUserDefaults] setObject:self.meDic forKey:@"name"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [[NSUserDefaults standardUserDefaults] setObject:self.meDic forKey:@"mename"];
+//        
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.meDic writeToFile:WECHAT_USER atomically:YES];
         [self.navigationController popViewControllerAnimated:YES];
     }else{
         [WKProgressHUD popMessage:@"请选择头像和昵称和微信号" inView:self.view duration:1.5 animated:YES];

@@ -39,28 +39,28 @@
 {
     _message = message;
     
-    switch (message.ownerTyper) {
-        case TLMessageOwnerTypeSelf:
-            [self.avatarImageView setHidden:NO];
-            [self.avatarImageView setImage:[UIImage imageWithData:message.from.picture]];
-            [self.messageBackgroundImageView setHidden:NO];
-            self.messageBackgroundImageView.image = [[UIImage imageNamed:@"message_sender_background_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(28, 20, 15, 20) resizingMode:UIImageResizingModeStretch];
-            self.messageBackgroundImageView.highlightedImage = [[UIImage imageNamed:@"message_sender_background_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(28, 20, 15, 20) resizingMode:UIImageResizingModeStretch];
-            break;
-        case TLMessageOwnerTypeOther:
-            [self.avatarImageView setHidden:NO];
-            [self.avatarImageView setImage:[UIImage imageWithData:message.from.picture]];
-            [self.messageBackgroundImageView setHidden:NO];
-            [self.messageBackgroundImageView setImage:[[UIImage imageNamed:@"message_receiver_background_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(28, 20, 15, 20) resizingMode:UIImageResizingModeStretch]];
-            self.messageBackgroundImageView.highlightedImage = [[UIImage imageNamed:@"message_receiver_background_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(28, 20, 15, 20) resizingMode:UIImageResizingModeStretch];
-            break;
-        case TLMessageOwnerTypeSystem:
-            [self.avatarImageView setHidden:YES];
-            [self.messageBackgroundImageView setHidden:YES];
-            break;
-        default:
-            break;
-    }
+//    switch (message.ownerTyper) {
+//        case TLMessageOwnerTypeSelf:
+//            [self.avatarImageView setHidden:NO];
+//            [self.avatarImageView setImage:[UIImage imageWithData:message.from.picture]];
+//            [self.messageBackgroundImageView setHidden:NO];
+//            self.messageBackgroundImageView.image = [[UIImage imageNamed:@"message_sender_background_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(28, 20, 15, 20) resizingMode:UIImageResizingModeStretch];
+//            self.messageBackgroundImageView.highlightedImage = [[UIImage imageNamed:@"message_sender_background_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(28, 20, 15, 20) resizingMode:UIImageResizingModeStretch];
+//            break;
+//        case TLMessageOwnerTypeOther:
+//            [self.avatarImageView setHidden:NO];
+//            [self.avatarImageView setImage:[UIImage imageWithData:message.from.picture]];
+//            [self.messageBackgroundImageView setHidden:NO];
+//            [self.messageBackgroundImageView setImage:[[UIImage imageNamed:@"message_receiver_background_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(28, 20, 15, 20) resizingMode:UIImageResizingModeStretch]];
+//            self.messageBackgroundImageView.highlightedImage = [[UIImage imageNamed:@"message_receiver_background_highlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(28, 20, 15, 20) resizingMode:UIImageResizingModeStretch];
+//            break;
+//        case TLMessageOwnerTypeSystem:
+//            [self.avatarImageView setHidden:YES];
+//            [self.messageBackgroundImageView setHidden:YES];
+//            break;
+//        default:
+//            break;
+//    }
 }
 
 - (UIImageView *)avatarImageView

@@ -13,6 +13,6 @@
 
 @property (nonatomic, strong) SDHomeTableViewCellModel *user;
 
-+ (TLUserHelper *)sharedUserHelper;
+//+ (TLUserHelper *)sharedUserHelper;
 
 @end

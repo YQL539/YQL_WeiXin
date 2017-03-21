@@ -83,6 +83,8 @@
         [item setTitleTextAttributes:@{NSForegroundColorAttributeName : Global_tintColor} forState:UIControlStateSelected];
         [self addChildViewController:nav];
     }];
+    
+    
 }
 
 @end

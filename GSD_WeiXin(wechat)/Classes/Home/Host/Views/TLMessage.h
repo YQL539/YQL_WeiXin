@@ -86,4 +86,10 @@ typedef NS_ENUM(NSUInteger, TLMessageReadState) {
 @property (nonatomic, strong) NSString *voiceUrl;                   // 网络语音URL
 @property (nonatomic, strong) NSString *voicePath;                  // 本地语音Path
 
+#pragma mark - 红包消息
+@property (nonatomic, strong) NSString *RedPacketString;            // 红包语言
+
+#pragma mark - 转账消息
+@property (nonatomic, assign) CGFloat transformNum;                   // 转账金额
+@property (nonatomic, strong) NSString *transformString;              // 转账语言
 @end

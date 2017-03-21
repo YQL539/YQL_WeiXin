@@ -61,13 +61,20 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
-    if (userDic.count) {
-        SDNameModel *model = [SDNameModel mj_objectWithKeyValues:userDic];
+
+    if ([CommonUtil IsExistFile:WECHAT_USER]) {
+        NSDictionary *pMeDic = [[NSDictionary alloc] initWithContentsOfFile:WECHAT_USER];
+        SDNameModel *model = [SDNameModel mj_objectWithKeyValues:pMeDic];
         self.headIcon.image = [UIImage imageWithData:model.picture];
         self.name.text = model.nickName;
         self.weixin.text = [NSString stringWithFormat:@"微信号: %@",model.weixin];
     }
+//    if (userDic.count) {
+//        SDNameModel *model = [SDNameModel mj_objectWithKeyValues:userDic];
+//        self.headIcon.image = [UIImage imageWithData:model.picture];
+//        self.name.text = model.nickName;
+//        self.weixin.text = [NSString stringWithFormat:@"微信号: %@",model.weixin];
+//    }
 }
 
 

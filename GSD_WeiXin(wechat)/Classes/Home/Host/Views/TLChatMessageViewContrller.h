@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TLMessage.h"
+#import "UITableView+SDAutoTableViewCellHeight.h"
 //聊天的tableview
 @class TLChatMessageViewContrller;
 @protocol TLChatMessageViewControllerDelegate <NSObject>

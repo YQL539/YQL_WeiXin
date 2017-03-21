@@ -12,6 +12,8 @@
 #import "TLImageMessageCell.h"
 #import "TLVoiceMessageCell.h"
 #import "TLSystemMessageCell.h"
+#import "SDWebViewController.h"
+#import "UIView+SDAutoLayout.h"
 
 @interface TLChatMessageViewContrller ()
 
@@ -29,11 +31,11 @@
     [self.view addGestureRecognizer:self.tapGR];
     [self.tableView setTableFooterView:[UIView new]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
-    [self.tableView registerClass:[TLTextMessageCell class] forCellReuseIdentifier:@"TextMessageCell"];
-    [self.tableView registerClass:[TLImageMessageCell class] forCellReuseIdentifier:@"ImageMessageCell"];
-    [self.tableView registerClass:[TLVoiceMessageCell class] forCellReuseIdentifier:@"VoiceMessageCell"];
-    [self.tableView registerClass:[TLSystemMessageCell class] forCellReuseIdentifier:@"SystemMessageCell"];;
+//    
+//    [self.tableView registerClass:[TLTextMessageCell class] forCellReuseIdentifier:@"TextMessageCell"];
+//    [self.tableView registerClass:[TLImageMessageCell class] forCellReuseIdentifier:@"ImageMessageCell"];
+//    [self.tableView registerClass:[TLVoiceMessageCell class] forCellReuseIdentifier:@"VoiceMessageCell"];
+//    [self.tableView registerClass:[TLSystemMessageCell class] forCellReuseIdentifier:@"SystemMessageCell"];;
 }
 
 #pragma mark - Public Methods
@@ -63,34 +65,38 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TLMessage *message = [_data objectAtIndex:indexPath.row];
-    if (message.text.length) {
-        TLTextMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:message.cellIndentify];
-        [cell setMessage:message];
-        return cell;
-    }else if (message.picture) {
-        TLImageMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:message.cellIndentify];
-        [cell setMessage:message];
-        return cell;
-    }else{
-        TLVoiceMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:message.cellIndentify];
-        [cell setMessage:message];
-        return cell;
-    }
+    TLMessage *message = _data[indexPath.row];
+    NSString *indentify = [NSString stringWithFormat:@"Cell===%ld",(long)indexPath.row];
+    TLTextMessageCell *cell = [[TLTextMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indentify];
+    cell.message = message;
+    [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
+    // 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
+    cell.sd_tableView = tableView;
+    cell.sd_indexPath = indexPath;
+    return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%ld == %ld",indexPath.section,indexPath.row);
+}
 #pragma mark - UITableViewCellDelegate
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TLMessage *message = [_data objectAtIndex:indexPath.row];
-    
-    return message.cellHeight;
+    TLMessage *message = _data[indexPath.row];
+    CGFloat iHeight = [tableView cellHeightForIndexPath:indexPath model:message keyPath:@"message" cellClass:[TLTextMessageCell class] contentViewWidth:[self cellContentViewWith]];
+    return iHeight;
 }
 
 #pragma mark - UIScrollViewDelegate
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+- (CGFloat)cellContentViewWith
 {
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
     
+    // 适配ios7横屏
+    if ([UIApplication sharedApplication].statusBarOrientation != UIInterfaceOrientationPortrait && [[UIDevice currentDevice].systemVersion floatValue] < 8) {
+        width = [UIScreen mainScreen].bounds.size.height;
+    }
+    return width;
 }
 
 #pragma mark - Event Response
