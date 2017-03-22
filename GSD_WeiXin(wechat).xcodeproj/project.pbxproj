@@ -35,12 +35,10 @@
 		18C50B841E7E5096006D1F06 /* TLFaceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B831E7E5096006D1F06 /* TLFaceHelper.m */; };
 		18C50B871E7E50B6006D1F06 /* TLFace.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B861E7E50B6006D1F06 /* TLFace.m */; };
 		18C50B8A1E7E50FD006D1F06 /* TLMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B891E7E50FD006D1F06 /* TLMessageCell.m */; };
-		18C50B8D1E7E5121006D1F06 /* TLImageMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B8C1E7E5121006D1F06 /* TLImageMessageCell.m */; };
 		18C50B961E7E519A006D1F06 /* NSString+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B8F1E7E519A006D1F06 /* NSString+TL.m */; };
 		18C50B971E7E519A006D1F06 /* UIDevice+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B911E7E519A006D1F06 /* UIDevice+TL.m */; };
 		18C50B981E7E519A006D1F06 /* UIImage+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B931E7E519A006D1F06 /* UIImage+TL.m */; };
 		18C50B991E7E519A006D1F06 /* UIView+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B951E7E519A006D1F06 /* UIView+TL.m */; };
-		18C50B9C1E7E51B8006D1F06 /* TLVoiceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B9B1E7E51B8006D1F06 /* TLVoiceMessageCell.m */; };
 		18C50B9F1E7E51D3006D1F06 /* TLSystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B9E1E7E51D3006D1F06 /* TLSystemMessageCell.m */; };
 		18C50BA21E7E53F2006D1F06 /* TLChatBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50BA11E7E53F2006D1F06 /* TLChatBox.m */; };
 		18C50BA51E7E540A006D1F06 /* TLChatBoxMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50BA41E7E540A006D1F06 /* TLChatBoxMoreView.m */; };
@@ -272,8 +270,6 @@
 		18C50B861E7E50B6006D1F06 /* TLFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFace.m; sourceTree = "<group>"; };
 		18C50B881E7E50FD006D1F06 /* TLMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMessageCell.h; sourceTree = "<group>"; };
 		18C50B891E7E50FD006D1F06 /* TLMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMessageCell.m; sourceTree = "<group>"; };
-		18C50B8B1E7E5121006D1F06 /* TLImageMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLImageMessageCell.h; sourceTree = "<group>"; };
-		18C50B8C1E7E5121006D1F06 /* TLImageMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLImageMessageCell.m; sourceTree = "<group>"; };
 		18C50B8E1E7E519A006D1F06 /* NSString+TL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TL.h"; sourceTree = "<group>"; };
 		18C50B8F1E7E519A006D1F06 /* NSString+TL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TL.m"; sourceTree = "<group>"; };
 		18C50B901E7E519A006D1F06 /* UIDevice+TL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+TL.h"; sourceTree = "<group>"; };
@@ -282,8 +278,6 @@
 		18C50B931E7E519A006D1F06 /* UIImage+TL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TL.m"; sourceTree = "<group>"; };
 		18C50B941E7E519A006D1F06 /* UIView+TL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TL.h"; sourceTree = "<group>"; };
 		18C50B951E7E519A006D1F06 /* UIView+TL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TL.m"; sourceTree = "<group>"; };
-		18C50B9A1E7E51B8006D1F06 /* TLVoiceMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLVoiceMessageCell.h; sourceTree = "<group>"; };
-		18C50B9B1E7E51B8006D1F06 /* TLVoiceMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLVoiceMessageCell.m; sourceTree = "<group>"; };
 		18C50B9D1E7E51D3006D1F06 /* TLSystemMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSystemMessageCell.h; sourceTree = "<group>"; };
 		18C50B9E1E7E51D3006D1F06 /* TLSystemMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSystemMessageCell.m; sourceTree = "<group>"; };
 		18C50BA01E7E53F2006D1F06 /* TLChatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBox.h; sourceTree = "<group>"; };
@@ -1362,8 +1356,6 @@
 				18C50BA11E7E53F2006D1F06 /* TLChatBox.m */,
 				18C50B9D1E7E51D3006D1F06 /* TLSystemMessageCell.h */,
 				18C50B9E1E7E51D3006D1F06 /* TLSystemMessageCell.m */,
-				18C50B9A1E7E51B8006D1F06 /* TLVoiceMessageCell.h */,
-				18C50B9B1E7E51B8006D1F06 /* TLVoiceMessageCell.m */,
 				18C50B8E1E7E519A006D1F06 /* NSString+TL.h */,
 				18C50B8F1E7E519A006D1F06 /* NSString+TL.m */,
 				18C50B901E7E519A006D1F06 /* UIDevice+TL.h */,
@@ -1372,8 +1364,6 @@
 				18C50B931E7E519A006D1F06 /* UIImage+TL.m */,
 				18C50B941E7E519A006D1F06 /* UIView+TL.h */,
 				18C50B951E7E519A006D1F06 /* UIView+TL.m */,
-				18C50B8B1E7E5121006D1F06 /* TLImageMessageCell.h */,
-				18C50B8C1E7E5121006D1F06 /* TLImageMessageCell.m */,
 				18C50B881E7E50FD006D1F06 /* TLMessageCell.h */,
 				18C50B891E7E50FD006D1F06 /* TLMessageCell.m */,
 				18C50B7C1E7E502F006D1F06 /* TLTextMessageCell.h */,
@@ -1716,7 +1706,6 @@
 				18FE06901E75353500632D17 /* SDAddSomeController.m in Sources */,
 				18C50B721E7E4F69006D1F06 /* TLChatMessageViewContrller.m in Sources */,
 				48EFF4421C7EAFBF009252A5 /* SDWaitingView.m in Sources */,
-				18C50B9C1E7E51B8006D1F06 /* TLVoiceMessageCell.m in Sources */,
 				182B87C91E7A1CE3001EDB26 /* MJExtensionConst.m in Sources */,
 				99D693191C6B3A0600DA97E1 /* SDMeTableViewController.m in Sources */,
 				18C50B991E7E519A006D1F06 /* UIView+TL.m in Sources */,
@@ -1742,7 +1731,6 @@
 				5C6AA3F81E82354E00DD8D4C /* TransformViewController.m in Sources */,
 				18C50B8A1E7E50FD006D1F06 /* TLMessageCell.m in Sources */,
 				48EFF4211C7EAD24009252A5 /* SDTimeLineTableViewController.m in Sources */,
-				18C50B8D1E7E5121006D1F06 /* TLImageMessageCell.m in Sources */,
 				48EFF4471C7EAFBF009252A5 /* UIView+SDExtension.m in Sources */,
 				9174122B1E81288A0040CC7D /* CommonUtil.m in Sources */,
 				48EFF4C71C7F2A7F009252A5 /* NSAttributedString+MLLabel.m in Sources */,
