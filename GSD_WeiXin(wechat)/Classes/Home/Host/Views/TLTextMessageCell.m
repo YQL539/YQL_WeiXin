@@ -23,8 +23,8 @@
 #define kMaxChatImageViewWidth 200.f
 #define kMaxChatImageViewHeight 300.f
 
-#define kRedPacketImageViewWidth 400.f
-#define kRedPacketImageViewHeight 140.f
+#define kRedWeight 0.625
+#define KRedHeight 0.375
 
 @interface TLTextMessageCell ()
 
@@ -188,21 +188,35 @@
 -(void)setRedPacketCell:(TLMessage *)TLMessage{
     [self.container clearAutoWidthSettings];
     self.messageImageView.hidden = NO;
-    UIImage *img = [UIImage imageWithData:TLMessage.picture];//红包图片
-//    self.messageImageView.image = img;
-    self.messageImageView.backgroundColor = [UIColor redColor];
     // 根据图片的宽高尺寸设置图片约束
-    CGFloat h = kRedPacketImageViewHeight;
-    CGFloat w = kRedPacketImageViewWidth;
+    CGFloat w = kRedWeight * screenW;
+    CGFloat h = w * KRedHeight;
+    UIImage *img = [[UIImage alloc]init];
+    UILabel *stateLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    stateLabel.text = TLMessage.RedPacketString;
+    stateLabel.textColor = [UIColor whiteColor];
+    stateLabel.backgroundColor = [UIColor clearColor];
+    [self.messageImageView addSubview:stateLabel];
+    if (TLMessage.ownerTyper == TLMessageOwnerTypeSelf) {
+         img = [UIImage imageNamed:@"zijifahong"];
+        stateLabel.frame = CGRectMake(53, 14, w - 53 - 10, 28);
+    }else if (TLMessage.ownerTyper == TLMessageOwnerTypeOther){
+        img = [UIImage imageNamed:@"shouhongbao"];
+        stateLabel.frame = CGRectMake(53 + 8, 14, w - 53 - 10, 28);
+    }
+    self.messageImageView.image = img;
+    self.messageImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _containerBackgroundImageView.hidden = YES;
     
     self.messageImageView.size_sd = CGSizeMake(w, h);
     _container.sd_layout.widthIs(w).heightIs(h);
+    
     
     // 设置container以messageImageView为bottomView高度自适应
     [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
     
     // container按照maskImageView裁剪
-    self.container.layer.mask = self.maskImageView.layer;
+//    self.container.layer.mask = self.maskImageView.layer;
     
     __weak typeof(self) weakself = self;
     [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {

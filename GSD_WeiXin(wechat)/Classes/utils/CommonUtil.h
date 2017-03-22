@@ -100,6 +100,8 @@
  *
  */
 + (NSString *)GetIphoneTypeFromModel:(NSString *)iPhoneModel;
-
-
+/*
+ *气泡融合
+ */
++ (void) MastViewByImage:(UIView *)pMaskedView withMaskImage:(UIView *)pMaskImageView;
 @end

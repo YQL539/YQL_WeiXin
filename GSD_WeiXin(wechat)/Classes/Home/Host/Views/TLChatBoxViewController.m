@@ -220,41 +220,19 @@
         }
     }else if (itemType == TLChatBoxItemRedPacket) {
         NSLog(@"发红包");
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请选择下列操作" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"发红包给我" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            RedPacketViewController *redController = [[RedPacketViewController alloc]init];
-            redController.didFinishSetRedPacketBlock = ^(NSString *moneyNum,NSString *moneyState){
-                TLMessage *message = [[TLMessage alloc] init];
-                message.messageType = TLMessageTypeRedPacket;
-                message.ownerTyper = TLMessageOwnerTypeOther;
-                message.date = [NSDate date];
-                message.RedPacketString = moneyState;
-                if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
-                    [_delegate chatBoxViewController:self sendMessage:message];
-                }
-                NSLog(@"block发给我的回传%@=%@=%@",message,moneyNum,moneyState);
-            };
-            [self.navigationController pushViewController:redController animated:YES];
-        }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"发红包给对方" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            RedPacketViewController *redController = [[RedPacketViewController alloc]init];
-            redController.didFinishSetRedPacketBlock = ^(NSString *moneyNum,NSString *moneyState){
-                TLMessage *message = [[TLMessage alloc] init];
-                message.messageType = TLMessageTypeRedPacket;
-                message.ownerTyper = TLMessageOwnerTypeSelf;
-                message.date = [NSDate date];
-                message.RedPacketString = moneyState;
-                if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
-                    [_delegate chatBoxViewController:self sendMessage:message];
-                }
-                NSLog(@"block发给我的回传%@=%@=%@",message,moneyNum,moneyState);            };
-            [self.navigationController pushViewController:redController animated:YES];
-        }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
-        }]];
-        [self presentViewController:alert animated:YES completion:nil];
-        
+        RedPacketViewController *redController = [[RedPacketViewController alloc]init];
+        redController.didFinishSetRedPacketBlock = ^(NSString *moneyNum,NSString *moneyState){
+            TLMessage *message = [[TLMessage alloc] init];
+            message.messageType = TLMessageTypeRedPacket;
+            message.ownerTyper = TLMessageOwnerTypeOther;
+            message.date = [NSDate date];
+            message.RedPacketString = moneyState;
+            if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
+                [_delegate chatBoxViewController:self sendMessage:message];
+            }
+            NSLog(@"block发给我的回传%@=%@=%@",message,moneyNum,moneyState);
+        };
+        [self.navigationController pushViewController:redController animated:YES];
     }else if (itemType == TLChatBoxItemTransform) {
         NSLog(@"转账");
         TransformViewController *transformController = [[TransformViewController alloc]init];

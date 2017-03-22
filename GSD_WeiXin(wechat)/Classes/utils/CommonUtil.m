@@ -199,4 +199,22 @@
     return platform;
 }
 
++ (void) MastViewByImage:(UIView *)pMaskedView withMaskImage:(UIView *)pMaskImageView{
+    UIImage* pImg = [self screenImage:pMaskImageView];
+    CALayer *pMask = [CALayer layer];
+    pMask.contents = (id)[pImg CGImage];
+    pMask.frame = CGRectMake(0, 0, pImg.size.width , pImg.size.height );
+    pMaskedView.layer.mask = pMask;
+    pMaskedView.layer.masksToBounds = YES;
+    pMaskedView.tag = 10;
+}
+
++ (UIImage *) screenImage:(UIView *)pView {
+    UIImage *pScreenImage;
+    UIGraphicsBeginImageContext(pView.frame.size);
+    [pView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    pScreenImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return pScreenImage;
+}
 @end
