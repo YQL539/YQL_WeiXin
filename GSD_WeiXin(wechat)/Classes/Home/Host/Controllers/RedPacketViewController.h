@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RedPacketViewController : UIViewController
-@property (nonatomic,assign) BOOL bisSender;
+@interface RedPacketViewController : UIViewController<UITextFieldDelegate>
+//@property (nonatomic,assign) NSInteger ownerType;
+@property (nonatomic,strong) NSString *moneyStatus;
+@property (nonatomic,strong) NSString *moneyNum;
+@property (nonatomic) void (^didFinishSetRedPacketBlock)(NSString *moneyNum,NSString *moneyState);
 @end
