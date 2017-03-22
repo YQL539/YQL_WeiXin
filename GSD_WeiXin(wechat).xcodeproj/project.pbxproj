@@ -135,6 +135,8 @@
 		48F337D01C7320380049144A /* MLEmojiLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F337CC1C7320380049144A /* MLEmojiLabel.m */; };
 		48F337D41C73205C0049144A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F337D31C73205C0049144A /* TTTAttributedLabel.m */; };
 		48F337D81C7324250049144A /* SDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F337D71C7324250049144A /* SDWebViewController.m */; };
+		5C6AA3F51E82353C00DD8D4C /* RedPacketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6AA3F41E82353C00DD8D4C /* RedPacketViewController.m */; };
+		5C6AA3F81E82354E00DD8D4C /* TransformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6AA3F71E82354E00DD8D4C /* TransformViewController.m */; };
 		917412181E810FD60040CC7D /* MYAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 917412111E810FD60040CC7D /* MYAttributeModel.m */; };
 		917412191E810FD60040CC7D /* MYCoreTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 917412131E810FD60040CC7D /* MYCoreTextLabel.m */; };
 		9174121A1E810FD60040CC7D /* MYCoretextResultTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 917412151E810FD60040CC7D /* MYCoretextResultTool.m */; };
@@ -444,6 +446,10 @@
 		48F337D31C73205C0049144A /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		48F337D61C7324250049144A /* SDWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebViewController.h; sourceTree = "<group>"; };
 		48F337D71C7324250049144A /* SDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebViewController.m; sourceTree = "<group>"; };
+		5C6AA3F31E82353C00DD8D4C /* RedPacketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketViewController.h; sourceTree = "<group>"; };
+		5C6AA3F41E82353C00DD8D4C /* RedPacketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketViewController.m; sourceTree = "<group>"; };
+		5C6AA3F61E82354E00DD8D4C /* TransformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformViewController.h; sourceTree = "<group>"; };
+		5C6AA3F71E82354E00DD8D4C /* TransformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransformViewController.m; sourceTree = "<group>"; };
 		917412101E810FD60040CC7D /* MYAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYAttributeModel.h; sourceTree = "<group>"; };
 		917412111E810FD60040CC7D /* MYAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYAttributeModel.m; sourceTree = "<group>"; };
 		917412121E810FD60040CC7D /* MYCoreTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYCoreTextLabel.h; sourceTree = "<group>"; };
@@ -1318,6 +1324,10 @@
 				99D693621C6B49EA00DA97E1 /* SDHomeTableViewController.m */,
 				18FE068E1E75353500632D17 /* SDAddSomeController.h */,
 				18FE068F1E75353500632D17 /* SDAddSomeController.m */,
+				5C6AA3F31E82353C00DD8D4C /* RedPacketViewController.h */,
+				5C6AA3F41E82353C00DD8D4C /* RedPacketViewController.m */,
+				5C6AA3F61E82354E00DD8D4C /* TransformViewController.h */,
+				5C6AA3F71E82354E00DD8D4C /* TransformViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1699,6 +1709,7 @@
 				99D6936F1C6B4B3300DA97E1 /* UIView+SDAutoLayout.m in Sources */,
 				182B87CE1E7A1CE3001EDB26 /* NSObject+MJClass.m in Sources */,
 				182B87D21E7A1CE3001EDB26 /* NSString+MJExtension.m in Sources */,
+				5C6AA3F51E82353C00DD8D4C /* RedPacketViewController.m in Sources */,
 				18C50B811E7E504E006D1F06 /* TLUserHelper.m in Sources */,
 				48EFF4401C7EAFBF009252A5 /* SDBrowserImageView.m in Sources */,
 				18C50B6C1E7E4462006D1F06 /* SDHomeDetailController.m in Sources */,
@@ -1728,6 +1739,7 @@
 				187EAAA81E792ED000BDA7A6 /* WKMessageProgressHUD.m in Sources */,
 				9174121B1E810FD60040CC7D /* MYSubCoretextResult.m in Sources */,
 				48EFF4711C7EAFDF009252A5 /* SDWebImageManager.m in Sources */,
+				5C6AA3F81E82354E00DD8D4C /* TransformViewController.m in Sources */,
 				18C50B8A1E7E50FD006D1F06 /* TLMessageCell.m in Sources */,
 				48EFF4211C7EAD24009252A5 /* SDTimeLineTableViewController.m in Sources */,
 				18C50B8D1E7E5121006D1F06 /* TLImageMessageCell.m in Sources */,

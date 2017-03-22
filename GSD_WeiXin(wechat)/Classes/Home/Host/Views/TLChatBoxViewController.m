@@ -10,7 +10,8 @@
 #import "TLChatBox.h"
 #import "TLChatBoxMoreView.h"
 #import "TLChatBoxFaceView.h"
-
+#import "RedPacketViewController.h"
+#import "TransformViewController.h"
 @interface TLChatBoxViewController () <TLChatBoxDelegate, TLChatBoxFaceViewDelegate, TLChatBoxMoreViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, assign) CGRect keyboardFrame;
@@ -219,8 +220,24 @@
         }
     }else if (itemType == TLChatBoxItemRedPacket) {
         NSLog(@"发红包");
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请选择下列操作" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"发红包给我" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            RedPacketViewController *redController = [[RedPacketViewController alloc]init];
+            [self.navigationController pushViewController:redController animated:YES];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"发红包给对方" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            RedPacketViewController *redController = [[RedPacketViewController alloc]init];
+            [self.navigationController pushViewController:redController animated:YES];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+        
     }else if (itemType == TLChatBoxItemTransform) {
         NSLog(@"转账");
+        TransformViewController *transformController = [[TransformViewController alloc]init];
+        [self.navigationController pushViewController:transformController animated:YES];
     }
     else if (itemType == TLChatBoxItemSwitchRole) {
         if (_delegate && [_delegate respondsToSelector:@selector(SwitchRole)]) {

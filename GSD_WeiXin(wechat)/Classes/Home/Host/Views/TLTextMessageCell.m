@@ -76,18 +76,19 @@
     // 根据model设置cell左浮动或者右浮动样式
     [self setMessageOriginWithModel:TLMessage];
     
-    if (TLMessage.imagePath) { // 有图片的先看下设置图片自动布局
+    if (TLMessage.picture) { // 有图片的先看下设置图片自动布局
         // cell重用时候清除只有文字的情况下设置的container宽度自适应约束
+        self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
         [self.container clearAutoWidthSettings];
         self.messageImageView.hidden = NO;
-        self.messageImageView.image = [UIImage imageWithData:TLMessage.from.picture];
+        UIImage *img = [UIImage imageWithData:TLMessage.picture];
+        self.messageImageView.image = img;
         // 根据图片的宽高尺寸设置图片约束
         CGFloat standardWidthHeightRatio = kMaxChatImageViewWidth / kMaxChatImageViewHeight;
         CGFloat widthHeightRatio = 0;
-        UIImage *image = [UIImage imageWithContentsOfFile:TLMessage.imagePath];
+        UIImage *image = img;
         CGFloat h = image.size.height;
         CGFloat w = image.size.width;
-        self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
         if (w > kMaxChatImageViewWidth || w > kMaxChatImageViewHeight) {
             
             widthHeightRatio = w / h;
