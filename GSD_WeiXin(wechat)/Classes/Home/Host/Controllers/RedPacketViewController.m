@@ -27,15 +27,17 @@
     [self.view addSubview:contentView];
     contentView.backgroundColor = [UIColor whiteColor];
     
-    UILabel *money = [[UILabel alloc]initWithFrame:CGRectMake(iMargin, 0, 20*4, 36)];
+    UILabel *money = [[UILabel alloc]initWithFrame:CGRectMake(iMargin, 4, 18*4, 40)];
     [contentView addSubview:money];
-    money.text = @"转账金额";
-    [money sizeToFit];
-    money.font = [UIFont systemFontOfSize:18];
+    money.text = @"红包金额";
+    money.font = [UIFont systemFontOfSize:16];
     UIView *oneoneDiv = [[UIView alloc] initWithFrame:CGRectMake(0, 44, screenW, 0.5)];
     oneoneDiv.backgroundColor = [UIColor colorWithHexString:@"#999999"];
     [contentView addSubview:oneoneDiv];
-    
+    UILabel *state = [[UILabel alloc]initWithFrame:CGRectMake(iMargin, CGRectGetMaxY(oneoneDiv.frame) + 4, 18*4, 40)];
+    [contentView addSubview:state];
+    state.text = @"红包说明";
+    state.font = [UIFont systemFontOfSize:16];
     //完成
     CGFloat overBtnY = CGRectGetMaxY(contentView.frame) + 25;
     UIButton *overBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, overBtnY, screenW -30, 44)];
