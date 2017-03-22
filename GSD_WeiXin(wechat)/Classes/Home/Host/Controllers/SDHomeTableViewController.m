@@ -183,8 +183,13 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
     return NO;
 }
 -(void)deleteTheCell:(NSIndexPath *)indexPath{
-    [self.dataList removeObjectAtIndex:indexPath.row];
-    [self.tableView reloadData];
+    NSArray *userList = [[NSUserDefaults standardUserDefaults] objectForKey:@"LoginDict"];
+    NSMutableArray *newArray = [[NSMutableArray alloc]initWithCapacity:0];
+    [newArray addObjectsFromArray:userList];
+    [newArray removeObjectAtIndex:indexPath.row];
+    [[NSUserDefaults standardUserDefaults] setObject:newArray forKey:@"LoginDict"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self setupDataWithCount];
 }
 
 @end

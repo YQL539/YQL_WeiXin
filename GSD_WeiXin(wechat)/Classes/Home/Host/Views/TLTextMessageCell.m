@@ -55,6 +55,7 @@
     _messageTextLabel  = [UILabel new];
     _messageTextLabel.font = [UIFont systemFontOfSize:16.0f];
     _messageTextLabel.numberOfLines = 0;
+    _messageTextLabel.isAttributedContent = YES;
     [_container addSubview:_messageTextLabel];
     
     _messageImageView = [UIImageView new];
@@ -70,7 +71,7 @@
     _containerBackgroundImageView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
 }
 
--(void)setMessage:(TLMessage *)TLMessage
+-(void)setMessage:(TLMessage *)TLMessage 
 {
     // 根据model设置cell左浮动或者右浮动样式
     [self setMessageOriginWithModel:TLMessage];
