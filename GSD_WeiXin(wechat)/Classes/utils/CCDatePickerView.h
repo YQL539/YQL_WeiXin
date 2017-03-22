@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define D_SECOND    60
 #define D_MINUTE	60
 #define D_HOUR		3600
 #define D_DAY		86400

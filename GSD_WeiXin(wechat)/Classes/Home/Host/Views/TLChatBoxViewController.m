@@ -246,7 +246,7 @@
             if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
                 [_delegate chatBoxViewController:self sendMessage:message];
             }
-            NSLog(@"转账block发给我的回传%@=%@=%@",message,moneyNum,moneyState);
+            NSLog(@"转账block发给我的回传%@=%@=%@=%@=%@",message,moneyNum,moneyState,starTime,endTime);
         };
 
         [self.navigationController pushViewController:transformController animated:YES];

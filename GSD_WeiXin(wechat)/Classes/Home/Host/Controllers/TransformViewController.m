@@ -116,7 +116,7 @@
     __block UIButton *Button = sender;
     dateView.blcok = ^(NSDate *dateString){
         NSLog(@"年 = %ld  月 = %ld  日 = %ld  时 = %ld  分 = %ld",(long)dateString.year,(long)dateString.month,(long)dateString.day,dateString.hour,dateString.minute);
-        _starTime = [NSString stringWithFormat:@"%ld-%ld-%ld %ld:%ld",(long)dateString.year,(long)dateString.month,(long)dateString.day,dateString.hour,dateString.minute];
+        _starTime = [NSString stringWithFormat:@"%ld-%02ld-%02ld %02ld:%02ld:%02ld",(long)dateString.year,(long)dateString.month,(long)dateString.day,dateString.hour,dateString.minute,dateString.seconds];
         [Button setTitle:_starTime forState:UIControlStateNormal];
         NSLog(@"%@",_starTime);
     };
@@ -132,7 +132,7 @@
     __block UIButton *Button = sender;
     dateView.blcok = ^(NSDate *dateString){
         NSLog(@"年 = %ld  月 = %ld  日 = %ld  时 = %ld  分 = %ld",(long)dateString.year,(long)dateString.month,(long)dateString.day,dateString.hour,dateString.minute);
-        _endTime = [NSString stringWithFormat:@"%ld-%ld-%ld %ld:%ld",(long)dateString.year,(long)dateString.month,(long)dateString.day,dateString.hour,dateString.minute];
+        _endTime = [NSString stringWithFormat:@"%ld-%02ld-%02ld %02ld:%02ld:%02ld",(long)dateString.year,(long)dateString.month,(long)dateString.day,dateString.hour,dateString.minute,dateString.seconds];
         [Button setTitle:_endTime forState:UIControlStateNormal];
         NSLog(@"%@",_endTime);
     };
@@ -154,6 +154,11 @@
     }
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+    
+}
+
 #pragma mark ==========textfield Delegate==========
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField.tag == 100) {
@@ -163,6 +168,15 @@
     }
     
     [textField resignFirstResponder];
+    return YES;
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    if (textField.tag == 100) {
+        _moneyNum = textField.text;
+    }else{
+        _moneyStatus = textField.text;
+    }
     return YES;
 }
 
