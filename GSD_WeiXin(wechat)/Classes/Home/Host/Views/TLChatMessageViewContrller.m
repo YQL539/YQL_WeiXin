@@ -70,7 +70,26 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%ld == %ld",indexPath.section,indexPath.row);
+    TLMessage *clickmessage = _data[indexPath.row];
+    if (clickmessage.messageType == TLMessageTypeRedPacket) {
+        if (clickmessage.ownerTyper == TLMessageOwnerTypeOther) {
+            //我领取别人的红包
+            TLMessage *newMessage = [[TLMessage alloc] init];
+            newMessage.messageType = TLMessageTypeReceveRedPacket;
+            newMessage.ownerTyper = TLMessageOwnerTypeOther;
+            newMessage.date = [NSDate date];            
+            [self addNewMessage:newMessage];
+            [self scrollToBottom];
+        }else if (clickmessage.ownerTyper == TLMessageOwnerTypeSelf){
+            //别人领取我的红包
+            TLMessage *newMessage = [[TLMessage alloc] init];
+            newMessage.messageType = TLMessageTypeReceveRedPacket;
+            newMessage.ownerTyper = TLMessageOwnerTypeSelf;
+            newMessage.date = [NSDate date];
+            [self addNewMessage:newMessage];
+            [self scrollToBottom];
+        }
+    }
 }
 #pragma mark - UITableViewCellDelegate
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

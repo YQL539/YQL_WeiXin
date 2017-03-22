@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @interface TransformViewController : UIViewController<UITextFieldDelegate>
-//@property (nonatomic,assign) NSInteger ownerType;
-@property (nonatomic,strong) NSString *moneyStatus;
-@property (nonatomic,strong) NSString *moneyNum;
-@property (nonatomic) void (^didFinishSetRedPacketBlock)(NSString *moneyNum,NSString *moneyState);
+@property (nonatomic,copy) NSString *moneyStatus;
+@property (nonatomic,copy) NSString *moneyNum;
+@property (nonatomic,copy) NSString *starTime;
+@property (nonatomic,copy) NSString *endTime;
+@property (nonatomic) void (^didFinishSetTransformBlock)(NSString *moneyNum,NSString *moneyState,NSString *starTime,NSString *endTime);
 
 
 @end

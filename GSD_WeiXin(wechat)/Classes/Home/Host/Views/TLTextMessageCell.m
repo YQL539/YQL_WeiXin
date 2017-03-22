@@ -109,12 +109,34 @@
     // 根据model设置cell左浮动或者右浮动样式
     [self setMessageOriginWithModel:TLMessage];
     self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
-    if (TLMessage.messageType == TLMessageTypeImage) {
-        [self setImageCell:TLMessage];
-    } else if (TLMessage.messageType == TLMessageTypeText) {
-        [self setTextCell:TLMessage];
-    }else if (TLMessage.messageType == TLMessageTypeRedPacket){
-        [self setRedPacketCell:TLMessage];
+    switch (TLMessage.messageType) {
+        case TLMessageTypeText:
+            [self setTextCell:TLMessage];
+            break;
+        case TLMessageTypeImage:
+            [self setImageCell:TLMessage];
+            break;
+        case TLMessageTypeRedPacket:
+            [self setRedPacketCell:TLMessage];
+            break;
+        case TLMessageTypeTransfer:
+            [self setTransformCell:TLMessage];
+            break;
+        case TLMessageTypeReceveRedPacket:
+            //[self setTransformCell:TLMessage];
+            break;
+        case TLMessageTypeReceiveTransfer:
+            //[self setTransformCell:TLMessage];
+            break;
+        case TLMessageTypeVoice:
+            //[self setTransformCell:TLMessage];
+            break;
+        case TLMessageTypeVideo:
+            //[self setTransformCell:TLMessage];
+            break;
+            
+        default:
+            break;
     }
 }
 
@@ -226,7 +248,42 @@
     
 }
 
+-(void)setTransformCell:(TLMessage *)TLMessage{
+    [self.container clearAutoWidthSettings];
+    self.messageImageView.hidden = NO;
+    // 根据图片的宽高尺寸设置图片约束
+    CGFloat w = kRedWeight * screenW;
+    CGFloat h = w * KRedHeight;
+    UIImage *img = [[UIImage alloc]init];
+    UILabel *stateLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    stateLabel.text = TLMessage.transformString;
+    stateLabel.textColor = [UIColor whiteColor];
+    stateLabel.backgroundColor = [UIColor clearColor];
+    [self.messageImageView addSubview:stateLabel];
+    if (TLMessage.ownerTyper == TLMessageOwnerTypeSelf) {
+        img = [UIImage imageNamed:@"zijizhuang"];
+        stateLabel.frame = CGRectMake(53, 14, w - 53 - 10, 28);
+    }else if (TLMessage.ownerTyper == TLMessageOwnerTypeOther){
+        img = [UIImage imageNamed:@"weixinzhuangzhang"];
+        stateLabel.frame = CGRectMake(53 + 8, 14, w - 53 - 10, 28);
+    }
+    self.messageImageView.image = img;
+    self.messageImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _containerBackgroundImageView.hidden = YES;
+    
+    self.messageImageView.size_sd = CGSizeMake(w, h);
+    _container.sd_layout.widthIs(w).heightIs(h);
+    
+    // 设置container以messageImageView为bottomView高度自适应
+    [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
 
+    __weak typeof(self) weakself = self;
+    [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {
+        // 在_containerBackgroundImageView的frame确定之后设置maskImageView的size等于containerBackgroundImageView的size
+        weakself.maskImageView.size_sd = frame.size;
+    }];
+    
+}
 
 
 

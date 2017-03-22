@@ -35,26 +35,6 @@ static UILabel *label = nil;
 }
 
 #pragma mark - Getter
-- (void) setMessageType:(TLMessageType)messageType
-{
-    _messageType = messageType;
-    switch (messageType) {
-        case TLMessageTypeText:
-            self.cellIndentify = @"TextMessageCell";
-            break;
-        case TLMessageTypeImage:
-            self.cellIndentify = @"ImageMessageCell";
-            break;
-        case TLMessageTypeVoice:
-            self.cellIndentify = @"VoiceMessageCell";
-            break;
-        case TLMessageTypeSystem:
-            self.cellIndentify = @"SystemMessageCell";
-            break;
-        default:
-            break;
-    }
-}
 
 - (CGSize) messageSize
 {
