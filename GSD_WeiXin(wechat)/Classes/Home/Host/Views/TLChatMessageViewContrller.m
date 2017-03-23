@@ -9,9 +9,6 @@
 #import "TLChatMessageViewContrller.h"
 
 #import "TLTextMessageCell.h"
-#import "TLImageMessageCell.h"
-#import "TLVoiceMessageCell.h"
-#import "TLSystemMessageCell.h"
 #import "SDWebViewController.h"
 #import "UIView+SDAutoLayout.h"
 
@@ -31,11 +28,7 @@
     [self.view addGestureRecognizer:self.tapGR];
     [self.tableView setTableFooterView:[UIView new]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-//    
-//    [self.tableView registerClass:[TLTextMessageCell class] forCellReuseIdentifier:@"TextMessageCell"];
-//    [self.tableView registerClass:[TLImageMessageCell class] forCellReuseIdentifier:@"ImageMessageCell"];
-//    [self.tableView registerClass:[TLVoiceMessageCell class] forCellReuseIdentifier:@"VoiceMessageCell"];
-//    [self.tableView registerClass:[TLSystemMessageCell class] forCellReuseIdentifier:@"SystemMessageCell"];;
+
 }
 
 #pragma mark - Public Methods
@@ -77,7 +70,26 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%ld == %ld",indexPath.section,indexPath.row);
+    TLMessage *clickmessage = _data[indexPath.row];
+    if (clickmessage.messageType == TLMessageTypeRedPacket) {
+        if (clickmessage.ownerTyper == TLMessageOwnerTypeOther) {
+            //我领取别人的红包
+            TLMessage *newMessage = [[TLMessage alloc] init];
+            newMessage.messageType = TLMessageTypeReceveRedPacket;
+            newMessage.ownerTyper = TLMessageOwnerTypeOther;
+            newMessage.date = [NSDate date];            
+            [self addNewMessage:newMessage];
+            [self scrollToBottom];
+        }else if (clickmessage.ownerTyper == TLMessageOwnerTypeSelf){
+            //别人领取我的红包
+            TLMessage *newMessage = [[TLMessage alloc] init];
+            newMessage.messageType = TLMessageTypeReceveRedPacket;
+            newMessage.ownerTyper = TLMessageOwnerTypeSelf;
+            newMessage.date = [NSDate date];
+            [self addNewMessage:newMessage];
+            [self scrollToBottom];
+        }
+    }
 }
 #pragma mark - UITableViewCellDelegate
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

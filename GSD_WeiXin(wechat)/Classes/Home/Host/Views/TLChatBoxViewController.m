@@ -10,7 +10,8 @@
 #import "TLChatBox.h"
 #import "TLChatBoxMoreView.h"
 #import "TLChatBoxFaceView.h"
-
+#import "RedPacketViewController.h"
+#import "TransformViewController.h"
 @interface TLChatBoxViewController () <TLChatBoxDelegate, TLChatBoxFaceViewDelegate, TLChatBoxMoreViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, assign) CGRect keyboardFrame;
@@ -219,8 +220,36 @@
         }
     }else if (itemType == TLChatBoxItemRedPacket) {
         NSLog(@"发红包");
+        RedPacketViewController *redController = [[RedPacketViewController alloc]init];
+        redController.didFinishSetRedPacketBlock = ^(NSString *moneyNum,NSString *moneyState){
+            TLMessage *message = [[TLMessage alloc] init];
+            message.messageType = TLMessageTypeRedPacket;
+            message.date = [NSDate date];
+            message.RedPacketString = moneyState;
+            if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
+                [_delegate chatBoxViewController:self sendMessage:message];
+            }
+            NSLog(@"block发给我的回传%@=%@=%@",message,moneyNum,moneyState);
+        };
+        [self.navigationController pushViewController:redController animated:YES];
     }else if (itemType == TLChatBoxItemTransform) {
         NSLog(@"转账");
+        TransformViewController *transformController = [[TransformViewController alloc]init];
+        transformController.didFinishSetTransformBlock = ^(NSString *moneyNum,NSString *moneyState,NSString *starTime,NSString *endTime){
+            TLMessage *message = [[TLMessage alloc] init];
+            message.messageType = TLMessageTypeTransfer;
+            message.date = [NSDate date];
+            message.transformString = moneyState;
+            message.transformNum = moneyNum;
+            message.transformStarTime = starTime;
+            message.transformEndTime = endTime;
+            if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
+                [_delegate chatBoxViewController:self sendMessage:message];
+            }
+            NSLog(@"转账block发给我的回传%@=%@=%@=%@=%@",message,moneyNum,moneyState,starTime,endTime);
+        };
+
+        [self.navigationController pushViewController:transformController animated:YES];
     }
     else if (itemType == TLChatBoxItemSwitchRole) {
         if (_delegate && [_delegate respondsToSelector:@selector(SwitchRole)]) {
@@ -239,7 +268,6 @@
     UIImage *compressImage = [self compressImageToData:newImage];
         TLMessage *message = [[TLMessage alloc] init];
         message.messageType = TLMessageTypeImage;
-        
         message.date = [NSDate date];
         message.picture = UIImagePNGRepresentation(compressImage);
         NSLog(@"%@",message.imagePath);

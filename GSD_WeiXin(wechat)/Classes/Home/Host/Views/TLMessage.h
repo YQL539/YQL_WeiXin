@@ -34,7 +34,9 @@ typedef NS_ENUM(NSInteger, TLMessageType){
     TLMessageTypeLocation,      // 位置
     TLMessageTypeShake,         // 抖动
     TLMessageTypeRedPacket,     // 红包
-    TLMessageTypeTransfer       // 转账
+    TLMessageTypeReceveRedPacket,     // 红包领取
+    TLMessageTypeTransfer,      // 转账
+    TLMessageTypeReceiveTransfer //收账
 };
 
 /**
@@ -90,6 +92,8 @@ typedef NS_ENUM(NSUInteger, TLMessageReadState) {
 @property (nonatomic, strong) NSString *RedPacketString;            // 红包语言
 
 #pragma mark - 转账消息
-@property (nonatomic, assign) CGFloat transformNum;                   // 转账金额
-@property (nonatomic, strong) NSString *transformString;              // 转账语言
+@property (nonatomic, copy) NSString *transformNum;                   // 转账金额
+@property (nonatomic, copy) NSString *transformString;              // 转账语言
+@property (nonatomic,copy) NSString *transformStarTime;               //转账时间
+@property (nonatomic,copy) NSString *transformEndTime;                //收账时间
 @end
