@@ -12,7 +12,7 @@
 #import "TLUserHelper.h"
 #import "MobClick.h"
 
-@interface TLChatViewController () <TLChatMessageViewControllerDelegate, TLChatBoxViewControllerDelegate>
+@interface TLChatViewController () <TLChatBoxViewControllerDelegate>
 {
     CGFloat viewHeight;
 }
@@ -73,10 +73,10 @@
 }
 
 #pragma mark - TLChatMessageViewControllerDelegate
-- (void) didTapChatMessageView:(TLChatMessageViewContrller *)chatMessageViewController
-{
-    [self.chatBoxVC resignFirstResponder];
-}
+//- (void) didTapChatMessageView:(TLChatMessageViewContrller *)chatMessageViewController
+//{
+//    [self.chatBoxVC resignFirstResponder];
+//}
 
 #pragma mark - TLChatBoxViewControllerDelegate
 - (void) chatBoxViewController:(TLChatBoxViewController *)chatboxViewController sendMessage:(TLMessage *)message
@@ -131,7 +131,7 @@
     if (_chatMessageVC == nil) {
         _chatMessageVC = [[TLChatMessageViewContrller alloc] init];
         [_chatMessageVC.view setFrame:CGRectMake(0, HEIGHT_STATUSBAR + HEIGHT_NAVBAR, WIDTH_SCREEN, viewHeight - HEIGHT_TABBAR)];
-        [_chatMessageVC setDelegate:self];
+//        [_chatMessageVC setDelegate:self];
     }
     return _chatMessageVC;
 }

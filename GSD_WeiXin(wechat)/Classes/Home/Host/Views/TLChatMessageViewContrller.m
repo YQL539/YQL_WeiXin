@@ -14,7 +14,7 @@
 
 @interface TLChatMessageViewContrller ()
 
-@property (nonatomic, strong) UITapGestureRecognizer *tapGR;
+//@property (nonatomic, strong) UITapGestureRecognizer *tapGR;
 
 @end
 
@@ -25,8 +25,8 @@
 {
     [super viewDidLoad];
     [self.view setBackgroundColor:DEFAULT_CHAT_BACKGROUND_COLOR];
-    [self.view addGestureRecognizer:self.tapGR];
-    [self.tableView setTableFooterView:[UIView new]];
+//    [self.view addGestureRecognizer:self.tapGR];
+//    [self.tableView setTableFooterView:[UIView new]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 
 }
@@ -59,7 +59,8 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TLMessage *message = _data[indexPath.row];
-    NSString *indentify = [NSString stringWithFormat:@"Cell===%ld",(long)indexPath.row];
+    NSString *indentify = [NSString stringWithFormat:@"Cell===%ld%ld",indexPath.section ,(long)indexPath.row];
+    
     TLTextMessageCell *cell = [[TLTextMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indentify];
     cell.message = message;
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
@@ -96,6 +97,7 @@
 {
     TLMessage *message = _data[indexPath.row];
     CGFloat iHeight = [tableView cellHeightForIndexPath:indexPath model:message keyPath:@"message" cellClass:[TLTextMessageCell class] contentViewWidth:[self cellContentViewWith]];
+    NSLog(@"heightForRowAtIndexPath%f",iHeight);
     return iHeight;
 }
 
@@ -112,20 +114,24 @@
 }
 
 #pragma mark - Event Response
-- (void) didTapView
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(didTapChatMessageView:)]) {
-        [_delegate didTapChatMessageView:self];
-    }
-}
+//- (void) didTapView
+//{
+//    if (_delegate && [_delegate respondsToSelector:@selector(didTapChatMessageView:)]) {
+//        [_delegate didTapChatMessageView:self];
+//    }
+//}
+//
+//#pragma mark - Getter
+//- (UITapGestureRecognizer *) tapGR
+//{
+//    if (_tapGR == nil) {
+//        _tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapView)];
+//    }
+//    return _tapGR;
+//}
 
-#pragma mark - Getter
-- (UITapGestureRecognizer *) tapGR
-{
-    if (_tapGR == nil) {
-        _tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapView)];
-    }
-    return _tapGR;
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 
 - (NSMutableArray *) data

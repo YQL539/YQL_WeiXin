@@ -10,14 +10,14 @@
 #import "TLMessage.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 //聊天的tableview
-@class TLChatMessageViewContrller;
-@protocol TLChatMessageViewControllerDelegate <NSObject>
-- (void) didTapChatMessageView:(TLChatMessageViewContrller *)chatMessageViewController;
-@end
+//@class TLChatMessageViewContrller;
+//@protocol TLChatMessageViewControllerDelegate <NSObject>
+//- (void) didTapChatMessageView:(TLChatMessageViewContrller *)chatMessageViewController;
+//@end
 
 @interface TLChatMessageViewContrller : UITableViewController
 
-@property (nonatomic, assign) id<TLChatMessageViewControllerDelegate>delegate;
+//@property (nonatomic, assign) id<TLChatMessageViewControllerDelegate>delegate;
 @property (nonatomic, strong) NSMutableArray *data;
 
 - (void) addNewMessage:(TLMessage *)message;

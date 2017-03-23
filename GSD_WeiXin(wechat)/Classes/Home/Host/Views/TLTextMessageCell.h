@@ -8,8 +8,8 @@
 
 #import "TLMessageCell.h"
 
-@interface TLTextMessageCell : TLMessageCell
-
+@interface TLTextMessageCell : UITableViewCell
+@property (nonatomic, strong) TLMessage *message;
 @property (nonatomic, strong) UILabel *messageTextLabel;
 
 @end

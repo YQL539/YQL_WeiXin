@@ -8,7 +8,7 @@
 
 #import "TLTextMessageCell.h"
 #import "UIView+SDAutoLayout.h"
-
+#import "UIView+TL.h"
 #define kLabelMargin 20.f
 #define kLabelTopMargin 8.f
 #define kLabelBottomMargin 20.f
@@ -23,8 +23,11 @@
 #define kMaxChatImageViewWidth 200.f
 #define kMaxChatImageViewHeight 300.f
 
-#define kRedWeight 0.625
-#define KRedHeight 0.375
+#define kRedWeight 0.68
+#define KRedHeight 0.34
+
+#define kReceiveRedWeight 0.45
+#define KReceiveRedHeight 0.17
 
 @interface TLTextMessageCell ()
 
@@ -39,7 +42,8 @@
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self addSubview:self.messageTextLabel];
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [self setBackgroundColor:[UIColor clearColor]];
         [self setSubView];
         
     }
@@ -50,6 +54,7 @@
 {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     _container = [UIView new];
+    _container.userInteractionEnabled = YES;
     [self.contentView addSubview:_container];
     
     _iconImageView = [UIImageView new];
@@ -62,9 +67,11 @@
     [_container addSubview:_messageTextLabel];
     
     _messageImageView = [UIImageView new];
+    _messageImageView.userInteractionEnabled = YES;
     [_container addSubview:_messageImageView];
 
     _containerBackgroundImageView = [UIImageView new];
+    _containerBackgroundImageView.userInteractionEnabled = YES;
     [_container insertSubview:_containerBackgroundImageView atIndex:0];
     _maskImageView = [UIImageView new];
     
@@ -106,10 +113,6 @@
 
 -(void)setMessage:(TLMessage *)TLMessage 
 {
-    // 根据model设置cell左浮动或者右浮动样式
-    [self setMessageOriginWithModel:TLMessage];
-    //头像
-    self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
     //按消息类型设置聊天的cell
     switch (TLMessage.messageType) {
         case TLMessageTypeText:
@@ -125,7 +128,7 @@
             [self setTransformCell:TLMessage];
             break;
         case TLMessageTypeReceveRedPacket:
-            //[self setTransformCell:TLMessage];
+            [self setReceiveRedPacketCell:TLMessage];
             break;
         case TLMessageTypeReceiveTransfer:
             //[self setTransformCell:TLMessage];
@@ -143,8 +146,12 @@
 
 #pragma mark ======聊天cell设置=====
 -(void)setTextCell:(TLMessage *)TLMessage{
+    // 根据model设置cell左浮动或者右浮动样式
+    [self setMessageOriginWithModel:TLMessage];
     // 没有图片有文字情况下设置文字自动布局
     // 清除展示图片时候用到的mask
+    //头像
+    self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
     [_container.layer.mask removeFromSuperlayer];
     self.messageImageView.hidden = YES;
     [_messageTextLabel setAttributedText:TLMessage.attrText];
@@ -167,8 +174,12 @@
 }
 
 -(void)setImageCell:(TLMessage *)TLMessage{
+    // 根据model设置cell左浮动或者右浮动样式
+    [self setMessageOriginWithModel:TLMessage];
     // 有图片的先看下设置图片自动布局
     // cell重用时候清除只有文字的情况下设置的container宽度自适应约束
+    //头像
+    self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
     [self.container clearAutoWidthSettings];
     self.messageImageView.hidden = NO;
     UIImage *img = [UIImage imageWithData:TLMessage.picture];
@@ -205,6 +216,10 @@
 }
 
 -(void)setRedPacketCell:(TLMessage *)TLMessage{
+    // 根据model设置cell左浮动或者右浮动样式
+    [self setMessageOriginWithModel:TLMessage];
+    //头像
+    self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
     [self.container clearAutoWidthSettings];
     self.messageImageView.hidden = NO;
     // 根据图片的宽高尺寸设置图片约束
@@ -239,7 +254,38 @@
     }];
 }
 
+-(void)setReceiveRedPacketCell:(TLMessage *)TLMessage{
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    // 根据图片的宽高尺寸设置图片约束
+    [self.container clearAutoWidthSettings];
+    CGFloat w = kReceiveRedWeight * screenW;
+    CGFloat h = w * KReceiveRedHeight;
+    UIImage *img = [[UIImage alloc]init];
+    if (TLMessage.ownerTyper == TLMessageOwnerTypeSelf) {
+        img = [UIImage imageNamed:@"duifanglingqu"];
+    }else if (TLMessage.ownerTyper == TLMessageOwnerTypeOther){
+        img = [UIImage imageNamed:@"nilingqule"];
+    }
+    UIImageView *pShowView = [[UIImageView alloc]initWithImage:img];
+    [self addSubview:pShowView];
+//    [pShowView setImage:img];
+
+    pShowView.sd_layout
+    .leftSpaceToView(self, (screenW - w)/2)
+    .topSpaceToView(self,0)
+    .heightIs(h)
+    .widthIs(w);
+    self.backgroundColor = [UIColor redColor];
+    [self setupAutoHeightWithBottomView:pShowView bottomMargin:kChatCellItemMargin];
+    
+}
+
+
 -(void)setTransformCell:(TLMessage *)TLMessage{
+    // 根据model设置cell左浮动或者右浮动样式
+    [self setMessageOriginWithModel:TLMessage];
+    //头像
+    self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
     [self.container clearAutoWidthSettings];
     self.messageImageView.hidden = NO;
     // 根据图片的宽高尺寸设置图片约束
@@ -275,49 +321,4 @@
     }];
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//- (void) layoutSubviews
-//{
-//    [super layoutSubviews];
-//    float y = self.avatarImageView.originY + 11;
-//    float x = self.avatarImageView.originX + (self.message.ownerTyper == TLMessageOwnerTypeSelf ? - self.messageTextLabel.frameWidth - 27 : self.avatarImageView.frameWidth + 23);
-//    [self.messageTextLabel setOrigin:CGPointMake(x, y)];
-//    
-//    x -= 18;                                    // 左边距离头像 5
-//    y = self.avatarImageView.originY - 5;       // 上边与头像对齐 (北京图像有5个像素偏差)
-//    float h = MAX(self.messageTextLabel.frameHeight + 30, self.avatarImageView.frameHeight + 10);
-//    [self.messageBackgroundImageView setFrame:CGRectMake(x, y, self.messageTextLabel.frameWidth + 40, h)];
-//}
-//
-//
-//- (UILabel *) messageTextLabel
-//{
-//    if (_messageTextLabel == nil) {
-//        _messageTextLabel = [[UILabel alloc] init];
-//        [_messageTextLabel setFont:[UIFont systemFontOfSize:16.0f]];
-//        [_messageTextLabel setNumberOfLines:0];
-//    }
-//    return _messageTextLabel;
-//}
 @end
