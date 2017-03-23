@@ -11,8 +11,6 @@
 #import <netdb.h>
 #import <CommonCrypto/CommonCrypto.h>
 
-//#define GETMINI_PICURL(IMAGE_URL) [CommonUtil GetMiniPictureSizeUrlByUrlString:IMAGE_URL]
-
 @implementation CommonUtil
 +(NSString*) GetProjDir
 {

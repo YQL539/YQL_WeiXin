@@ -108,7 +108,9 @@
 {
     // 根据model设置cell左浮动或者右浮动样式
     [self setMessageOriginWithModel:TLMessage];
+    //头像
     self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
+    //按消息类型设置聊天的cell
     switch (TLMessage.messageType) {
         case TLMessageTypeText:
             [self setTextCell:TLMessage];
@@ -134,7 +136,6 @@
         case TLMessageTypeVideo:
             //[self setTransformCell:TLMessage];
             break;
-            
         default:
             break;
     }
@@ -179,9 +180,7 @@
     CGFloat h = image.size.height;
     CGFloat w = image.size.width;
     if (w > kMaxChatImageViewWidth || w > kMaxChatImageViewHeight) {
-        
         widthHeightRatio = w / h;
-        
         if (widthHeightRatio > standardWidthHeightRatio) {
             w = kMaxChatImageViewWidth;
             h = w * (image.size.height / image.size.width);
@@ -190,7 +189,6 @@
             w = h * widthHeightRatio;
         }
     }
-    
     self.messageImageView.size_sd = CGSizeMake(w, h);
     _container.sd_layout.widthIs(w).heightIs(h);
     
@@ -199,7 +197,6 @@
     
     // container按照maskImageView裁剪
     self.container.layer.mask = self.maskImageView.layer;
-    
     __weak typeof(self) weakself = self;
     [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {
         // 在_containerBackgroundImageView的frame确定之后设置maskImageView的size等于containerBackgroundImageView的size
@@ -232,20 +229,14 @@
     
     self.messageImageView.size_sd = CGSizeMake(w, h);
     _container.sd_layout.widthIs(w).heightIs(h);
-    
-    
+
     // 设置container以messageImageView为bottomView高度自适应
     [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
-    
-    // container按照maskImageView裁剪
-//    self.container.layer.mask = self.maskImageView.layer;
-    
     __weak typeof(self) weakself = self;
     [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {
         // 在_containerBackgroundImageView的frame确定之后设置maskImageView的size等于containerBackgroundImageView的size
         weakself.maskImageView.size_sd = frame.size;
     }];
-    
 }
 
 -(void)setTransformCell:(TLMessage *)TLMessage{
@@ -282,7 +273,6 @@
         // 在_containerBackgroundImageView的frame确定之后设置maskImageView的size等于containerBackgroundImageView的size
         weakself.maskImageView.size_sd = frame.size;
     }];
-    
 }
 
 

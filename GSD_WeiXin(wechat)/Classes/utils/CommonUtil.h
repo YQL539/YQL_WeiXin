@@ -58,13 +58,7 @@
  */
 
 +(NSString*) GetFilePath:(NSString*)pFile;
-/**
- *  根据十六进制字符串获得颜色
- *
- *  @param pColor 十六进制字符串
- *
- *  @return 颜色
- */
+
 +(BOOL) IsExistFile:(NSString*)pFile;
 /**
  *  删除文件
@@ -74,17 +68,7 @@
  *  @return 结果
  */
 +(BOOL) RemoveFile:(NSString*)pFile;
-/**
- *  获取文本尺寸
- *
- *  @param pText     文本
- *  @param pFont     字体名称
- *  @param iFontSize 字体大小
- *  @param dWidth    显示字体的控件宽度
- *  @param dHeight   显示字体的控件高度
- *
- *  @return 文本尺寸
- */
+
 /**
  *  Base64加密
  *
