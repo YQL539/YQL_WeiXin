@@ -100,6 +100,15 @@
     [textField resignFirstResponder];
     return YES;
 }
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField.tag == 100) {
+        _moneyNum = textField.text;
+    }else{
+        _moneyStatus = textField.text;
+    }
+    
+    [textField resignFirstResponder];
+}
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     if (textField.tag == 100) {

@@ -90,7 +90,37 @@
     NSString *pstrString = [[NSString alloc]initWithData:pBase64Data encoding:NSUTF8StringEncoding];
     return pstrString;
 }
-
++(CGSize) GetTextSize:(NSString*) pText fontname:(NSString*) pFont fontsize:(NSInteger)iFontSize width:(CGFloat)dWidth height:(CGFloat)dHeight
+{
+    BOOL bUseSystemFont = NO;
+    
+    UIFont *pTextFont = [UIFont fontWithName:pFont size:iFontSize];//跟label的字体大小一样
+    if (ISSTR_NIL_NULL(pFont))
+    {
+        bUseSystemFont = YES;
+        pTextFont = [UIFont systemFontOfSize:iFontSize];
+    }
+    CGSize size = CGSizeMake(dWidth, dHeight);//跟label的宽设置一样
+    if (IS_IOS_7)
+    {
+        NSDictionary *pDic = nil;
+        if (bUseSystemFont)
+        {
+            pDic = @{NSFontAttributeName:[UIFont systemFontOfSize:iFontSize]};
+        }
+        else
+        {
+            pDic = [NSDictionary dictionaryWithObjectsAndKeys:pTextFont, NSFontAttributeName, nil];
+        }
+        
+        size = [pText boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:pDic context:nil].size;
+    }
+    else
+    {
+        size = [pText sizeWithFont:pTextFont constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];//ios7以上已经摒弃的这个方法
+    }
+    return size;
+}
 /**
  *  手机model转手机型号
  *

@@ -133,6 +133,9 @@
         case TLMessageTypeReceiveTransfer:
             [self setReceiveTransformCell:TLMessage];
             break;
+        case TLMessageTypeTime:
+            [self setTimeCell:TLMessage];
+            break;
         case TLMessageTypeVoice:
             //[self setTransformCell:TLMessage];
             break;
@@ -412,5 +415,28 @@
     }];
 }
 
+-(void)setTimeCell:(TLMessage *)TLMessage{
+    // 根据图片的宽高尺寸设置图片约束
+    [self.container clearAutoHeigtSettings];
+    CGSize size =[CommonUtil GetTextSize:TLMessage.dateString fontname:FONTNAME fontsize:10 width:CGFLOAT_MAX height:CGFLOAT_MAX];
+    
+    UILabel *pShowLabel = [UILabel new];
+    [self addSubview:pShowLabel];
+    pShowLabel.backgroundColor = [UIColor lightGrayColor];
+    pShowLabel.text = TLMessage.dateString;
+    pShowLabel.textColor = [UIColor whiteColor];
+    pShowLabel.textAlignment = NSTextAlignmentCenter;
+    pShowLabel.font = [UIFont fontWithName:FONTNAME size:10];
+    pShowLabel.sd_layout
+    .leftSpaceToView(self, (screenW - size.width)/2)
+    .heightIs(size.height)
+    .widthIs(size.width);
+    [_container setupAutoHeightWithBottomView:pShowLabel bottomMargin:0];
+    self.container.layer.mask = self.maskImageView.layer;
+    __weak typeof(self) weakself = self;
+    [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {
+        weakself.maskImageView.size_sd = frame.size;
+    }];
+}
 
 @end

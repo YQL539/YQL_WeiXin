@@ -58,5 +58,10 @@
 #define DIR_INFO [NSString stringWithFormat:@"%@%@",  DIR_WECHAT, @"info"]
 #define WECHAT_USER [NSString stringWithFormat:@"%@/User", DIR_INFO]
 #define WECHAT_FRIEND(FNAME) [NSString stringWithFormat:@"%@/%@", DIR_INFO,FNAME]
+#define SYSTEMVERSION [[[UIDevice currentDevice] systemVersion] floatValue]
+#define IS_IOS_7 ([[[UIDevice currentDevice] systemVersion] floatValue] >=7.0 ? YES : NO)
+#define ISSTR_NIL_NULL(STR)       ( (STR == nil) || ([STR isEqual:[NSNull null]]) || ([STR isKindOfClass:[NSString class]] && STR.length == 0) )
+
+#define FONTNAME @"Heiti SC"
 
 #endif

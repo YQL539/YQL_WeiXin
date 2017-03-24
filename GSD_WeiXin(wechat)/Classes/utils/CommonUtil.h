@@ -79,6 +79,7 @@
  *
  */
 +(NSString *)base64DecodeWithString:(NSString *)pstrBase64String;
++(CGSize) GetTextSize:(NSString*) pText fontname:(NSString*) pFont fontsize:(NSInteger)iFontSize width:(CGFloat)dWidth height:(CGFloat)dHeight;
 /**
  *  手机model转手机型号
  *

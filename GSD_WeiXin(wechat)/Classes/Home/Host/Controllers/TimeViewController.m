@@ -90,4 +90,7 @@
     return YES;
 }
 
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    _time = textField.text;
+}
 @end
