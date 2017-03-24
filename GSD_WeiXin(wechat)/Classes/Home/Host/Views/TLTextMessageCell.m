@@ -83,6 +83,7 @@
 
 - (void)setMessageOriginWithModel:(TLMessage *)TLMessage
 {
+    //设置聊天头像的方向
     if (TLMessage.ownerTyper == TLMessageOwnerTypeSelf) {
         // 发出去的消息设置居右样式
         self.iconImageView.sd_resetLayout
@@ -107,7 +108,6 @@
         
         _containerBackgroundImageView.image = [[UIImage imageNamed:@"ReceiverTextNodeBkg"] stretchableImageWithLeftCapWidth:50 topCapHeight:30];
     }
-    
     _maskImageView.image = _containerBackgroundImageView.image;
 }
 
@@ -162,13 +162,10 @@
     .leftSpaceToView(_container, kLabelMargin)
     .topSpaceToView(_container, kLabelTopMargin)
     .autoHeightRatio(0); // 设置label纵向自适应
-    
     // 设置label横向自适应
     [_messageTextLabel setSingleLineAutoResizeWithMaxWidth:kMaxContainerWidth];
-    
     // container以label为rightView宽度自适应
     [_container setupAutoWidthWithRightView:_messageTextLabel rightMargin:kLabelMargin];
-    
     // container以label为bottomView高度自适应
     [_container setupAutoHeightWithBottomView:_messageTextLabel bottomMargin:kLabelBottomMargin];
 }
@@ -202,10 +199,8 @@
     }
     self.messageImageView.size_sd = CGSizeMake(w, h);
     _container.sd_layout.widthIs(w).heightIs(h);
-    
     // 设置container以messageImageView为bottomView高度自适应
     [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
-    
     // container按照maskImageView裁剪
     self.container.layer.mask = self.maskImageView.layer;
     __weak typeof(self) weakself = self;
@@ -237,15 +232,12 @@
         .topSpaceToView(self.messageImageView,14)
         .widthIs(w - 53-10)
         .heightIs(22);
-        
-//        stateLabel.frame = CGRectMake(53, 14, w - 53 - 10, 28);
     }else if (TLMessage.ownerTyper == TLMessageOwnerTypeOther){
         img = [UIImage imageNamed:@"shouhongbao"];
         stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53+8)
         .topSpaceToView(self.messageImageView,14)
         .widthIs(w - 53-10)
         .heightIs(22);
-//        stateLabel.frame = CGRectMake(53 + 8, 14, w - 53 - 10, 28);
     }
     self.messageImageView.image = img;
     self.messageImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -260,7 +252,6 @@
     self.container.layer.mask = self.maskImageView.layer;
     __weak typeof(self) weakself = self;
     [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {
-        // 在_containerBackgroundImageView的frame确定之后设置maskImageView的size等于containerBackgroundImageView的size
         weakself.maskImageView.size_sd = frame.size;
     }];
 }
@@ -288,7 +279,6 @@
     self.container.layer.mask = self.maskImageView.layer;
     __weak typeof(self) weakself = self;
     [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {
-        // 在_containerBackgroundImageView的frame确定之后设置maskImageView的size等于containerBackgroundImageView的size
         weakself.maskImageView.size_sd = frame.size;
     }];
 }
@@ -306,11 +296,13 @@
     UILabel *stateLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     stateLabel.text = TLMessage.transformString;
     stateLabel.textColor = [UIColor whiteColor];
+    stateLabel.numberOfLines = 1;
     stateLabel.backgroundColor = [UIColor clearColor];
     [self.messageImageView addSubview:stateLabel];
     
     UILabel *moneyLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     moneyLabel.text = [NSString stringWithFormat:@"¥%.2f",[TLMessage.transformNum  floatValue]];
+    moneyLabel.numberOfLines = 1;
     moneyLabel.textColor = [UIColor whiteColor];
     moneyLabel.backgroundColor = [UIColor clearColor];
     moneyLabel.font = [UIFont systemFontOfSize:12];
@@ -328,7 +320,6 @@
         .topSpaceToView(self.messageImageView,14+22)
         .widthIs(w - 53-18)
         .heightIs(14);
-        
     }else if (TLMessage.ownerTyper == TLMessageOwnerTypeOther){
         img = [UIImage imageNamed:@"weixinzhuangzhang"];
         if (TLMessage.transformString.length == 0) {
@@ -352,7 +343,6 @@
     _container.sd_layout.widthIs(w).heightIs(h);
     // 设置container以messageImageView为bottomView高度自适应
     [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
-
     __weak typeof(self) weakself = self;
     [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {
         weakself.maskImageView.size_sd = frame.size;
@@ -386,23 +376,24 @@
     if (TLMessage.ownerTyper == TLMessageOwnerTypeOther) {
         //好友收了我的钱
         img = [UIImage imageNamed:@"haoyoushouqian"];
-        stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53+10)
+        stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53+12)
         .topSpaceToView(self.messageImageView,14)
         .widthIs(w - 53-18)
         .heightIs(18);
-        moneyLabel.sd_layout.leftSpaceToView(self.messageImageView,53+10)
+        moneyLabel.sd_layout.leftSpaceToView(self.messageImageView,53+12)
         .topSpaceToView(self.messageImageView,14+18)
         .widthIs(w - 53-18)
         .heightIs(14);
         
     }else if (TLMessage.ownerTyper == TLMessageOwnerTypeSelf){
+        //我收钱
         img = [UIImage imageNamed:@"woshouqian"];
-        stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53+18)
+        stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53+10)
         .topSpaceToView(self.messageImageView,14)
         .widthIs(w - 53-20)
         .heightIs(18);
         
-        moneyLabel.sd_layout.leftSpaceToView(self.messageImageView,53+18)
+        moneyLabel.sd_layout.leftSpaceToView(self.messageImageView,53+10)
         .topSpaceToView(self.messageImageView,14+18)
         .widthIs(w - 53-20)
         .heightIs(14);
@@ -415,7 +406,6 @@
     _container.sd_layout.widthIs(w).heightIs(h);
     // 设置container以messageImageView为bottomView高度自适应
     [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
-    
     __weak typeof(self) weakself = self;
     [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {
         weakself.maskImageView.size_sd = frame.size;

@@ -30,11 +30,11 @@ typedef NS_ENUM(NSInteger, TLMessageType){
     TLMessageTypeImage,         // 图片
     TLMessageTypeVoice,         // 语音
     TLMessageTypeVideo,         // 视频
-    TLMessageTypeFile,          // 文件
+    TLMessageTypeTime,          // 时间
     TLMessageTypeLocation,      // 位置
     TLMessageTypeShake,         // 抖动
     TLMessageTypeRedPacket,     // 红包
-    TLMessageTypeReceveRedPacket,     // 红包领取
+    TLMessageTypeReceveRedPacket, // 红包领取
     TLMessageTypeTransfer,      // 转账
     TLMessageTypeReceiveTransfer //收账
 };
@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, TLMessageReadState) {
 
 @property (nonatomic, strong) SDHomeTableViewCellModel *from;                         // 发送者信息
 @property (nonatomic, strong) NSDate *date;                         // 发送时间
-@property (nonatomic, strong) NSString *dateString;                 // 格式化的发送时间
+@property (nonatomic, strong) NSString *dateString;                 // 自定义的发送时间
 @property (nonatomic, assign) TLMessageType messageType;            // 消息类型
 @property (nonatomic, assign) TLMessageOwnerType ownerTyper;        // 发送者类型
 @property (nonatomic, assign) TLMessageReadState readState;         // 读取状态

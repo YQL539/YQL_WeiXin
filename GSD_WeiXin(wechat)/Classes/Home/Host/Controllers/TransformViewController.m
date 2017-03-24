@@ -145,6 +145,7 @@
 
 -(void)completeButtonDidClick:(id)sender{
     if (_starTime.length > 0 && _endTime.length > 0 && _moneyNum.length > 0) {
+        [self.view endEditing:YES];
         if (self.didFinishSetTransformBlock) {
             self.didFinishSetTransformBlock(_moneyNum,_moneyStatus,_starTime,_endTime);
         }

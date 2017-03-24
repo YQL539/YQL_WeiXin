@@ -6,8 +6,6 @@
 //  Copyright © 2015年 lbk. All rights reserved.
 //
 
-#import "TLMessageCell.h"
-
 @interface TLTextMessageCell : UITableViewCell
 @property (nonatomic, strong) TLMessage *message;
 @property (nonatomic, strong) UILabel *messageTextLabel;

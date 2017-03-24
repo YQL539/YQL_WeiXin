@@ -38,7 +38,6 @@
 		18C50B971E7E519A006D1F06 /* UIDevice+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B911E7E519A006D1F06 /* UIDevice+TL.m */; };
 		18C50B981E7E519A006D1F06 /* UIImage+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B931E7E519A006D1F06 /* UIImage+TL.m */; };
 		18C50B991E7E519A006D1F06 /* UIView+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B951E7E519A006D1F06 /* UIView+TL.m */; };
-		18C50B9F1E7E51D3006D1F06 /* TLSystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50B9E1E7E51D3006D1F06 /* TLSystemMessageCell.m */; };
 		18C50BA21E7E53F2006D1F06 /* TLChatBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50BA11E7E53F2006D1F06 /* TLChatBox.m */; };
 		18C50BA51E7E540A006D1F06 /* TLChatBoxMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50BA41E7E540A006D1F06 /* TLChatBoxMoreView.m */; };
 		18C50BA81E7E5420006D1F06 /* TLChatBoxMoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C50BA71E7E5420006D1F06 /* TLChatBoxMoreItem.m */; };
@@ -133,6 +132,7 @@
 		48F337D41C73205C0049144A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F337D31C73205C0049144A /* TTTAttributedLabel.m */; };
 		48F337D81C7324250049144A /* SDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F337D71C7324250049144A /* SDWebViewController.m */; };
 		5C46E0191E82D800008559A0 /* CCDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C46E0181E82D800008559A0 /* CCDatePickerView.m */; };
+		5C4EFD751E8564340027E547 /* TimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4EFD741E8564340027E547 /* TimeViewController.m */; };
 		5C6AA3F51E82353C00DD8D4C /* RedPacketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6AA3F41E82353C00DD8D4C /* RedPacketViewController.m */; };
 		5C6AA3F81E82354E00DD8D4C /* TransformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6AA3F71E82354E00DD8D4C /* TransformViewController.m */; };
 		917412181E810FD60040CC7D /* MYAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 917412111E810FD60040CC7D /* MYAttributeModel.m */; };
@@ -276,8 +276,6 @@
 		18C50B931E7E519A006D1F06 /* UIImage+TL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TL.m"; sourceTree = "<group>"; };
 		18C50B941E7E519A006D1F06 /* UIView+TL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TL.h"; sourceTree = "<group>"; };
 		18C50B951E7E519A006D1F06 /* UIView+TL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TL.m"; sourceTree = "<group>"; };
-		18C50B9D1E7E51D3006D1F06 /* TLSystemMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSystemMessageCell.h; sourceTree = "<group>"; };
-		18C50B9E1E7E51D3006D1F06 /* TLSystemMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSystemMessageCell.m; sourceTree = "<group>"; };
 		18C50BA01E7E53F2006D1F06 /* TLChatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBox.h; sourceTree = "<group>"; };
 		18C50BA11E7E53F2006D1F06 /* TLChatBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBox.m; sourceTree = "<group>"; };
 		18C50BA31E7E540A006D1F06 /* TLChatBoxMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBoxMoreView.h; sourceTree = "<group>"; };
@@ -440,6 +438,8 @@
 		48F337D71C7324250049144A /* SDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebViewController.m; sourceTree = "<group>"; };
 		5C46E0171E82D800008559A0 /* CCDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDatePickerView.h; sourceTree = "<group>"; };
 		5C46E0181E82D800008559A0 /* CCDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCDatePickerView.m; sourceTree = "<group>"; };
+		5C4EFD731E8564340027E547 /* TimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeViewController.h; sourceTree = "<group>"; };
+		5C4EFD741E8564340027E547 /* TimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeViewController.m; sourceTree = "<group>"; };
 		5C6AA3F31E82353C00DD8D4C /* RedPacketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketViewController.h; sourceTree = "<group>"; };
 		5C6AA3F41E82353C00DD8D4C /* RedPacketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketViewController.m; sourceTree = "<group>"; };
 		5C6AA3F61E82354E00DD8D4C /* TransformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformViewController.h; sourceTree = "<group>"; };
@@ -1322,6 +1322,8 @@
 				5C6AA3F41E82353C00DD8D4C /* RedPacketViewController.m */,
 				5C6AA3F61E82354E00DD8D4C /* TransformViewController.h */,
 				5C6AA3F71E82354E00DD8D4C /* TransformViewController.m */,
+				5C4EFD731E8564340027E547 /* TimeViewController.h */,
+				5C4EFD741E8564340027E547 /* TimeViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1354,8 +1356,6 @@
 				18C50BA41E7E540A006D1F06 /* TLChatBoxMoreView.m */,
 				18C50BA01E7E53F2006D1F06 /* TLChatBox.h */,
 				18C50BA11E7E53F2006D1F06 /* TLChatBox.m */,
-				18C50B9D1E7E51D3006D1F06 /* TLSystemMessageCell.h */,
-				18C50B9E1E7E51D3006D1F06 /* TLSystemMessageCell.m */,
 				18C50B8E1E7E519A006D1F06 /* NSString+TL.h */,
 				18C50B8F1E7E519A006D1F06 /* NSString+TL.m */,
 				18C50B901E7E519A006D1F06 /* UIDevice+TL.h */,
@@ -1721,7 +1721,6 @@
 				99D694F51C8C6B4400DA97E1 /* SDTimeLineRefreshFooter.m in Sources */,
 				18C50BA81E7E5420006D1F06 /* TLChatBoxMoreItem.m in Sources */,
 				18C50BB41E7E5597006D1F06 /* TLChatBoxFaceMenuView.m in Sources */,
-				18C50B9F1E7E51D3006D1F06 /* TLSystemMessageCell.m in Sources */,
 				917412191E810FD60040CC7D /* MYCoreTextLabel.m in Sources */,
 				18C50B981E7E519A006D1F06 /* UIImage+TL.m in Sources */,
 				48EFF4821C7EB0AF009252A5 /* SDWeiXinPhotoContainerView.m in Sources */,
@@ -1752,6 +1751,7 @@
 				99D693921C6F765800DA97E1 /* SDChatTableViewController.m in Sources */,
 				48EFF46C1C7EAFDF009252A5 /* SDImageCache.m in Sources */,
 				18C50B661E7E2DBD006D1F06 /* SDMeController.m in Sources */,
+				5C4EFD751E8564340027E547 /* TimeViewController.m in Sources */,
 				48EFF46A1C7EAFDF009252A5 /* MKAnnotationView+WebCache.m in Sources */,
 				187EAAA91E792ED000BDA7A6 /* WKProgressHUD.m in Sources */,
 				182B87CC1E7A1CE3001EDB26 /* MJPropertyKey.m in Sources */,
