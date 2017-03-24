@@ -94,6 +94,9 @@ typedef NS_ENUM(NSUInteger, TLMessageReadState) {
 #pragma mark - 转账消息
 @property (nonatomic, copy) NSString *transformNum;                   // 转账金额
 @property (nonatomic, copy) NSString *transformString;              // 转账语言
+//聊天对方的名字和头像
+@property (nonatomic, copy) NSString *transformFName;
+@property NSData *transformFpicture;
 @property (nonatomic,copy) NSString *transformStarTime;               //转账时间
 @property (nonatomic,copy) NSString *transformEndTime;                //收账时间
 @end

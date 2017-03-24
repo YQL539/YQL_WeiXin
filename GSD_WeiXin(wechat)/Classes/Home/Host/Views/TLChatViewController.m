@@ -40,6 +40,8 @@
     if ([CommonUtil IsExistFile:WECHAT_USER]) {
         NSDictionary *pMeDic = [[NSDictionary alloc] initWithContentsOfFile:WECHAT_USER];
         _MeRole.picture = pMeDic[@"picture"];
+    }else{
+        _MeRole.picture = UIImagePNGRepresentation([UIImage imageNamed:@"tx.jpeg"]);
     }
     
     NSString *FName = _model.nickName;
@@ -49,6 +51,9 @@
         NSDictionary *pDic = [[NSDictionary alloc] initWithContentsOfFile:WECHAT_FRIEND(FName)];
         _FriendRole.picture = pDic[@"picture"];
     }
+    _FriendRole.Fpicture = _MeRole.picture;
+    _MeRole.Fpicture = _FriendRole.picture;
+    
     _SenderRole = _MeRole;
     viewHeight = HEIGHT_SCREEN - HEIGHT_NAVBAR - HEIGHT_STATUSBAR;
     

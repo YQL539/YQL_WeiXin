@@ -24,8 +24,8 @@
     self.navigationItem.title = @"转账设置";
     
     CGFloat iMargin = 5;
-    _moneyNum = @"0";
-    _moneyStatus = @"转账";
+    _moneyNum = @"";
+    _moneyStatus = @"";
     _starTime = @"";
     _endTime = @"";
     
@@ -111,6 +111,7 @@
 
 -(void)starBtnDidClicked:(UIButton *)sender
 {
+    [self.view endEditing:YES];
     CCDatePickerView *dateView=[[CCDatePickerView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:dateView];
     __block UIButton *Button = sender;
@@ -127,6 +128,7 @@
 
 -(void)endBtnDidClicked:(UIButton *)sender
 {
+    [self.view endEditing:YES];
     CCDatePickerView *dateView=[[CCDatePickerView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:dateView];
     __block UIButton *Button = sender;
@@ -142,7 +144,7 @@
 }
 
 -(void)completeButtonDidClick:(id)sender{
-    if (_starTime.length > 0 && _endTime.length > 0 && _moneyNum.length > 0 && _moneyStatus.length > 0) {
+    if (_starTime.length > 0 && _endTime.length > 0 && _moneyNum.length > 0) {
         if (self.didFinishSetTransformBlock) {
             self.didFinishSetTransformBlock(_moneyNum,_moneyStatus,_starTime,_endTime);
         }

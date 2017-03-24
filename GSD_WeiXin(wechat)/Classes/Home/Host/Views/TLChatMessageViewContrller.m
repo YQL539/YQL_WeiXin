@@ -72,24 +72,65 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TLMessage *clickmessage = _data[indexPath.row];
-    if (clickmessage.messageType == TLMessageTypeRedPacket) {
-        if (clickmessage.ownerTyper == TLMessageOwnerTypeOther) {
-            //我领取别人的红包
-            TLMessage *newMessage = [[TLMessage alloc] init];
-            newMessage.messageType = TLMessageTypeReceveRedPacket;
-            newMessage.ownerTyper = TLMessageOwnerTypeOther;
-            newMessage.date = [NSDate date];            
-            [self addNewMessage:newMessage];
-            [self scrollToBottom];
-        }else if (clickmessage.ownerTyper == TLMessageOwnerTypeSelf){
-            //别人领取我的红包
-            TLMessage *newMessage = [[TLMessage alloc] init];
-            newMessage.messageType = TLMessageTypeReceveRedPacket;
-            newMessage.ownerTyper = TLMessageOwnerTypeSelf;
-            newMessage.date = [NSDate date];
-            [self addNewMessage:newMessage];
-            [self scrollToBottom];
+    switch (clickmessage.messageType) {
+        case TLMessageTypeRedPacket:
+        {
+            [self didSelectedRedPacket:clickmessage];
+            break;
         }
+        case TLMessageTypeTransfer:
+        {
+            [self didSelectedTransfer:clickmessage];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+-(void)didSelectedRedPacket:(TLMessage *)clickmessage{
+    if (clickmessage.ownerTyper == TLMessageOwnerTypeOther) {
+        //我领取别人的红包
+        TLMessage *newMessage = [[TLMessage alloc] init];
+        newMessage.messageType = TLMessageTypeReceveRedPacket;
+        newMessage.ownerTyper = TLMessageOwnerTypeOther;
+        newMessage.date = [NSDate date];
+        [self addNewMessage:newMessage];
+        [self scrollToBottom];
+    }else if (clickmessage.ownerTyper == TLMessageOwnerTypeSelf){
+        //别人领取我的红包
+        TLMessage *newMessage = [[TLMessage alloc] init];
+        newMessage.messageType = TLMessageTypeReceveRedPacket;
+        newMessage.ownerTyper = TLMessageOwnerTypeSelf;
+        newMessage.date = [NSDate date];
+        [self addNewMessage:newMessage];
+        [self scrollToBottom];
+    }
+}
+
+-(void)didSelectedTransfer:(TLMessage *)clickmessage{
+    if (clickmessage.ownerTyper == TLMessageOwnerTypeOther) {
+        //我收别人的钱
+        TLMessage *newMessage = [[TLMessage alloc] init];
+        newMessage.messageType = TLMessageTypeReceiveTransfer;
+        newMessage.ownerTyper = TLMessageOwnerTypeSelf;
+        newMessage.date = [NSDate date];
+        newMessage.transformNum = clickmessage.transformNum;
+        newMessage.transformFpicture = clickmessage.from.Fpicture;
+        newMessage.transformFName = clickmessage.from.FName;
+        [self addNewMessage:newMessage];
+        [self scrollToBottom];
+    }else if (clickmessage.ownerTyper == TLMessageOwnerTypeSelf){
+        //别人收我的钱
+        TLMessage *newMessage = [[TLMessage alloc] init];
+        newMessage.messageType = TLMessageTypeReceiveTransfer;
+        newMessage.ownerTyper = TLMessageOwnerTypeOther;
+        newMessage.transformFpicture = clickmessage.from.Fpicture;
+        newMessage.transformFName = clickmessage.from.FName;
+        newMessage.transformNum = clickmessage.transformNum;
+        newMessage.date = [NSDate date];
+        [self addNewMessage:newMessage];
+        [self scrollToBottom];
     }
 }
 #pragma mark - UITableViewCellDelegate
