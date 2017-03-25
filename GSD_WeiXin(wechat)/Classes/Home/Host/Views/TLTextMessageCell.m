@@ -456,52 +456,6 @@
     [_container setupAutoHeightWithBottomView:ShowLabel bottomMargin:0];
 }
 
--(void)setVoiceCell:(TLMessage *)TLMessage{
-    // 根据model设置cell左浮动或者右浮动样式
-    [self setMessageOriginWithModel:TLMessage];
-    //头像
-    self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
-    [self.container clearAutoWidthSettings];
-    self.messageImageView.hidden = NO;
-    NSInteger iLength = TLMessage.voiceSeconds;
-    CGFloat dSoundWidth = _voiceMinWidth + (_voiceMaxWidth/60 * iLength);
-    if (dSoundWidth > _voiceMaxWidth) {
-        dSoundWidth = _voiceMaxWidth;
-    }
-    // 根据图片的宽高尺寸设置图片约束
-    CGFloat w = dSoundWidth;
-    CGFloat h = kChatCellIconImageViewWH;
-//    UIImage *img = [[UIImage alloc]init];
-//    UILabel *stateLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-//    stateLabel.text = TLMessage.RedPacketString;
-//    stateLabel.textColor = [UIColor whiteColor];
-//    stateLabel.backgroundColor = [UIColor clearColor];
-//    [self.messageImageView addSubview:stateLabel];
-    if (TLMessage.ownerTyper == TLMessageOwnerTypeOther) {
-        self.messageImageView.image = [[UIImage imageNamed:@"yuyinshoul"] stretchableImageWithLeftCapWidth:50 topCapHeight:30];
-
-    }else if (TLMessage.ownerTyper == TLMessageOwnerTypeSelf){
-        self.messageImageView.image = [[UIImage imageNamed:@"yuyingfal.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:30];
-        
-    }
-    
-    self.messageImageView.contentMode = UIViewContentModeScaleAspectFit;
-    _containerBackgroundImageView.hidden = YES;
-    
-    self.messageImageView.size_sd = CGSizeMake(w, h);
-    _container.sd_layout.widthIs(w).heightIs(h);
-    
-     [_container setupAutoWidthWithRightView:_messageImageView rightMargin:kLabelMargin];
-    // 设置container以messageImageView为bottomView高度自适应
-    [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
-    // container按照maskImageView裁剪
-    self.container.layer.mask = self.maskImageView.layer;
-    __weak typeof(self) weakself = self;
-    [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {
-        weakself.maskImageView.size_sd = frame.size;
-    }];
-}
-
 -(void)setCheHuiCell:(TLMessage *)TLMessage{
     // 根据图片的宽高尺寸设置图片约束
     [_container.layer.mask removeFromSuperlayer];
@@ -534,6 +488,45 @@
     
 }
 
+-(void)setVoiceCell:(TLMessage *)TLMessage{
+    // 根据model设置cell左浮动或者右浮动样式
+    [self setMessageOriginWithModel:TLMessage];
+    //头像
+    self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
+    [self.container clearAutoWidthSettings];
+    self.messageImageView.hidden = NO;
+    NSInteger iLength = TLMessage.voiceSeconds;
+    CGFloat dSoundWidth = _voiceMinWidth + (_voiceMaxWidth/60 * iLength);
+    if (dSoundWidth > _voiceMaxWidth) {
+        dSoundWidth = _voiceMaxWidth;
+    }
+    // 根据图片的宽高尺寸设置图片约束
+    CGFloat w = dSoundWidth;
+    CGFloat h = kChatCellIconImageViewWH;
+    UILabel *timeLabel = [UILabel new];
+    [_container addSubview:timeLabel];
+    timeLabel.text = [NSString stringWithFormat:@"%lu''",(unsigned long)TLMessage.voiceSeconds];
+    timeLabel.textColor = [UIColor lightGrayColor];
+    timeLabel.font = [UIFont systemFontOfSize:14];
+    if (TLMessage.ownerTyper == TLMessageOwnerTypeOther) {
+        self.messageImageView.image = [[UIImage imageNamed:@"yuyinshoul"] stretchableImageWithLeftCapWidth:50 topCapHeight:30];
+        timeLabel.textAlignment = NSTextAlignmentLeft;
+        timeLabel.sd_layout.leftSpaceToView(self.messageImageView,2).bottomSpaceToView(_container,5).heightIs(h).widthIs(50);
+    }else if (TLMessage.ownerTyper == TLMessageOwnerTypeSelf){
+        self.messageImageView.image = [[UIImage imageNamed:@"yuyingfal.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:10];
+        timeLabel.textAlignment = NSTextAlignmentRight;
+        timeLabel.sd_layout.rightSpaceToView(self.messageImageView,2).bottomSpaceToView(_container,5).heightIs(h).widthIs(50);
+    }
+    
+    self.messageImageView.size_sd = CGSizeMake(w, h);
+    _container.sd_layout.widthIs(w+50).heightIs(h);
+    _containerBackgroundImageView.hidden = YES;
+    [_container setupAutoWidthWithRightView:_messageImageView rightMargin:0];
+    // 设置container以messageImageView为bottomView高度自适应
+    [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
+}
+
+
 -(void)setVideoCell:(TLMessage *)TLMessage{
     // 根据model设置cell左浮动或者右浮动样式
     [self setMessageOriginWithModel:TLMessage];
@@ -562,12 +555,6 @@
     [_container setupAutoWidthWithRightView:_messageImageView rightMargin:kLabelMargin];
     // 设置container以messageImageView为bottomView高度自适应
     [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
-    // container按照maskImageView裁剪
-    self.container.layer.mask = self.maskImageView.layer;
-    __weak typeof(self) weakself = self;
-    [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {
-        weakself.maskImageView.size_sd = frame.size;
-    }];
 }
 
 

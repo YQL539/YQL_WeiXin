@@ -266,18 +266,29 @@
         [self.navigationController pushViewController:timeController animated:YES];
     }else if (itemType == TLChatBoxItemVoice) {
         NSLog(@"语音");
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请选择下列操作" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"发语音给我" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self setVoiceTime:TLMessageOwnerTypeOther];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请输入时间" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.keyboardType = UIKeyboardTypeDecimalPad;
+            textField.placeholder = @"请输入时间(1-60)";
+        }];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSArray *textfields = alertController.textFields;
+            UITextField *numfield = textfields[0];
+            NSUInteger iTime = [numfield.text integerValue];
+            NSLog(@"我发送时间为%lu",(unsigned long)iTime);
+            TLMessage *message = [[TLMessage alloc] init];
+            message.ownerTyper = TLMessageOwnerTypeSelf;
+            message.messageType = TLMessageTypeVoice;
+            message.date = [NSDate date];
+            message.voiceSeconds = iTime;
+            if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
+                [_delegate chatBoxViewController:self sendMessage:message];
+            }
         }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"发语音给对方" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self setVoiceTime:TLMessageOwnerTypeSelf];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
         }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
-        }]];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alertController animated:YES completion:nil];
     }else if (itemType == TLChatBoxItemPersonCard) {
         NSLog(@"撤回");
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请选择下列操作" message:@"对方撤回请切换角色再点击" preferredStyle:UIAlertControllerStyleAlert];
@@ -325,7 +336,7 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSArray *textfields = alertController.textFields;
         UITextField *numfield = textfields[0];
-        numfield.keyboardType = UIKeyboardTypeNumberPad;
+        numfield.keyboardType = UIKeyboardTypeDecimalPad;
         NSUInteger iTime = [numfield.text integerValue];
         NSLog(@"我发送时间为%lu",(unsigned long)iTime);
         TLMessage *message = [[TLMessage alloc] init];
