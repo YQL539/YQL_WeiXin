@@ -29,12 +29,11 @@
 #import <Foundation/Foundation.h>
 
 @interface SDHomeTableViewCellModel : NSObject
-
 @property NSData *picture;
 @property (nonatomic, copy) NSString *nickName;
-@property (nonatomic, copy) NSArray *content;
-@property (nonatomic, copy) NSString *time;
-@property (nonatomic, copy) NSString *message;
+//@property (nonatomic, copy) NSArray *content;
+//@property (nonatomic, copy) NSString *time;
+//@property (nonatomic, copy) NSString *message;
 @property (nonatomic, copy) NSString *FName;
 @property NSData *Fpicture;
 

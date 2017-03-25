@@ -28,9 +28,33 @@
 //    [self.view addGestureRecognizer:self.tapGR];
 //    [self.tableView setTableFooterView:[UIView new]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-
+    [self getLocalFile];
 }
 
+-(void)getLocalFile{
+    if ([CommonUtil IsExistFile:WECHAT_FRIENDCHAT(_FName)]) {
+        NSArray *pArray = [[NSMutableArray alloc] initWithContentsOfFile:WECHAT_FRIENDCHAT(_FName)];
+        [self.data addObjectsFromArray:pArray];
+    }
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    // 创建归档时所需的data 对象.
+    NSMutableData *data = [NSMutableData data];
+    
+    // 归档类.
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    
+    // 开始归档（@"model" 是key值，也就是通过这个标识来找到写入的对象）.
+    [archiver encodeObject:self.data forKey:@"model"];
+    
+    // 归档结束.
+    [archiver finishEncoding];
+    
+    [data writeToFile:WECHAT_FRIENDCHAT(_FName) atomically:YES];
+}
 #pragma mark - Public Methods
 - (void) addNewMessage:(TLMessage *)message
 {

@@ -9,7 +9,7 @@
 #import "VideoViewController.h"
 
 @interface VideoViewController ()
-
+@property (nonatomic,strong) UIView *pShowView;
 @end
 
 @implementation VideoViewController
@@ -26,6 +26,9 @@
     CGFloat iMargin = 5;
     _minutes = @"00";
     _seconds = @"00";
+    
+    
+    
     
     UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 65+25, screenW, 44*2+1)];
     [self.view addSubview:contentView];
@@ -81,10 +84,27 @@
 
 -(void)completeButtonDidClick:(id)sender{
     [self.view endEditing:YES];
-    if (self.didFinishSetVideoBlock) {
-        self.didFinishSetVideoBlock(_minutes,_seconds);
-    }
+    self.navigationController.navigationBarHidden = YES;
+    _pShowView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenW, screenH)];
+    [self.view addSubview:_pShowView];
+    _pShowView.backgroundColor = [UIColor lightGrayColor];
+    
+    UIButton *SuoXiaoBtn = [[UIButton alloc]initWithFrame:CGRectMake(35, 40, 50, 36)];
+    [_pShowView addSubview:SuoXiaoBtn];
+    [SuoXiaoBtn setBackgroundImage:[UIImage imageNamed:@"suoxiao"] forState:UIControlStateNormal];
+    [SuoXiaoBtn addTarget:self action:@selector(sendAndDismiss:) forControlEvents:UIControlEventTouchUpInside];
+    
+
+}
+
+-(void)sendAndDismiss:(UIButton *)sender{
+        if (self.didFinishSetVideoBlock) {
+            self.didFinishSetVideoBlock(_minutes,_seconds);
+        }
+    [_pShowView removeFromSuperview];
+    self.navigationController.navigationBarHidden = NO;
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

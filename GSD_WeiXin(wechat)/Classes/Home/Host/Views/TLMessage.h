@@ -55,19 +55,19 @@ typedef NS_ENUM(NSUInteger, TLMessageReadState) {
     TLMessageReaded,            // 消息已读
 };
 
-@interface TLMessage : NSObject
+@interface TLMessage : NSObject<NSMutableCopying>
 
 @property (nonatomic, strong) SDHomeTableViewCellModel *from;                         // 发送者信息
 @property (nonatomic, strong) NSDate *date;                         // 发送时间
 @property (nonatomic, strong) NSString *dateString;                 // 自定义的发送时间
 @property (nonatomic, assign) TLMessageType messageType;            // 消息类型
 @property (nonatomic, assign) TLMessageOwnerType ownerTyper;        // 发送者类型
-@property (nonatomic, assign) TLMessageReadState readState;         // 读取状态
-@property (nonatomic, assign) TLMessageSendState sendState;         // 发送状态
+//@property (nonatomic, assign) TLMessageReadState readState;         // 读取状态
+//@property (nonatomic, assign) TLMessageSendState sendState;         // 发送状态
 
-@property (nonatomic, assign) CGSize messageSize;                   // 消息大小
-@property (nonatomic, assign) CGFloat cellHeight;
-@property (nonatomic, strong) NSString *cellIndentify;
+//@property (nonatomic, assign) CGSize messageSize;                   // 消息大小
+//@property (nonatomic, assign) CGFloat cellHeight;
+//@property (nonatomic, strong) NSString *cellIndentify;
 
 #pragma mark - 文字消息
 @property (nonatomic, strong) NSString *text;                       // 文字信息
@@ -75,18 +75,18 @@ typedef NS_ENUM(NSUInteger, TLMessageReadState) {
 
 #pragma mark - 图片消息
 @property NSData *picture;
-@property (nonatomic, strong) NSString *imagePath;                  // 本地图片Path
+//@property (nonatomic, strong) NSString *imagePath;                  // 本地图片Path
 @property (nonatomic, strong) UIImage *image;                       // 图片缓存
-@property (nonatomic, strong) NSString *imageURL;                   // 网络图片URL
+//@property (nonatomic, strong) NSString *imageURL;                   // 网络图片URL
 
 #pragma mark - 位置消息
-@property (nonatomic, assign) CLLocationCoordinate2D coordinate;    // 经纬度
-@property (nonatomic, strong) NSString *address;                    // 地址
+//@property (nonatomic, assign) CLLocationCoordinate2D coordinate;    // 经纬度
+//@property (nonatomic, strong) NSString *address;                    // 地址
 
 #pragma mark - 语音消息
 @property (nonatomic, assign) NSUInteger voiceSeconds;              // 语音时间
-@property (nonatomic, strong) NSString *voiceUrl;                   // 网络语音URL
-@property (nonatomic, strong) NSString *voicePath;                  // 本地语音Path
+//@property (nonatomic, strong) NSString *voiceUrl;                   // 网络语音URL
+//@property (nonatomic, strong) NSString *voicePath;                  // 本地语音Path
 
 #pragma mark - 视频消息
 @property (nonatomic, strong) NSString* videoMinutes;              // 视频时间分

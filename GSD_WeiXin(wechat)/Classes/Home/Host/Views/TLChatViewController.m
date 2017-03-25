@@ -135,6 +135,7 @@
 {
     if (_chatMessageVC == nil) {
         _chatMessageVC = [[TLChatMessageViewContrller alloc] init];
+        _chatMessageVC.FName = _model.nickName;
         [_chatMessageVC.view setFrame:CGRectMake(0, HEIGHT_STATUSBAR + HEIGHT_NAVBAR, WIDTH_SCREEN, viewHeight - HEIGHT_TABBAR)];
 //        [_chatMessageVC setDelegate:self];
     }

@@ -19,6 +19,8 @@
 
 //@property (nonatomic, assign) id<TLChatMessageViewControllerDelegate>delegate;
 @property (nonatomic, strong) NSMutableArray *data;
+@property (nonatomic, strong) NSString *FName;
+
 
 - (void) addNewMessage:(TLMessage *)message;
 - (void) scrollToBottom;

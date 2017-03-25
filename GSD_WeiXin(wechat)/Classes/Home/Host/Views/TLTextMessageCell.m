@@ -26,7 +26,7 @@
 #define kRedWeight 0.68
 #define KRedHeight 0.34
 
-#define kVideoWeight 0.5
+#define kVideoWeight 0.4
 
 #define kReceiveRedWeight 0.45
 #define KReceiveRedHeight 0.17
@@ -534,10 +534,11 @@
     self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
     [self.container clearAutoWidthSettings];
     self.messageImageView.hidden = NO;
-
+    
     // 根据图片的宽高尺寸设置图片约束
-    CGFloat w = kRedWeight * screenW;;
+    CGFloat w = kVideoWeight * screenW;;
     CGFloat h = kChatCellIconImageViewWH;
+    
     if (TLMessage.ownerTyper == TLMessageOwnerTypeOther) {
         self.messageImageView.image = [[UIImage imageNamed:@"yuyinshoul"] stretchableImageWithLeftCapWidth:50 topCapHeight:30];
         
@@ -546,15 +547,13 @@
         
     }
     
-    self.messageImageView.contentMode = UIViewContentModeScaleAspectFit;
-    _containerBackgroundImageView.hidden = YES;
-    
     self.messageImageView.size_sd = CGSizeMake(w, h);
     _container.sd_layout.widthIs(w).heightIs(h);
-    
-    [_container setupAutoWidthWithRightView:_messageImageView rightMargin:kLabelMargin];
+    _containerBackgroundImageView.hidden = YES;
+    [_container setupAutoWidthWithRightView:_messageImageView rightMargin:0];
     // 设置container以messageImageView为bottomView高度自适应
     [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
+
 }
 
 
