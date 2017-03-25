@@ -33,16 +33,9 @@
 
 -(void)getLocalFile{
     if ([CommonUtil IsExistFile:WECHAT_FRIENDCHAT(_FName)]) {
-        // data.
         NSData *data = [NSData dataWithContentsOfFile:WECHAT_FRIENDCHAT(_FName)];
-        
-        // 反归档.
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        
-        // 获取@"model" 所对应的数据
         NSArray *pArray = [unarchiver decodeObjectForKey:@"model"];
-        
-        // 反归档结束.
         [unarchiver finishDecoding];
         [self.data addObjectsFromArray:pArray];
     }
@@ -51,18 +44,10 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    // 创建归档时所需的data 对象.
     NSMutableData *data = [NSMutableData data];
-    
-    // 归档类.
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    
-    // 开始归档（@"model" 是key值，也就是通过这个标识来找到写入的对象)
     [archiver encodeObject:self.data forKey:@"model"];
-    
-    // 归档结束.
     [archiver finishEncoding];
-    
     [data writeToFile:WECHAT_FRIENDCHAT(_FName) atomically:YES];
 }
 #pragma mark - Public Methods

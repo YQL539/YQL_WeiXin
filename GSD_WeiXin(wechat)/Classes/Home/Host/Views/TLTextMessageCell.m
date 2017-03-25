@@ -538,6 +538,14 @@
     // 根据图片的宽高尺寸设置图片约束
     CGFloat w = kVideoWeight * screenW;;
     CGFloat h = kChatCellIconImageViewWH;
+    UILabel *pLabel = [UILabel new];
+    pLabel.font = [UIFont systemFontOfSize:14];
+    NSUInteger iMin = [TLMessage.videoMinutes integerValue];
+    NSUInteger iSec = [TLMessage.videoSeconds integerValue];
+    pLabel.text = [NSString stringWithFormat:@"通话时长 %02lu:%02lu 图片",(unsigned long)iMin,(unsigned long)iSec];
+    pLabel.backgroundColor = [UIColor clearColor];
+    [self.messageImageView addSubview:pLabel];
+    pLabel.sd_layout.leftSpaceToView(self.messageImageView,10).widthIs(w).heightIs(h);
     
     if (TLMessage.ownerTyper == TLMessageOwnerTypeOther) {
         self.messageImageView.image = [[UIImage imageNamed:@"yuyinshoul"] stretchableImageWithLeftCapWidth:50 topCapHeight:30];
