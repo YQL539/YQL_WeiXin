@@ -121,6 +121,49 @@
     }
     return size;
 }
+
++ (UIColor *)GetColor:(NSString *)pColor
+{
+    NSString* pStr = [[pColor stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+    
+    // String should be 6 or 8 characters
+    if ([pStr length] < 6) {
+        return [UIColor clearColor];
+    }
+    
+    // strip 0X if it appears
+    if ([pStr hasPrefix:@"0X"])
+        pStr = [pStr substringFromIndex:2];
+    if ([pStr hasPrefix:@"#"])
+        pStr = [pStr substringFromIndex:1];
+    if ([pStr length] != 6)
+        return [UIColor clearColor];
+    
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    
+    //r
+    NSString *rString = [pStr substringWithRange:range];
+    
+    //g
+    range.location = 2;
+    NSString *gString = [pStr substringWithRange:range];
+    
+    //b
+    range.location = 4;
+    NSString *bString = [pStr substringWithRange:range];
+    
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    
+    return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:1.0f];
+}
+
 /**
  *  手机model转手机型号
  *
