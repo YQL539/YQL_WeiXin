@@ -135,6 +135,7 @@
 		5C4EFD751E8564340027E547 /* TimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4EFD741E8564340027E547 /* TimeViewController.m */; };
 		5C6AA3F51E82353C00DD8D4C /* RedPacketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6AA3F41E82353C00DD8D4C /* RedPacketViewController.m */; };
 		5C6AA3F81E82354E00DD8D4C /* TransformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6AA3F71E82354E00DD8D4C /* TransformViewController.m */; };
+		5C90481D1E86E19C007006A5 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C90481C1E86E19C007006A5 /* VideoViewController.m */; };
 		917412181E810FD60040CC7D /* MYAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 917412111E810FD60040CC7D /* MYAttributeModel.m */; };
 		917412191E810FD60040CC7D /* MYCoreTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 917412131E810FD60040CC7D /* MYCoreTextLabel.m */; };
 		9174121A1E810FD60040CC7D /* MYCoretextResultTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 917412151E810FD60040CC7D /* MYCoretextResultTool.m */; };
@@ -444,6 +445,8 @@
 		5C6AA3F41E82353C00DD8D4C /* RedPacketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketViewController.m; sourceTree = "<group>"; };
 		5C6AA3F61E82354E00DD8D4C /* TransformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformViewController.h; sourceTree = "<group>"; };
 		5C6AA3F71E82354E00DD8D4C /* TransformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransformViewController.m; sourceTree = "<group>"; };
+		5C90481B1E86E19C007006A5 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		5C90481C1E86E19C007006A5 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 		917412101E810FD60040CC7D /* MYAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYAttributeModel.h; sourceTree = "<group>"; };
 		917412111E810FD60040CC7D /* MYAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYAttributeModel.m; sourceTree = "<group>"; };
 		917412121E810FD60040CC7D /* MYCoreTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYCoreTextLabel.h; sourceTree = "<group>"; };
@@ -1324,6 +1327,8 @@
 				5C6AA3F71E82354E00DD8D4C /* TransformViewController.m */,
 				5C4EFD731E8564340027E547 /* TimeViewController.h */,
 				5C4EFD741E8564340027E547 /* TimeViewController.m */,
+				5C90481B1E86E19C007006A5 /* VideoViewController.h */,
+				5C90481C1E86E19C007006A5 /* VideoViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1731,6 +1736,7 @@
 				5C6AA3F81E82354E00DD8D4C /* TransformViewController.m in Sources */,
 				48EFF4211C7EAD24009252A5 /* SDTimeLineTableViewController.m in Sources */,
 				48EFF4471C7EAFBF009252A5 /* UIView+SDExtension.m in Sources */,
+				5C90481D1E86E19C007006A5 /* VideoViewController.m in Sources */,
 				9174122B1E81288A0040CC7D /* CommonUtil.m in Sources */,
 				48EFF4C71C7F2A7F009252A5 /* NSAttributedString+MLLabel.m in Sources */,
 				48EFF4C91C7F2A7F009252A5 /* NSString+MLLabel.m in Sources */,

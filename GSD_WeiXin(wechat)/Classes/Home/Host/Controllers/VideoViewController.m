@@ -1,18 +1,18 @@
 //
-//  TimeViewController.m
+//  VideoViewController.m
 //  GSD_WeiXin(wechat)
 //
-//  Created by 胡锦吾 on 2017/3/24.
+//  Created by 胡锦吾 on 2017/3/26.
 //  Copyright © 2017年 GSD. All rights reserved.
 //
 
-#import "TimeViewController.h"
+#import "VideoViewController.h"
 
-@interface TimeViewController ()
+@interface VideoViewController ()
 
 @end
 
-@implementation TimeViewController
+@implementation VideoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,25 +21,27 @@
 
 -(void)setSubView{
     [self.view setBackgroundColor:DEFAULT_CHATBOX_COLOR];
-    self.navigationItem.title = @"时间设置";
+    self.navigationItem.title = @"视频设置";
     
     CGFloat iMargin = 5;
-    _time = [NSString stringWithFormat:@"%@",[NSDate date]];
+    _minutes = @"00";
+    _seconds = @"00";
     
-    UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 65+25, screenW, 44+1)];
+    UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 65+25, screenW, 44*2+1)];
     [self.view addSubview:contentView];
     contentView.backgroundColor = [UIColor whiteColor];
     
     UILabel *money = [[UILabel alloc]initWithFrame:CGRectMake(iMargin, 4, 18*4, 40)];
     [contentView addSubview:money];
-    money.text = @"设置时间";
+    money.text = @"分钟";
     money.font = [UIFont systemFontOfSize:16];
     
     UITextField *moneyText = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(money.frame) + iMargin, 4, screenW - CGRectGetWidth(money.frame) - iMargin*3, 40)];
     [contentView addSubview:moneyText];
-    moneyText.placeholder = @"时间格式请参照下面样式";
+    moneyText.placeholder = @"分钟(1-59)";
     moneyText.tag = 100;
     moneyText.delegate = self;
+    moneyText.keyboardType = UIKeyboardTypeDecimalPad;
     moneyText.returnKeyType = UIReturnKeyDone;
     moneyText.font = [UIFont systemFontOfSize:15];
     moneyText.textColor = [UIColor colorWithHexString:@"#999999"];
@@ -49,6 +51,22 @@
     UIView *oneoneDiv = [[UIView alloc] initWithFrame:CGRectMake(0, 44, screenW, 0.5)];
     oneoneDiv.backgroundColor = [UIColor colorWithHexString:@"#999999"];
     [contentView addSubview:oneoneDiv];
+    UILabel *state = [[UILabel alloc]initWithFrame:CGRectMake(iMargin, CGRectGetMaxY(oneoneDiv.frame) + 4, 18*4, 40)];
+    [contentView addSubview:state];
+    state.text = @"秒数";
+    state.font = [UIFont systemFontOfSize:16];
+    
+    UITextField *statusText = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(state.frame) + iMargin, CGRectGetMaxY(oneoneDiv.frame) + 4, screenW - CGRectGetWidth(state.frame) - iMargin*3, 40)];
+    [contentView addSubview:statusText];
+    statusText.placeholder = @"秒数(1-59)";
+    statusText.tag = 200;
+    statusText.delegate = self;
+    statusText.keyboardType = UIKeyboardTypeDecimalPad;
+    statusText.returnKeyType = UIReturnKeyDone;
+    statusText.font = [UIFont systemFontOfSize:15];
+    statusText.textColor = [UIColor colorWithHexString:@"#999999"];
+    [statusText setValue:[UIColor colorWithHexString:@"#999999"] forKeyPath:@"_placeholderLabel.textColor"];
+    statusText.textAlignment = NSTextAlignmentRight;
     
     //完成
     CGFloat overBtnY = CGRectGetMaxY(contentView.frame) + 25;
@@ -59,24 +77,12 @@
     [completeBtn.layer setMasksToBounds:YES];
     [completeBtn.layer setCornerRadius:5];
     [self.view addSubview:completeBtn];
-    
-    UILabel *pShowLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(completeBtn.frame) + 25, screenW - 30, 120)];
-    pShowLabel.text = @"格式举例(=后面为输入的格式):\n1,今天=下午8:59\n2,昨天=昨天 下午10:43\n3,昨天之前=星期三 下午11:42\n4,一周之前=2016年8月8日 上午11:58";
-    pShowLabel.numberOfLines = 5;
-    [self.view addSubview:pShowLabel];
-    
-//    UIButton *MeButton = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMinX(pShowLabel.frame), CGRectGetMaxY(pShowLabel.frame) + 25, screenW - 30, 40)];
-//    [self.view addSubview:MeButton];
-//    [MeButton setTitle:@"你撤回了一条消息" forState:UIControlStateNormal];
-//    [MeButton addTarget:self action:@selector(ButtonDidClicked:) forControlEvents:UIControlEventTouchUpOutside];
-
-    
 }
 
 -(void)completeButtonDidClick:(id)sender{
     [self.view endEditing:YES];
-    if (self.didFinishSetTimeBlock) {
-        self.didFinishSetTimeBlock(_time);
+    if (self.didFinishSetVideoBlock) {
+        self.didFinishSetVideoBlock(_minutes,_seconds);
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -87,25 +93,31 @@
 
 #pragma mark ==========textfield Delegate==========
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    _time = textField.text;
+    if (textField.tag == 100) {
+        _minutes = textField.text;
+    }else{
+        _seconds = textField.text;
+    }
+    
     [textField resignFirstResponder];
     return YES;
 }
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField.tag == 100) {
+        _minutes = textField.text;
+    }else{
+        _seconds = textField.text;
+    }
+    
+    [textField resignFirstResponder];
+}
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    _time = textField.text;
+    if (textField.tag == 100) {
+        _minutes = textField.text;
+    }else{
+        _seconds = textField.text;
+    }
     return YES;
 }
-
--(void)textFieldDidEndEditing:(UITextField *)textField{
-    _time = textField.text;
-}
-
-//-(void)ButtonDidClicked:(UIButton *)sender{
-//    UIButton *pBtn = (UIButton *)sender;
-//    NSString *pstrMe = pBtn.currentTitle;
-//    UITextField *pTextField = [self.view viewWithTag:100];
-//    pTextField.text = pstrMe;
-//    
-//}
 @end

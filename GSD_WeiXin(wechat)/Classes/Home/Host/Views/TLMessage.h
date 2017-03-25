@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, TLMessageType){
     TLMessageTypeVoice,         // 语音
     TLMessageTypeVideo,         // 视频
     TLMessageTypeTime,          // 时间
-    TLMessageTypeLocation,      // 位置
+    TLMessageTypeCheHui,        // 撤回
     TLMessageTypeShake,         // 抖动
     TLMessageTypeRedPacket,     // 红包
     TLMessageTypeReceveRedPacket, // 红包领取
@@ -88,15 +88,20 @@ typedef NS_ENUM(NSUInteger, TLMessageReadState) {
 @property (nonatomic, strong) NSString *voiceUrl;                   // 网络语音URL
 @property (nonatomic, strong) NSString *voicePath;                  // 本地语音Path
 
+#pragma mark - 视频消息
+@property (nonatomic, strong) NSString* videoMinutes;              // 视频时间分
+@property (nonatomic, strong) NSString *videoSeconds;                   // 视频时间秒
+
 #pragma mark - 红包消息
 @property (nonatomic, strong) NSString *RedPacketString;            // 红包语言
 
 #pragma mark - 转账消息
 @property (nonatomic, copy) NSString *transformNum;                   // 转账金额
 @property (nonatomic, copy) NSString *transformString;              // 转账语言
-//聊天对方的名字和头像
-@property (nonatomic, copy) NSString *transformFName;
-@property NSData *transformFpicture;
 @property (nonatomic,copy) NSString *transformStarTime;               //转账时间
 @property (nonatomic,copy) NSString *transformEndTime;                //收账时间
+
+#pragma mark - 聊天对方的名字和头像
+@property (nonatomic, copy) NSString *transformFName;
+@property NSData *transformFpicture;
 @end

@@ -13,6 +13,7 @@
 #import "RedPacketViewController.h"
 #import "TransformViewController.h"
 #import "TimeViewController.h"
+#import "VideoViewController.h"
 @interface TLChatBoxViewController () <TLChatBoxDelegate, TLChatBoxFaceViewDelegate, TLChatBoxMoreViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, assign) CGRect keyboardFrame;
@@ -263,6 +264,47 @@
         };
         
         [self.navigationController pushViewController:timeController animated:YES];
+    }else if (itemType == TLChatBoxItemVoice) {
+        NSLog(@"语音");
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请选择下列操作" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"发语音给我" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self setVoiceTime:TLMessageOwnerTypeOther];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"发语音给对方" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self setVoiceTime:TLMessageOwnerTypeSelf];
+            
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else if (itemType == TLChatBoxItemPersonCard) {
+        NSLog(@"撤回");
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请选择下列操作" message:@"对方撤回请切换角色再点击" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"撤回消息" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            TLMessage *message = [[TLMessage alloc] init];
+            message.ownerTyper = TLMessageOwnerTypeSelf;
+            message.messageType = TLMessageTypeCheHui;
+            message.date = [NSDate date];
+            if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
+                [_delegate chatBoxViewController:self sendMessage:message];
+            }
+
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else if (itemType == TLChatBoxItemVideo) {
+        VideoViewController *redController = [[VideoViewController alloc]init];
+        redController.didFinishSetVideoBlock = ^(NSString *minutes,NSString *seconds){
+            TLMessage *message = [[TLMessage alloc] init];
+            message.messageType = TLMessageTypeVideo;
+            message.date = [NSDate date];
+            message.videoMinutes= minutes;
+            message.videoSeconds = seconds;
+            if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
+                [_delegate chatBoxViewController:self sendMessage:message];
+            }
+        };
+        [self.navigationController pushViewController:redController animated:YES];
     }
     else if (itemType == TLChatBoxItemSwitchRole) {
         if (_delegate && [_delegate respondsToSelector:@selector(SwitchRole)]) {
@@ -275,8 +317,34 @@
     }
 }
 
+-(void)setVoiceTime:(NSInteger)ToTag{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请输入时间" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+    }];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSArray *textfields = alertController.textFields;
+        UITextField *numfield = textfields[0];
+        numfield.keyboardType = UIKeyboardTypeNumberPad;
+        NSUInteger iTime = [numfield.text integerValue];
+        NSLog(@"我发送时间为%lu",(unsigned long)iTime);
+        TLMessage *message = [[TLMessage alloc] init];
+        message.ownerTyper = ToTag;
+        message.messageType = TLMessageTypeVoice;
+        message.date = [NSDate date];
+        message.voiceSeconds = iTime;
+        if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
+            [_delegate chatBoxViewController:self sendMessage:message];
+        }
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark - UIImagePickerControllerDelegate
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo{    
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo{
     UIImage *newImage = [image fixOrientation:image];
     UIImage *compressImage = [self compressImageToData:newImage];
         TLMessage *message = [[TLMessage alloc] init];
@@ -377,7 +445,7 @@
                                                                                   imageName:@"sharemore_location"];
         TLChatBoxMoreItem *favoriteItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"收藏"
                                                                                   imageName:@"sharemore_myfav"];
-        TLChatBoxMoreItem *businessCardItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"个人名片"
+        TLChatBoxMoreItem *businessCardItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"名片-撤销"
                                                                                       imageName:@"sharemore_friendcard" ];
 //        TLChatBoxMoreItem *interphoneItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"实时对讲机"
 //                                                                                    imageName:@"sharemore_wxtalk" ];
