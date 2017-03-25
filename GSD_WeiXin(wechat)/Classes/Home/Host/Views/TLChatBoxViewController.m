@@ -362,7 +362,7 @@
         message.messageType = TLMessageTypeImage;
         message.date = [NSDate date];
         message.picture = UIImagePNGRepresentation(compressImage);
-        NSLog(@"%@",message.imagePath);
+//        NSLog(@"%@",message.imagePath);
         if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
             [_delegate chatBoxViewController:self sendMessage:message];
         }

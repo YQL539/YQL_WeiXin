@@ -224,8 +224,8 @@
     
     self.iconImageView.image =  [UIImage imageWithData:model.picture];
     self.nameLabel.text = model.nickName;
-    self.timeLabel.text = model.time;
-    self.messageLabel.text = model.content[model.content.count -1];
+//    self.timeLabel.text = model.time;
+//    self.messageLabel.text = model.content[model.content.count -1];
 }
 
 - (void)setIsSlided:(BOOL)isSlided
