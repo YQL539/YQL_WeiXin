@@ -311,7 +311,7 @@
         [contentList addObject:self.threeoneLabel.text];
         self.homeDic[@"content"] = contentList;
         self.homeDic[@"time"] = self.fouroneLabel.text;
-        self.homeDic[@"message"] = self.twoText.text;
+        self.homeDic[@"message"] = self.threeoneLabel.text;
         [self.homeDic writeToFile:WECHAT_FRIEND(FName) atomically:YES];
         NSArray *userList = [[NSUserDefaults standardUserDefaults] objectForKey:@"LoginDict"];
         NSMutableArray *userinfo = [NSMutableArray array];

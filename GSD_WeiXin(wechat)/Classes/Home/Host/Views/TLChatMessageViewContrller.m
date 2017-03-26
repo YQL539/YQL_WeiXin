@@ -37,6 +37,7 @@
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         NSArray *pArray = [unarchiver decodeObjectForKey:@"model"];
         [unarchiver finishDecoding];
+        
         [self.data addObjectsFromArray:pArray];
     }
 
@@ -45,8 +46,10 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (_isExist == NO) {
+        [self firstLoadsendTextMessage];
         [self firstLoadsendTimeMessage];
         [self firstLoadsendTextMessage];
+
     }
 }
 
@@ -93,6 +96,8 @@
     [message setText:_Fmodel.message];
     [self addNewMessage:message];
     [self scrollToBottom];
+    
+
 }
 
 #pragma mark - UITableViewDataSource

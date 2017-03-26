@@ -145,6 +145,7 @@
 -(void)DeleteTheCell:(UIButton *)pButton{
     if (_delegate && [_delegate respondsToSelector:@selector(deleteTheCell:)]) {
         [_delegate deleteTheCell:_indexPath];
+        
     }
 }
 

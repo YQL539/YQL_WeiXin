@@ -189,6 +189,9 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
     [newArray removeObjectAtIndex:indexPath.row];
     [[NSUserDefaults standardUserDefaults] setObject:newArray forKey:@"LoginDict"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    SDHomeTableViewCellModel *model = self.dataList[indexPath.row];
+    [CommonUtil DeletePath:WECHAT_FRIENDCHAT(model.nickName)];
+    
     [self setupDataWithCount];
 }
 

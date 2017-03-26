@@ -94,6 +94,7 @@
 
 - (void)setMessageOriginWithModel:(TLMessage *)TLMessage
 {
+    
     //设置聊天头像的方向
     if (TLMessage.ownerTyper == TLMessageOwnerTypeSelf) {
         // 发出去的消息设置居右样式
@@ -109,6 +110,7 @@
     } else if (TLMessage.ownerTyper == TLMessageOwnerTypeOther) {
         
         // 收到的消息设置居左样式
+        
         self.iconImageView.sd_resetLayout
         .leftSpaceToView(self.contentView, kChatCellItemMargin)
         .topSpaceToView(self.contentView, kChatCellItemMargin)
@@ -169,7 +171,7 @@
     self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
     // 清除展示图片时候用到的mask
     [_container.layer.mask removeFromSuperlayer];
-    
+    [_container clearAutoWidthSettings];
     self.messageImageView.hidden = YES;
     [_messageTextLabel setAttributedText:TLMessage.attrText];
     // 清除展示图片时候_containerBackgroundImageView用到的didFinishAutoLayoutBlock
@@ -442,6 +444,7 @@
     ShowLabel.textAlignment = NSTextAlignmentCenter;
     ShowLabel.font = [UIFont fontWithName:FONTNAME size:12];
     ShowLabel.layer.cornerRadius = 3;
+    ShowLabel.tag = 1000;
     ShowLabel.layer.masksToBounds = YES;
     ShowLabel.text = TLMessage.dateString;
     
