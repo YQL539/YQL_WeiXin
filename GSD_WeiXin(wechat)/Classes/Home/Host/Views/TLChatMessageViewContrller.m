@@ -40,16 +40,14 @@
         
         [self.data addObjectsFromArray:pArray];
     }
-
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if (_isExist == NO) {
+    if (self.data.count == 0) {
         [self firstLoadsendTextMessage];
         [self firstLoadsendTimeMessage];
         [self firstLoadsendTextMessage];
-
     }
 }
 
