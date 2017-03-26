@@ -32,7 +32,7 @@
 }
 
 -(void)getLocalFile{
-    NSString *FName = _model.nickName;
+    NSString *FName = _model.FName;
     if ([CommonUtil IsExistFile:WECHAT_FRIENDCHAT(FName)]) {
         NSData *data = [NSData dataWithContentsOfFile:WECHAT_FRIENDCHAT(FName)];
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
@@ -49,7 +49,8 @@
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     [archiver encodeObject:self.data forKey:@"model"];
     [archiver finishEncoding];
-    [data writeToFile:WECHAT_FRIENDCHAT(_model.nickName) atomically:YES];
+    
+    [data writeToFile:WECHAT_FRIENDCHAT(_model.FName) atomically:YES];
 }
 #pragma mark - Public Methods
 - (void) addNewMessage:(TLMessage *)message
