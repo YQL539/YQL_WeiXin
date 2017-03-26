@@ -13,5 +13,4 @@
 @interface TLChatViewController : UIViewController
 
 @property (nonatomic,strong) SDHomeTableViewCellModel *model;
-
 @end

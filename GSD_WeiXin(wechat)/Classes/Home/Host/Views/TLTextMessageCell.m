@@ -10,7 +10,7 @@
 #import "UIView+SDAutoLayout.h"
 #import "UIView+TL.h"
 #define kLabelMargin 20.f
-#define kLabelTopMargin 8.f
+#define kLabelTopMargin 11.f
 #define kLabelBottomMargin 20.f
 
 #define kChatCellItemMargin 10.f
@@ -174,7 +174,6 @@
     [_messageTextLabel setAttributedText:TLMessage.attrText];
     // 清除展示图片时候_containerBackgroundImageView用到的didFinishAutoLayoutBlock
     _containerBackgroundImageView.didFinishAutoLayoutBlock = nil;
-    
     _messageTextLabel.sd_resetLayout
     .leftSpaceToView(_container, kLabelMargin)
     .topSpaceToView(_container, kLabelTopMargin)
@@ -529,6 +528,7 @@
 
 -(void)setVideoCell:(TLMessage *)TLMessage{
     // 根据model设置cell左浮动或者右浮动样式
+    if (TLMessage.ownerTyper == TLMessageOwnerTypeSelf){
     [self setMessageOriginWithModel:TLMessage];
     //头像
     self.iconImageView.image = [UIImage imageWithData:TLMessage.from.picture];
@@ -542,26 +542,19 @@
     pLabel.font = [UIFont systemFontOfSize:14];
     NSUInteger iMin = [TLMessage.videoMinutes integerValue];
     NSUInteger iSec = [TLMessage.videoSeconds integerValue];
-    pLabel.text = [NSString stringWithFormat:@"通话时长 %02lu:%02lu 图片",(unsigned long)iMin,(unsigned long)iSec];
+    pLabel.text = [NSString stringWithFormat:@"通话时长 %02lu:%02lu",(unsigned long)iMin,(unsigned long)iSec];
     pLabel.backgroundColor = [UIColor clearColor];
     [self.messageImageView addSubview:pLabel];
     pLabel.sd_layout.leftSpaceToView(self.messageImageView,10).widthIs(w).heightIs(h);
-    
-    if (TLMessage.ownerTyper == TLMessageOwnerTypeOther) {
-        self.messageImageView.image = [[UIImage imageNamed:@"yuyinshoul"] stretchableImageWithLeftCapWidth:50 topCapHeight:30];
-        
-    }else if (TLMessage.ownerTyper == TLMessageOwnerTypeSelf){
-        self.messageImageView.image = [[UIImage imageNamed:@"yuyingfal.png"] stretchableImageWithLeftCapWidth:50 topCapHeight:30];
-        
-    }
-    
+
+    self.messageImageView.image = [[UIImage imageNamed:@"videofa"] stretchableImageWithLeftCapWidth:50 topCapHeight:30];
     self.messageImageView.size_sd = CGSizeMake(w, h);
     _container.sd_layout.widthIs(w).heightIs(h);
     _containerBackgroundImageView.hidden = YES;
     [_container setupAutoWidthWithRightView:_messageImageView rightMargin:0];
     // 设置container以messageImageView为bottomView高度自适应
     [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
-
+    }
 }
 
 

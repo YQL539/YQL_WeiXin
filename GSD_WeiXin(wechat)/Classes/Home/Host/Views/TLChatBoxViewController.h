@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TLMessage.h"
+#import "SDHomeTableViewCellModel.h"
 
 @class TLChatBoxViewController;
 @protocol TLChatBoxViewControllerDelegate <NSObject>
@@ -23,6 +24,6 @@
 @interface TLChatBoxViewController : UIViewController
 
 @property id<TLChatBoxViewControllerDelegate>delegate;
-
+@property (nonatomic,strong) SDHomeTableViewCellModel *model;
 
 @end

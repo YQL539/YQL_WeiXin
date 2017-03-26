@@ -62,7 +62,7 @@ typedef NS_ENUM(NSUInteger, TLMessageReadState) {
 @property (nonatomic, strong) NSString *dateString;                 // 自定义的发送时间
 @property (nonatomic, assign) TLMessageType messageType;            // 消息类型
 @property (nonatomic, assign) TLMessageOwnerType ownerTyper;        // 发送者类型
-//@property (nonatomic, assign) TLMessageReadState readState;         // 读取状态
+@property (nonatomic, assign) TLMessageReadState readState;         // 读取状态
 //@property (nonatomic, assign) TLMessageSendState sendState;         // 发送状态
 
 //@property (nonatomic, assign) CGSize messageSize;                   // 消息大小

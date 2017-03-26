@@ -9,7 +9,7 @@
 #import "VideoViewController.h"
 
 @interface VideoViewController ()
-@property (nonatomic,strong) UIView *pShowView;
+@property (nonatomic,strong) UIImageView *pShowView;
 @end
 
 @implementation VideoViewController
@@ -27,9 +27,18 @@
     _minutes = @"00";
     _seconds = @"00";
     
-    
-    
-    
+    _pShowView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, screenW, screenH)];
+    _pShowView.userInteractionEnabled = YES;
+    UIImage *img1 = [UIImage imageWithData:_model.Fpicture];
+    __block UIImage *img = [[UIImage alloc]init];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        img = [CommonUtil coreBlurImage:img1 withBlurNumber:10];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_pShowView setImage:img];
+            _pShowView.contentMode = UIViewContentModeScaleToFill;
+        });
+    });
+
     UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 65+25, screenW, 44*2+1)];
     [self.view addSubview:contentView];
     contentView.backgroundColor = [UIColor whiteColor];
@@ -85,16 +94,47 @@
 -(void)completeButtonDidClick:(id)sender{
     [self.view endEditing:YES];
     self.navigationController.navigationBarHidden = YES;
-    _pShowView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenW, screenH)];
     [self.view addSubview:_pShowView];
-    _pShowView.backgroundColor = [UIColor lightGrayColor];
-    
-    UIButton *SuoXiaoBtn = [[UIButton alloc]initWithFrame:CGRectMake(35, 40, 50, 36)];
+    UIButton *SuoXiaoBtn = [[UIButton alloc]initWithFrame:CGRectMake(35/2, 30/2 + STATUSBAR_HEIGHT, 52/2, 38/2)];
     [_pShowView addSubview:SuoXiaoBtn];
     [SuoXiaoBtn setBackgroundImage:[UIImage imageNamed:@"suoxiao"] forState:UIControlStateNormal];
-    [SuoXiaoBtn addTarget:self action:@selector(sendAndDismiss:) forControlEvents:UIControlEventTouchUpInside];
+    SuoXiaoBtn.userInteractionEnabled = YES;
     
+    UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake((screenW - 210/2)/2, CGRectGetMaxY(SuoXiaoBtn.frame) + 194/2, 210/2, 210/2)];
+    [_pShowView addSubview:headView];
+    headView.image =  [UIImage imageWithData:_model.Fpicture];
+    
+    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake((screenW - 210/2)/2, CGRectGetMaxY(headView.frame) + 36/2, 210/2, 48/2)];
+    nameLabel.textColor = [UIColor whiteColor];
+    [_pShowView addSubview:nameLabel];
+    nameLabel.textAlignment = NSTextAlignmentCenter;
+    [_pShowView bringSubviewToFront:nameLabel];
+    nameLabel.text = _model.FName;
 
+    CGFloat iY = screenH - 25 - 160/2;
+    
+    UIButton *jinyinBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, iY, 111/2, 160/2)];
+    [_pShowView addSubview:jinyinBtn];
+    [jinyinBtn setBackgroundImage:[UIImage imageNamed:@"jinyin"] forState:UIControlStateNormal];
+    jinyinBtn.userInteractionEnabled = NO;
+    
+    UIButton *guaDuanBtn = [[UIButton alloc] initWithFrame:CGRectMake((screenW - 111/2)/2, iY, 111/2, 160/2)];
+    [_pShowView addSubview:guaDuanBtn];
+    [guaDuanBtn setBackgroundImage:[UIImage imageNamed:@"guaduan"] forState:UIControlStateNormal];
+    [guaDuanBtn addTarget:self action:@selector(sendAndDismiss:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *mianTiBtn = [[UIButton alloc] initWithFrame:CGRectMake(screenW - 50 - 111/2, iY, 111/2, 160/2)];
+    [_pShowView addSubview:mianTiBtn];
+    [mianTiBtn setBackgroundImage:[UIImage imageNamed:@"mianti"] forState:UIControlStateNormal];
+    mianTiBtn.userInteractionEnabled = NO;
+    
+    UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake((screenW - 111/2)/2, iY - 28 - 52/2, 111/2, 28)];
+    [_pShowView addSubview:timeLabel];
+    timeLabel.textColor = [UIColor whiteColor];
+    timeLabel.textAlignment = NSTextAlignmentCenter;
+    NSUInteger iM = [_minutes integerValue];
+    NSUInteger iS = [_seconds integerValue];
+    timeLabel.text = [NSString stringWithFormat:@"%02lu:%02lu",(unsigned long)iM,(unsigned long)iS];
 }
 
 -(void)sendAndDismiss:(UIButton *)sender{

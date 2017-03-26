@@ -304,7 +304,9 @@
         }]];
         [self presentViewController:alert animated:YES completion:nil];
     }else if (itemType == TLChatBoxItemVideo) {
+        
         VideoViewController *redController = [[VideoViewController alloc]init];
+        redController.model = _model;
         redController.didFinishSetVideoBlock = ^(NSString *minutes,NSString *seconds){
             TLMessage *message = [[TLMessage alloc] init];
             message.messageType = TLMessageTypeVideo;

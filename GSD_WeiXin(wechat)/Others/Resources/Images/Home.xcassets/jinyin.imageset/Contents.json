@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "jinyin.png",
+      "filename" : "yinyin.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "jinyin@2x.png",
+      "filename" : "yinyin@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "jinyin@3x.png",
+      "filename" : "yinyin@3x.png",
       "scale" : "3x"
     }
   ],

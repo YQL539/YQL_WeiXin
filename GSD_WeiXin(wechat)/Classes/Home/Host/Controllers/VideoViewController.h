@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SDHomeTableViewCellModel.h"
 @interface VideoViewController : UIViewController<UITextFieldDelegate>
 @property (nonatomic,strong) NSString *minutes;
 @property (nonatomic,strong) NSString *seconds;
+@property (nonatomic,strong) SDHomeTableViewCellModel *model;
 @property (nonatomic) void (^didFinishSetVideoBlock)(NSString *minutes,NSString *seconds);
 
 

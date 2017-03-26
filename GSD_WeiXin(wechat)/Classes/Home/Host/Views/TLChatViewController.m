@@ -52,8 +52,9 @@
         _FriendRole.picture = pDic[@"picture"];
     }
     _FriendRole.Fpicture = _MeRole.picture;
+    _FriendRole.FName = _MeRole.nickName;
     _MeRole.Fpicture = _FriendRole.picture;
-    
+    _MeRole.FName = _FriendRole.nickName;
     _SenderRole = _MeRole;
     viewHeight = HEIGHT_SCREEN - HEIGHT_NAVBAR - HEIGHT_STATUSBAR;
     
@@ -86,9 +87,14 @@
 #pragma mark - TLChatBoxViewControllerDelegate
 - (void) chatBoxViewController:(TLChatBoxViewController *)chatboxViewController sendMessage:(TLMessage *)message
 {
-    message.from = _SenderRole;
-    message.ownerTyper = _OwnerType;
-    NSLog(@"_owertype=%ld",_OwnerType);
+    //视频只能自己发送
+    if (message.messageType == TLMessageTypeVideo) {
+        message.from = _MeRole;
+        message.ownerTyper = TLMessageOwnerTypeSelf;
+    }else{
+        message.from = _SenderRole;
+        message.ownerTyper = _OwnerType;
+    }
     [self.chatMessageVC addNewMessage:message];
     //自动回复的内容
 //    TLMessage *recMessage = [[TLMessage alloc] init];
@@ -135,7 +141,8 @@
 {
     if (_chatMessageVC == nil) {
         _chatMessageVC = [[TLChatMessageViewContrller alloc] init];
-        _chatMessageVC.FName = _model.nickName;
+//        _chatMessageVC.FName = _model.nickName;
+        _chatMessageVC.model = _SenderRole;
         [_chatMessageVC.view setFrame:CGRectMake(0, HEIGHT_STATUSBAR + HEIGHT_NAVBAR, WIDTH_SCREEN, viewHeight - HEIGHT_TABBAR)];
 //        [_chatMessageVC setDelegate:self];
     }
@@ -147,6 +154,7 @@
     if (_chatBoxVC == nil) {
         _chatBoxVC = [[TLChatBoxViewController alloc] init];
         [_chatBoxVC.view setFrame:CGRectMake(0, HEIGHT_SCREEN - HEIGHT_TABBAR, WIDTH_SCREEN, HEIGHT_SCREEN)];
+        _chatBoxVC.model = _SenderRole;
         [_chatBoxVC setDelegate:self];
     }
     return _chatBoxVC;

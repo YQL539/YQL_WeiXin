@@ -90,4 +90,7 @@
  *气泡融合
  */
 + (void) MastViewByImage:(UIView *)pMaskedView withMaskImage:(UIView *)pMaskImageView;
+
+//高斯模糊图片
++(UIImage *)coreBlurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
 @end

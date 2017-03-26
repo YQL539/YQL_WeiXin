@@ -32,8 +32,9 @@
 }
 
 -(void)getLocalFile{
-    if ([CommonUtil IsExistFile:WECHAT_FRIENDCHAT(_FName)]) {
-        NSData *data = [NSData dataWithContentsOfFile:WECHAT_FRIENDCHAT(_FName)];
+    NSString *FName = _model.nickName;
+    if ([CommonUtil IsExistFile:WECHAT_FRIENDCHAT(FName)]) {
+        NSData *data = [NSData dataWithContentsOfFile:WECHAT_FRIENDCHAT(FName)];
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         NSArray *pArray = [unarchiver decodeObjectForKey:@"model"];
         [unarchiver finishDecoding];
@@ -48,7 +49,7 @@
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     [archiver encodeObject:self.data forKey:@"model"];
     [archiver finishEncoding];
-    [data writeToFile:WECHAT_FRIENDCHAT(_FName) atomically:YES];
+    [data writeToFile:WECHAT_FRIENDCHAT(_model.nickName) atomically:YES];
 }
 #pragma mark - Public Methods
 - (void) addNewMessage:(TLMessage *)message
@@ -108,7 +109,8 @@
 }
 
 -(void)didSelectedRedPacket:(TLMessage *)clickmessage{
-    if (clickmessage.ownerTyper == TLMessageOwnerTypeOther) {
+    
+    if (clickmessage.ownerTyper == TLMessageOwnerTypeOther && clickmessage.readState != TLMessageReaded) {
         //我领取别人的红包
         TLMessage *newMessage = [[TLMessage alloc] init];
         newMessage.messageType = TLMessageTypeReceveRedPacket;
@@ -116,7 +118,7 @@
         newMessage.date = [NSDate date];
         [self addNewMessage:newMessage];
         [self scrollToBottom];
-    }else if (clickmessage.ownerTyper == TLMessageOwnerTypeSelf){
+    }else if (clickmessage.ownerTyper == TLMessageOwnerTypeSelf && clickmessage.readState != TLMessageReaded){
         //别人领取我的红包
         TLMessage *newMessage = [[TLMessage alloc] init];
         newMessage.messageType = TLMessageTypeReceveRedPacket;
@@ -125,10 +127,11 @@
         [self addNewMessage:newMessage];
         [self scrollToBottom];
     }
+    clickmessage.readState = TLMessageReaded;
 }
 
 -(void)didSelectedTransfer:(TLMessage *)clickmessage{
-    if (clickmessage.ownerTyper == TLMessageOwnerTypeOther) {
+    if (clickmessage.ownerTyper == TLMessageOwnerTypeOther ) {
         //我收别人的钱
         TLMessage *newMessage = [[TLMessage alloc] init];
         newMessage.messageType = TLMessageTypeReceiveTransfer;

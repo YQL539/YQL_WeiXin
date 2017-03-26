@@ -52,7 +52,7 @@
 
 #define mark - Key
 #define UMENG_KEY   @"56d2b08c67e58e2f54000b07"
-
+#define STATUSBAR_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
 #define DIR_DOC  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
 #define DIR_WECHAT [CommonUtil GetProjDir]
 #define DIR_INFO [NSString stringWithFormat:@"%@%@",  DIR_WECHAT, @"info"]

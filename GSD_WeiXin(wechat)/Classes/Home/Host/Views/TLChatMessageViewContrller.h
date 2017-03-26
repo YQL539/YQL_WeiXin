@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TLMessage.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
+#import "SDHomeTableViewCellModel.h"
 //聊天的tableview
 //@class TLChatMessageViewContrller;
 //@protocol TLChatMessageViewControllerDelegate <NSObject>
@@ -19,7 +20,8 @@
 
 //@property (nonatomic, assign) id<TLChatMessageViewControllerDelegate>delegate;
 @property (nonatomic, strong) NSMutableArray *data;
-@property (nonatomic, strong) NSString *FName;
+//@property (nonatomic, strong) NSString *FName;
+@property (nonatomic,strong) SDHomeTableViewCellModel *model;
 
 
 - (void) addNewMessage:(TLMessage *)message;

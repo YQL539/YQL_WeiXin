@@ -46,6 +46,8 @@ static UILabel *label = nil;
     [pCoder encodeObject:_picture forKey:@"picture"];
     [pCoder encodeObject:_image forKey:@"image"];
     [pCoder encodeInt64:_voiceSeconds forKey:@"voiceSeconds"];
+    [pCoder encodeInt64:_readState forKey:@"readState"];
+
     [pCoder encodeObject:_videoMinutes forKey:@"videoMinutes"];
     [pCoder encodeObject:_videoSeconds forKey:@"videoSeconds"];
     [pCoder encodeObject:_RedPacketString forKey:@"RedPacketString"];
@@ -62,6 +64,7 @@ static UILabel *label = nil;
     _date = [pCoder decodeObjectForKey:@"date"];
     _dateString = [pCoder decodeObjectForKey:@"dateString"];
     _messageType = [pCoder decodeInt64ForKey:@"messageType"];
+    _readState = [pCoder decodeInt64ForKey:@"readState"];
     _ownerTyper = [pCoder decodeInt64ForKey:@"ownerTyper"];
     _text = [pCoder decodeObjectForKey:@"text"];
     _attrText = [pCoder decodeObjectForKey:@"attrText"];
