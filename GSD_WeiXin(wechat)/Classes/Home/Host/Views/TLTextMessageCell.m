@@ -20,13 +20,13 @@
 #define kMaxContainerWidth 220.f
 #define kMaxLabelWidth (kMaxContainerWidth - kLabelMargin * 2)
 
-#define kMaxChatImageViewWidth 200.f
-#define kMaxChatImageViewHeight 300.f
+#define kMaxChatImageViewWidth 100.f
+#define kMaxChatImageViewHeight 240.f
 
 #define kRedWeight 0.68
 #define KRedHeight 0.34
 
-#define kVideoWeight 0.4
+#define kVideoWeight 0.48
 
 #define kReceiveRedWeight 0.45
 #define KReceiveRedHeight 0.17
@@ -243,17 +243,18 @@
     UILabel *stateLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     stateLabel.text = TLMessage.RedPacketString;
     stateLabel.textColor = [UIColor whiteColor];
+    stateLabel.font = [UIFont systemFontOfSize:14];
     stateLabel.backgroundColor = [UIColor clearColor];
     [self.messageImageView addSubview:stateLabel];
     if (TLMessage.ownerTyper == TLMessageOwnerTypeSelf) {
          img = [UIImage imageNamed:@"zijifahong"];
-        stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53)
+        stateLabel.sd_layout.leftSpaceToView(self.messageImageView,48)
         .topSpaceToView(self.messageImageView,14)
         .widthIs(w - 53-10)
         .heightIs(22);
     }else if (TLMessage.ownerTyper == TLMessageOwnerTypeOther){
         img = [UIImage imageNamed:@"shouhongbao"];
-        stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53+8)
+        stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53+4)
         .topSpaceToView(self.messageImageView,14)
         .widthIs(w - 53-10)
         .heightIs(22);
@@ -268,7 +269,7 @@
     // 设置container以messageImageView为bottomView高度自适应
     [_container setupAutoHeightWithBottomView:self.messageImageView bottomMargin:kChatCellItemMargin];
     // container按照maskImageView裁剪
-    self.container.layer.mask = self.maskImageView.layer;
+//    self.container.layer.mask = self.maskImageView.layer;
     __weak typeof(self) weakself = self;
     [_containerBackgroundImageView setDidFinishAutoLayoutBlock:^(CGRect frame) {
         weakself.maskImageView.size_sd = frame.size;
@@ -318,7 +319,7 @@
     stateLabel.numberOfLines = 1;
     stateLabel.backgroundColor = [UIColor clearColor];
     [self.messageImageView addSubview:stateLabel];
-    
+    stateLabel.font = [UIFont systemFontOfSize:14];
     UILabel *moneyLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     moneyLabel.text = [NSString stringWithFormat:@"¥%.2f",[TLMessage.transformNum  floatValue]];
     moneyLabel.numberOfLines = 1;
@@ -331,12 +332,12 @@
         if (TLMessage.transformString.length == 0) {
             stateLabel.text = @"转账给对方";
         }
-        stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53+8)
+        stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53+12)
         .topSpaceToView(self.messageImageView,14)
         .widthIs(w - 53-18)
-        .heightIs(22);
-        moneyLabel.sd_layout.leftSpaceToView(self.messageImageView,53+8)
-        .topSpaceToView(self.messageImageView,14+22)
+        .heightIs(18);
+        moneyLabel.sd_layout.leftSpaceToView(self.messageImageView,53+12)
+        .topSpaceToView(self.messageImageView,14+18)
         .widthIs(w - 53-18)
         .heightIs(14);
     }else if (TLMessage.ownerTyper == TLMessageOwnerTypeOther){
@@ -345,12 +346,12 @@
             stateLabel.text = @"转账给你";
         }
         stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53+18)
-        .topSpaceToView(self.messageImageView,14)
+        .topSpaceToView(self.messageImageView,10)
         .widthIs(w - 53-20)
         .heightIs(22);
         
         moneyLabel.sd_layout.leftSpaceToView(self.messageImageView,53+18)
-        .topSpaceToView(self.messageImageView,14+22)
+        .topSpaceToView(self.messageImageView,14+18)
         .widthIs(w - 53-20)
         .heightIs(14);
     }
@@ -383,6 +384,7 @@
     stateLabel.text = TLMessage.transformString;
     stateLabel.textColor = [UIColor whiteColor];
     stateLabel.text = @"已收钱";
+    stateLabel.font = [UIFont systemFontOfSize:14];
     stateLabel.backgroundColor = [UIColor clearColor];
     [self.messageImageView addSubview:stateLabel];
     
@@ -408,7 +410,7 @@
         //我收钱
         img = [UIImage imageNamed:@"woshouqian"];
         stateLabel.sd_layout.leftSpaceToView(self.messageImageView,53+10)
-        .topSpaceToView(self.messageImageView,14)
+        .topSpaceToView(self.messageImageView,14+4)
         .widthIs(w - 53-20)
         .heightIs(18);
         
@@ -549,7 +551,7 @@
     pLabel.text = [NSString stringWithFormat:@"通话时长 %02lu:%02lu",(unsigned long)iMin,(unsigned long)iSec];
     pLabel.backgroundColor = [UIColor clearColor];
     [self.messageImageView addSubview:pLabel];
-    pLabel.sd_layout.leftSpaceToView(self.messageImageView,10).widthIs(w).heightIs(h);
+    pLabel.sd_layout.leftSpaceToView(self.messageImageView,14).widthIs(w).heightIs(h);
 
     self.messageImageView.image = [[UIImage imageNamed:@"videofa"] stretchableImageWithLeftCapWidth:50 topCapHeight:30];
     self.messageImageView.size_sd = CGSizeMake(w, h);
