@@ -89,8 +89,8 @@
     message.ownerTyper = TLMessageOwnerTypeOther;
     message.messageType = TLMessageTypeText;
     message.from = _Fmodel;
-    message.text = _Fmodel.message;
-    message.ownerTyper = TLMessageOwnerTypeOther;
+    message.date = [NSDate date];
+    [message setText:_Fmodel.message];
     [self addNewMessage:message];
     [self scrollToBottom];
 }

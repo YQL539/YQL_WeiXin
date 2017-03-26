@@ -448,10 +448,10 @@
     _containerBackgroundImageView.didFinishAutoLayoutBlock = nil;
     _container.sd_layout.heightIs(size.height);
     ShowLabel.sd_layout
-    .leftSpaceToView(self, (screenW - size.width - 30)/2)
+    .leftSpaceToView(self, round((screenW - size.width - 30)/2))
     .topSpaceToView(self,5)
-    .heightIs(size.height)
-    .widthIs(size.width + 30);
+    .heightIs(round(size.height))
+    .widthIs(round(size.width + 30));
     _containerBackgroundImageView.hidden = YES;
     [_container setupAutoHeightWithBottomView:ShowLabel bottomMargin:0];
 }
@@ -480,9 +480,9 @@
     _containerBackgroundImageView.didFinishAutoLayoutBlock = nil;
     _container.sd_layout.heightIs(size.height);
     ShowLabel.sd_layout
-    .leftSpaceToView(self, (screenW - size.width - 30)/2)
-    .heightIs(size.height)
-    .widthIs(size.width + 30);
+    .leftSpaceToView(self, round((screenW - size.width - 30)/2))
+    .heightIs(round(size.height))
+    .widthIs(round(size.width + 30));
     _containerBackgroundImageView.hidden = YES;
     [_container setupAutoHeightWithBottomView:ShowLabel bottomMargin:0];
     
