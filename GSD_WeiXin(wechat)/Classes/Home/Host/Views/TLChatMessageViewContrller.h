@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSMutableArray *data;
 //@property (nonatomic, strong) NSString *FName;
 @property (nonatomic,strong) SDHomeTableViewCellModel *model;
-
+@property (nonatomic,strong) SDHomeTableViewCellModel *Fmodel;
 
 - (void) addNewMessage:(TLMessage *)message;
 - (void) scrollToBottom;

@@ -13,9 +13,7 @@
 #import "UIView+SDAutoLayout.h"
 
 @interface TLChatMessageViewContrller ()
-
-//@property (nonatomic, strong) UITapGestureRecognizer *tapGR;
-
+@property (nonatomic ,assign) BOOL isExist;
 @end
 
 @implementation TLChatMessageViewContrller
@@ -33,15 +31,24 @@
 
 -(void)getLocalFile{
     NSString *FName = _model.FName;
-    if ([CommonUtil IsExistFile:WECHAT_FRIENDCHAT(FName)]) {
+    _isExist = [CommonUtil IsExistFile:WECHAT_FRIENDCHAT(FName)];
+    if (_isExist) {
         NSData *data = [NSData dataWithContentsOfFile:WECHAT_FRIENDCHAT(FName)];
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         NSArray *pArray = [unarchiver decodeObjectForKey:@"model"];
         [unarchiver finishDecoding];
         [self.data addObjectsFromArray:pArray];
     }
+
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (_isExist == NO) {
+        [self firstLoadsendTimeMessage];
+        [self firstLoadsendTextMessage];
+    }
+}
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -64,6 +71,28 @@
     if (_data.count > 0) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_data.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     }
+}
+
+- (void)firstLoadsendTimeMessage
+{
+    TLMessage *message = [[TLMessage alloc]init];
+    message.messageType = TLMessageTypeTime;
+    message.ownerTyper = TLMessageOwnerTypeOther;
+    message.dateString = _Fmodel.time;
+    [self addNewMessage:message];
+    [self scrollToBottom];
+}
+
+- (void)firstLoadsendTextMessage
+{
+    TLMessage *message = [[TLMessage alloc]init];
+    message.ownerTyper = TLMessageOwnerTypeOther;
+    message.messageType = TLMessageTypeText;
+    message.from = _Fmodel;
+    message.text = _Fmodel.message;
+    message.ownerTyper = TLMessageOwnerTypeOther;
+    [self addNewMessage:message];
+    [self scrollToBottom];
 }
 
 #pragma mark - UITableViewDataSource
@@ -177,23 +206,6 @@
     }
     return width;
 }
-
-#pragma mark - Event Response
-//- (void) didTapView
-//{
-//    if (_delegate && [_delegate respondsToSelector:@selector(didTapChatMessageView:)]) {
-//        [_delegate didTapChatMessageView:self];
-//    }
-//}
-//
-//#pragma mark - Getter
-//- (UITapGestureRecognizer *) tapGR
-//{
-//    if (_tapGR == nil) {
-//        _tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapView)];
-//    }
-//    return _tapGR;
-//}
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];

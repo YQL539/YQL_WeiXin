@@ -57,7 +57,7 @@
     _MeRole.FName = _FriendRole.nickName;
     _SenderRole = _MeRole;
     viewHeight = HEIGHT_SCREEN - HEIGHT_NAVBAR - HEIGHT_STATUSBAR;
-    
+
     [self.view addSubview:self.chatMessageVC.view];
     [self addChildViewController:self.chatMessageVC];
     [self.view addSubview:self.chatBoxVC.view];
@@ -70,6 +70,7 @@
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [MobClick beginLogPageView:self.navigationItem.title];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -143,6 +144,7 @@
         _chatMessageVC = [[TLChatMessageViewContrller alloc] init];
 //        _chatMessageVC.FName = _model.nickName;
         _chatMessageVC.model = _SenderRole;
+        _chatMessageVC.Fmodel = _model;
         [_chatMessageVC.view setFrame:CGRectMake(0, HEIGHT_STATUSBAR + HEIGHT_NAVBAR, WIDTH_SCREEN, viewHeight - HEIGHT_TABBAR)];
 //        [_chatMessageVC setDelegate:self];
     }

@@ -449,6 +449,7 @@
     _container.sd_layout.heightIs(size.height);
     ShowLabel.sd_layout
     .leftSpaceToView(self, (screenW - size.width - 30)/2)
+    .topSpaceToView(self,5)
     .heightIs(size.height)
     .widthIs(size.width + 30);
     _containerBackgroundImageView.hidden = YES;
