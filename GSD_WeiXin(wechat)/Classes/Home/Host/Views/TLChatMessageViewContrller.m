@@ -131,7 +131,7 @@
 }
 
 -(void)didSelectedTransfer:(TLMessage *)clickmessage{
-    if (clickmessage.ownerTyper == TLMessageOwnerTypeOther ) {
+    if (clickmessage.ownerTyper == TLMessageOwnerTypeOther&& clickmessage.readState != TLMessageReaded) {
         //我收别人的钱
         TLMessage *newMessage = [[TLMessage alloc] init];
         newMessage.messageType = TLMessageTypeReceiveTransfer;
@@ -142,7 +142,7 @@
         newMessage.transformFName = clickmessage.from.FName;
         [self addNewMessage:newMessage];
         [self scrollToBottom];
-    }else if (clickmessage.ownerTyper == TLMessageOwnerTypeSelf){
+    }else if (clickmessage.ownerTyper == TLMessageOwnerTypeSelf&& clickmessage.readState != TLMessageReaded){
         //别人收我的钱
         TLMessage *newMessage = [[TLMessage alloc] init];
         newMessage.messageType = TLMessageTypeReceiveTransfer;
@@ -154,6 +154,7 @@
         [self addNewMessage:newMessage];
         [self scrollToBottom];
     }
+    clickmessage.readState = TLMessageReaded;
 }
 #pragma mark - UITableViewCellDelegate
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
